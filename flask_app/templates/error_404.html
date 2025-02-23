@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>404 - Page Not Found</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Container for content */
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Neon text effect */
+    h1 {
+      font-size: clamp(4rem, 15vw, 10rem);
+      font-weight: bold;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    p {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      margin: 1rem 0;
+      color: #fff;
+      text-shadow: 0 0 5px #fff;
+    }
+
+    /* Neon button */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      color: #00ffcc;
+      background-color: transparent;
+      border: 2px solid #00ffcc;
+      border-radius: 2rem;
+      text-decoration: none;
+      text-shadow: 0 0 5px #00ffcc;
+      box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc inset;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #00ffcc;
+      color: #0a0a0a;
+      box-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+    }
+
+    /* SVG background */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* Glow animation */
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 80px #00ffcc;
+      }
+    }
+
+    /* Flash messages styling */
+    .flash-messages {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      left: 20px;
+      z-index: 3;
+    }
+
+    .alert {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-shadow: 0 0 5px currentColor;
+      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor inset;
+      animation: slideIn 0.5s ease-out, fadeOut 10s ease-out 2.5s forwards;
+    }
+
+    .alert-success {
+      color: #00ff00;
+      border: 2px solid #00ff00;
+    }
+
+    .alert-info {
+      color: #00bfff;
+      border: 2px solid #00bfff;
+    }
+
+    .alert-error {
+      color: #ff4444;
+      border: 2px solid #ff4444;
+    }
+
+    /* Animations for flash messages */
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG Background -->
+  <svg class="background" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <!-- Grid pattern -->
+    <pattern id="grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M10 0L0 0 0 10" fill="none" stroke="#00ffcc" stroke-width="0.2" stroke-opacity="0.3" />
+    </pattern>
+    <rect width="100" height="100" fill="url(#grid)" />
+    <!-- Animated lines -->
+    <line x1="0" y1="50" x2="100" y2="50" stroke="#00ffcc" stroke-width="0.5" stroke-opacity="0.3">
+      <animate attributeName="x2" from="0" to="100" dur="5s" repeatCount="indefinite" />
+    </line>
+    <line x1="50" y1="0" x2="50" y2="100" stroke="#00ffcc" stroke-width="0.5" stroke-opacity="0.3">
+      <animate attributeName="y2" from="0" to="100" dur="5s" repeatCount="indefinite" />
+    </line>
+  </svg>
+
+  <!-- Flash Messages -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+  <!-- Content -->
+  <div class="container">
+    <h1>404</h1>
+    <p>Page Not Found</p>
+    <a href="/" class="btn">Go Back Home</a>
+  </div>
+</body>
+</html>

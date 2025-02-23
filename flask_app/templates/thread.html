@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+/* Стили для треда */
+.card {
+  background-color: #2c3e50;
+  border: 1px solid #8B4513;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #8B4513 !important;
+  border-bottom: 1px solid #a0522d;
+}
+
+.card-body {
+  background-color: #34495e;
+}
+
+/* Аватарки */
+.rounded-circle {
+  border: 2px solid #8B4513;
+}
+
+/* Форма ответа */
+#replyForm textarea {
+  background-color: #2c3e50;
+  color: #fff;
+  border: 1px solid #8B4513;
+}
+
+#replyForm textarea:focus {
+  background-color: #34495e;
+  border-color: #a0522d;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+}
+
+/* Кнопки */
+.btn-primary {
+  background-color: #8B4513;
+  border-color: #8B4513;
+}
+
+.btn-primary:hover {
+  background-color: #a0522d;
+  border-color: #a0522d;
+}
+
+</style>
+  <div class="container mt-5">
+    <!-- Заголовок треда -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h1>{{ thread.title }}</h1>
+        <small>Автор: {{ thread.author }} | Дата: {{ thread.date }} | Просмотры: {{ thread.views }}</small>
+      </div>
+      <div class="card-body">
+        <p>{{ thread.content }}</p>
+      </div>
+    </div>
+
+    <!-- Ответы -->
+    <h2 class="mb-4">Ответы</h2>
+    {% for reply in thread.replies %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="{{ reply.author_avatar }}" alt="Аватар" class="rounded-circle me-3" width="50">
+            <div>
+              <h5>{{ reply.author }}</h5>
+              <small class="text-muted">{{ reply.date }}</small>
+            </div>
+          </div>
+          <p>{{ reply.content }}</p>
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- Форма для ответа -->
+    <div class="card mt-5">
+      <div class="card-header bg-success text-white">
+        <h3>Оставить ответ</h3>
+      </div>
+      <div class="card-body">
+        <form id="replyForm">
+          <div class="mb-3">
+            <textarea class="form-control" id="replyContent" rows="5" placeholder="Ваш ответ..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Minecraft&display=swap');
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('/static/fonts/Minecraft.woff2') format('woff2'),
+       url('/static/fonts/Minecraft.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Minecraft', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Minecraft', sans-serif;
+  color: #8B4513;
+}

@@ -1,0 +1,56 @@
+<div id="comments">
+  <h3>Comments</h3>
+  <div class="comment" v-for="comment in comments" :key="comment.id">
+    <div class="d-flex align-items-center mb-3">
+      <img :src="comment.avatar" alt="User Avatar" class="rounded-circle me-3" width="40">
+      <div>
+        <strong>{{ comment.user }}</strong>
+        <small class="text-muted">{{ comment.timestamp }}</small>
+      </div>
+    </div>
+    <p>{{ comment.text }}</p>
+  </div>
+  <form @submit.prevent="addComment">
+    <textarea class="form-control mb-3" v-model="newComment" placeholder="Add a comment..."></textarea>
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+  </form>
+</div>
+
+<script>
+  new Vue({
+    el: '#comments',
+    data: {
+      comments: [
+        {
+          id: 1,
+          user: 'Steve',
+          avatar: 'https://via.placeholder.com/40',
+          timestamp: '2 hours ago',
+          text: 'This is a great post!'
+        },
+        {
+          id: 2,
+          user: 'Alex',
+          avatar: 'https://via.placeholder.com/40',
+          timestamp: '1 hour ago',
+          text: 'I totally agree!'
+        }
+      ],
+      newComment: ''
+    },
+    methods: {
+      addComment() {
+        if (this.newComment.trim()) {
+          this.comments.push({
+            id: this.comments.length + 1,
+            user: 'You',
+            avatar: 'https://via.placeholder.com/40',
+            timestamp: 'Just now',
+            text: this.newComment
+          });
+          this.newComment = '';
+        }
+      }
+    }
+  });
+</script>

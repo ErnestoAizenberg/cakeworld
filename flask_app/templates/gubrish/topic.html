@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Minecraft&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/topic.css') }}" rel="stylesheet">
+  <!-- Основной контент -->
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">{{ topic.title }}</h1>
+
+    <!-- Кнопка "Создать тред" -->
+    <div class="text-center mb-5">
+      <a href="{{ url_for('create_thread') }}" class="btn btn-primary btn-lg">
+        Создать тред
+      </a>
+    </div>
+
+    <!-- Поиск по постам -->
+    <div class="mb-5">
+      <input type="text" id="searchInput" class="form-control" placeholder="Поиск по постам...">
+      <div id="searchResults" class="mt-2"></div>
+    </div>
+
+    <!-- Список постов -->
+    <div class="row">
+      {% for post in posts %}
+        <div class="col-md-12 mb-4">
+          <div class="card post-card" data-post-id="{{ post.id }}">
+            <div class="card-body">
+              <h3>{{ post.title }}</h3>
+              <p class="text-muted">Автор: {{ post.author.username }} | Дата: {{ post.date }} | Просмотры: {{ post.views }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    // Поиск по постам
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const posts = document.querySelectorAll('.card h3');
+      searchResults.innerHTML = '';
+
+      posts.forEach(post => {
+        if (post.textContent.toLowerCase().includes(query)) {
+          const result = document.createElement('div');
+          result.className = 'alert alert-info';
+          result.textContent = post.textContent;
+          result.style.cursor = 'pointer';
+          result.addEventListener('click', () => {
+            const postCard = post.closest('.post-card');
+            navigateToThread(postCard);
+          });
+          searchResults.appendChild(result);
+        }
+      });
+    });
+
+    // Анимация перехода к треду
+    const postCards = document.querySelectorAll('.post-card');
+    postCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        navigateToThread(card);
+      });
+    });
+
+    function navigateToThread(card) {
+      // Анимация исчезновения карточки
+      anime({
+        targets: card,
+        opacity: 0,
+        translateY: -20,
+        duration: 300,
+        easing: 'easeInOutQuad',
+        complete: () => {
+          // Переход на страницу треда
+          const postId = card.getAttribute('data-post-id');
+          window.location.href = `/thread/${postId}`;
+        }
+      });
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ topic.title }}</h1>
+  <a href="{{ url_for('create_post', topic_id=topic.id) }}" class="btn btn-primary">Создать пост</a>
+  <ul>
+    {% for post in posts %}
+      <li>
+        <p>{{ post.content }}</p>
+        <small>Автор: {{ post.author.username }}</small>
+        <a href="{{ url_for('reply_post', post_id=post.id) }}" class="btn btn-sm btn-success">Ответить</a>
+        <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-sm btn-warning">Редактировать</a>
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+        </form>
+        <!-- Ответы на пост -->
+        <ul>
+          {% for reply in post.replies %}
+            <li>
+              <p>{{ reply.content }}</p>
+              <small>Автор: {{ reply.author.username }}</small>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

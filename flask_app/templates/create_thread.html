@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Создать новый тред</h1>
+
+    <form id="createThreadForm">
+      <div class="mb-3">
+        <label for="threadTitle" class="form-label">Заголовок</label>
+        <input type="text" class="form-control" id="threadTitle" placeholder="Введите заголовок">
+      </div>
+      <div class="mb-3">
+        <label for="threadContent" class="form-label">Содержание</label>
+        <textarea class="form-control" id="threadContent" rows="5" placeholder="Введите содержание"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('createThreadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('threadTitle').value;
+      const content = document.getElementById('threadContent').value;
+
+      if (title.trim() && content.trim()) {
+        // Отправка данных на сервер (можно добавить fetch или axios)
+        alert('Тред успешно создан!');
+        window.location.href = '/technical_forums'; // Перенаправление на страницу форума
+      } else {
+        alert('Заполните все поля!');
+      }
+    });
+  </script>
+{% endblock %}

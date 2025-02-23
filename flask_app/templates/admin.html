@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Admin Dashboard</h2>
+  <div id="admin-chart"></div>
+
+  <script>
+    const paper = Raphael('admin-chart', {{ admin_data.chart_data.width }}, {{ admin_data.chart_data.height }});
+    const chart = paper.rect(50, 50, 700, 300).attr({ fill: '{{ admin_data.chart_data.color }}' });
+  </script>
+{% endblock %}

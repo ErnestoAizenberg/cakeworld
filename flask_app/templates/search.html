@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Search Results</h2>
+  <div id="search-results">
+    {% for result in search_results %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ result.title }}</h5>
+          <p class="card-text">{{ result.summary }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
