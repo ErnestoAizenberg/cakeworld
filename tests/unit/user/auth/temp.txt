@@ -1,0 +1,711 @@
+
+========================== ERRORS ==========================___ ERROR at setup of TestAuthRoutes.test_entry_page_get ___file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 8
+      def test_entry_page_get(self, client):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+___ ERROR at setup of TestAuthRoutes.test_login_success ____file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 14
+      def test_login_success(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+___ ERROR at setup of TestAuthRoutes.test_login_failure ____file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 28
+      def test_login_failure(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+__ ERROR at setup of TestAuthRoutes.test_register_success __file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 39
+      def test_register_success(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+_ ERROR at setup of TestAuthRoutes.test_verify_email_success _
+file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 55
+      def test_verify_email_success(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+_ ERROR at setup of TestAuthRoutes.test_password_reset_flow _
+file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 64
+      def test_password_reset_flow(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+_______ ERROR at setup of TestAuthRoutes.test_logout _______file /storage/emulated/0/gitserver/cakeworld/tests/integration/auth/test_auth_routes.py, line 81
+      def test_logout(self, client, mock_auth_controller):
+file /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py, line 111
+  @pytest.fixture(autouse=True)
+  def _configure_application(request, monkeypatch):
+E       fixture 'app' not found
+>       available fixtures: _configure_application, _monkeypatch_response_class, _push_request_context, accept_any, accept_json, accept_jsonp, accept_mimetype, anyio_backend, anyio_backend_name, anyio_backend_options, cache, capfd, capfdbinary, caplog, capsys, capsysbinary, client, client_class, config, doctest_namespace, free_tcp_port, free_tcp_port_factory, free_udp_port, free_udp_port_factory, live_server, monkeypatch, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/pytest_flask/plugin.py:111
+========================= FAILURES =========================____ TestAuthController.test_register_password_mismatch ____
+args = (<flask_app.user.auth.controllers.AuthController object at 0xe7f7a5d0>, 'test', 'test@example.com', 'password123', 'different')
+kwargs = {}
+
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        try:
+>           return f(*args, **kwargs)
+
+flask_app/user/auth/controllers.py:20:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+self = <flask_app.user.auth.controllers.AuthController object at 0xe7f7a5d0>
+username = 'test', email = 'test@example.com'
+password = 'password123', confirm_password = 'different'
+
+    @handle_auth_errors
+    def register(self, username: str, email: str, password: str, confirm_password: str) -> UserDTO:
+        """Register a new user account.
+
+        Args:
+            username: User's display name
+            email: User's email address
+            password: User's password
+            confirm_password: Password confirmation
+
+        Returns:
+            UserDTO: Registered user data
+
+        Raises:
+            AuthException: If registration fails
+            ValidationError: If input validation fails
+        """
+        if password != confirm_password:
+>           raise ValidationError("Passwords do not match")
+E           flask_app.user.auth.exceptions.ValidationError: Passwords do not match
+
+flask_app/user/auth/controllers.py:56: ValidationError
+
+During handling of the above exception, another exception occurred:
+
+self = <test_auth_controller.TestAuthController object at 0xe7f533f0>
+auth_controller = <flask_app.user.auth.controllers.AuthController object at 0xe7f7a5d0>
+
+    def test_register_password_mismatch(self, auth_controller):
+        """Test registration with password mismatch."""
+        with pytest.raises(ValidationError):
+>           auth_controller.register("test", "test@example.com", "password123", "different")
+
+tests/uint/user/auth/test_auth_controller.py:33:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+args = (<flask_app.user.auth.controllers.AuthController object at 0xe7f7a5d0>, 'test', 'test@example.com', 'password123', 'different')
+kwargs = {}
+
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except ValidationError as e:
+            logger.warning(f"Validation error: {str(e)}")
+>           raise AuthException(str(e), 400)
+E           flask_app.user.auth.exceptions.AuthException: ('Passwords do not match', 400)
+
+flask_app/user/auth/controllers.py:23: AuthException
+-------------------- Captured log call ---------------------WARNING  flask_app.user.auth.controllers:controllers.py:22 Validation error: Passwords do not match
+__________ TestAuthController.test_login_success ___________
+args = (<flask_app.user.auth.controllers.AuthController object at 0xe7f644f0>, 'test@example.com', 'password123')
+kwargs = {}
+
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        try:
+>           return f(*args, **kwargs)
+
+flask_app/user/auth/controllers.py:20:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ flask_app/user/auth/controllers.py:78: in login
+    session['user_id'] = user.id
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py:318: in __get__    obj = instance._get_current_object()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+    def _get_current_object() -> T:
+        try:
+            obj = local.get()
+        except LookupError:
+>           raise RuntimeError(unbound_message) from None
+E           RuntimeError: Working outside of request context.
+E
+E           This typically means that you attempted to use functionality that needed
+E           an active HTTP request. Consult the documentation on testing for
+E           information about how to avoid this problem.
+
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py:519: RuntimeError
+
+During handling of the above exception, another exception occurred:
+
+self = <test_auth_controller.TestAuthController object at 0xe7f53670>
+auth_controller = <flask_app.user.auth.controllers.AuthController object at 0xe7f644f0>
+mock_auth_service = <MagicMock id='3890517104'>
+
+    def test_login_success(self, auth_controller, mock_auth_service):
+        """Test successful login."""
+        mock_user = UserDTO(id=1, username="test", email="test@example.com")
+        mock_auth_service.login_user.return_value = mock_user
+
+>       result = auth_controller.login("test@example.com", "password123")
+
+tests/uint/user/auth/test_auth_controller.py:40:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+args = (<flask_app.user.auth.controllers.AuthController object at 0xe7f644f0>, 'test@example.com', 'password123')
+kwargs = {}
+
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except ValidationError as e:
+            logger.warning(f"Validation error: {str(e)}")
+            raise AuthException(str(e), 400)
+        except AuthException as e:
+            logger.warning(f"Auth error: {str(e)}")
+            raise
+        except Exception as e:
+            logger.error(f"Unexpected error: {str(e)}", exc_info=True)
+>           raise AuthException("An unexpected error occurred", 500)
+E           flask_app.user.auth.exceptions.AuthException: ('An unexpected error occurred', 500)
+
+flask_app/user/auth/controllers.py:29: AuthException
+-------------------- Captured log call ---------------------ERROR    flask_app.user.auth.controllers:controllers.py:28 Unexpected error: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+Traceback (most recent call last):
+  File "/storage/emulated/0/gitserver/cakeworld/flask_app/user/auth/controllers.py", line 20, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/storage/emulated/0/gitserver/cakeworld/flask_app/user/auth/controllers.py", line 78, in login
+    session['user_id'] = user.id
+    ~~~~~~~^^^^^^^^^^^
+  File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py", line 318, in __get__
+    obj = instance._get_current_object()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py", line 519, in _get_current_object
+    raise RuntimeError(unbound_message) from None
+RuntimeError: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request. Consult the documentation on testing for
+information about how to avoid this problem.
+______________ TestAuthController.test_logout ______________
+self = <test_auth_controller.TestAuthController object at 0xe7f5d450>
+auth_controller = <flask_app.user.auth.controllers.AuthController object at 0xe7e4a650>
+
+    def test_logout(self, auth_controller):
+        """Test logout clears session."""
+>       session['user_id'] = 1
+
+tests/uint/user/auth/test_auth_controller.py:84:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ /data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py:318: in __get__    obj = instance._get_current_object()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+    def _get_current_object() -> T:
+        try:
+            obj = local.get()
+        except LookupError:
+>           raise RuntimeError(unbound_message) from None
+E           RuntimeError: Working outside of request context.
+E
+E           This typically means that you attempted to use functionality that needed
+E           an active HTTP request. Consult the documentation on testing for
+E           information about how to avoid this problem.
+
+/data/user/0/ru.iiec.pydroid3/files/arm-linux-androideabi/lib/python3.11/site-packages/werkzeug/local.py:519: RuntimeError
+_________ TestAuthService.test_login_user_success __________
+self = <test_auth_service.TestAuthService object at 0xe97e3310>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f7a2b0>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$FZOqlbeMJVlBzduY$c69529dae2ac9e...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_login_user_success(self, auth_service, valid_user_dto):
+        """Test successful user login scenario"""
+        # Setup
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:34: AttributeError_________ TestAuthService.test_login_user_inactive _________
+self = <test_auth_service.TestAuthService object at 0xe7f5dc30>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e53430>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$ocSz4tcEVjEWvlqH$bc945be393881c...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_login_user_inactive(self, auth_service, valid_user_dto):
+        """Test login attempt with inactive account"""
+        # Setup
+        valid_user_dto.is_active = False
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:50: AttributeError______ TestAuthService.test_login_user_wrong_password ______
+self = <test_auth_service.TestAuthService object at 0xe7f5da50>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f7aab0>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$ZAeYYmernGOJDyhg$664ca98ae7c334...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_login_user_wrong_password(self, auth_service, valid_user_dto):
+        """Test login attempt with wrong password"""
+        # Setup
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:62: AttributeError______ TestAuthService.test_login_user_locked_account ______
+self = <test_auth_service.TestAuthService object at 0xe7f5da90>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f649f0>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$1nUgVQEYrf3y1uwJ$f6bc0e0e955c6d...iled_login_attempts=5, last_failed_login=datetime.datetime(2025, 4, 3, 4, 15, 30, 333390), avatar_path=None, info=None)
+
+    def test_login_user_locked_account(self, auth_service, valid_user_dto):
+        """Test login attempt with locked account"""
+        # Setup
+        valid_user_dto.failed_login_attempts = 5
+        valid_user_dto.last_failed_login = datetime.utcnow() - timedelta(minutes=10)
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:77: AttributeError________ TestAuthService.test_login_user_unverified ________
+self = <test_auth_service.TestAuthService object at 0xe7f5de90>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e61810>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$GLBJOEGwuVu54K56$4665f470c07cd3...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_login_user_unverified(self, auth_service, valid_user_dto):
+        """Test login attempt with unverified email"""
+        # Setup
+        valid_user_dto.is_verified = False
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:89: AttributeError________ TestAuthService.test_register_user_success ________
+self = <test_auth_service.TestAuthService object at 0xe7f5ded0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e69e30>
+
+    def test_register_user_success(self, auth_service):
+        """Test successful user registration"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:101: AttributeError
+_ TestAuthService.test_register_user_validation[-test@example.com-password-All fields are required.] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6cf10>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f6a6b0>
+username = '', email = 'test@example.com'
+password = 'password'
+expected_error = 'All fields are required.'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[test--password-All fields are required.] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6cdf0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f75950>
+username = 'test', email = '', password = 'password'
+expected_error = 'All fields are required.'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[test-test@example.com--All fields are required.] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6cb10>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f64a10>
+username = 'test', email = 'test@example.com', password = ''expected_error = 'All fields are required.'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[te-test@example.com-password-Username must be 3-30 characters long] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6c990>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e4ae50>
+username = 'te', email = 'test@example.com'
+password = 'password'
+expected_error = 'Username must be 3-30 characters long'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[test@user-test@example.com-password-Username must be 3-30 characters long] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6caf0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e690b0>
+username = 'test@user', email = 'test@example.com'
+password = 'password'
+expected_error = 'Username must be 3-30 characters long'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-invalid-email-password-Invalid email format] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6ca70>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f7a650>
+username = 'testuser', email = 'invalid-email'
+password = 'password'
+expected_error = 'Invalid email format'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-test@example.com-short-Password must be at least 12 characters long] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6c710>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f3af30>
+username = 'testuser', email = 'test@example.com'
+password = 'short'
+expected_error = 'Password must be at least 12 characters long'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-test@example.com-nouppercase123!-Password must contain at least one uppercase letter] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6cb90>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f7ab50>
+username = 'testuser', email = 'test@example.com'
+password = 'nouppercase123!'
+expected_error = 'Password must contain at least one uppercase letter'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-test@example.com-NOLOWERCASE123!-Password must contain at least one lowercase letter] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6c7b0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f693d0>
+username = 'testuser', email = 'test@example.com'
+password = 'NOLOWERCASE123!'
+expected_error = 'Password must contain at least one lowercase letter'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-test@example.com-NoDigits!-Password must contain at least one digit] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6c730>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e53cb0>
+username = 'testuser', email = 'test@example.com'
+password = 'NoDigits!'
+expected_error = 'Password must contain at least one digit'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+_ TestAuthService.test_register_user_validation[testuser-test@example.com-NoSpecialChars123-Password must contain at least one special character] _
+
+self = <test_auth_service.TestAuthService object at 0xe7f6c610>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f36ed0>
+username = 'testuser', email = 'test@example.com'
+password = 'NoSpecialChars123'
+expected_error = 'Password must contain at least one special character'
+
+    @pytest.mark.parametrize("username,email,password,expected_error", [
+        ("", "test@example.com", "password", "All fields are required."),
+        ("test", "", "password", "All fields are required."),
+        ("test", "test@example.com", "", "All fields are required."),
+        ("te", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("test@user", "test@example.com", "password", "Username must be 3-30 characters long"),
+        ("testuser", "invalid-email", "password", "Invalid email format"),
+        ("testuser", "test@example.com", "short", "Password must be at least 12 characters long"),
+        ("testuser", "test@example.com", "nouppercase123!", "Password must contain at least one uppercase letter"),
+        ("testuser", "test@example.com", "NOLOWERCASE123!", "Password must contain at least one lowercase letter"),
+        ("testuser", "test@example.com", "NoDigits!", "Password must contain at least one digit"),
+        ("testuser", "test@example.com", "NoSpecialChars123", "Password must contain at least one special character"),
+    ])
+    def test_register_user_validation(self, auth_service, username, email, password, expected_error):
+        """Test user registration validation"""
+        # Setup
+>       auth_service.user_service.get_user_by_username.return_value = None
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:132: AttributeError
+________ TestAuthService.test_verify_email_success _________
+self = <test_auth_service.TestAuthService object at 0xe7f6c670>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e51850>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$3o1biF4Y7B3FFzY5$16a329bfcc2bc3...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_verify_email_success(self, auth_service, valid_user_dto):
+        """Test successful email verification"""
+        # Setup
+        valid_user_dto.is_verified = False
+        valid_user_dto.verification_token = "valid_token"
+        valid_user_dto.verification_token_expiry = datetime.utcnow() + timedelta(hours=1)
+>       auth_service.user_service.get_user_by_verification_token.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:147: AttributeError
+________ TestAuthService.test_verify_email_expired _________
+self = <test_auth_service.TestAuthService object at 0xe7f6c1f0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f6a830>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$qJ8Li5dD6yFjAf03$14b69ac8513941...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_verify_email_expired(self, auth_service, valid_user_dto):
+        """Test expired verification token"""
+        # Setup
+        valid_user_dto.verification_token_expiry = datetime.utcnow() - timedelta(hours=1)
+>       auth_service.user_service.get_user_by_verification_token.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:161: AttributeError
+__ TestAuthService.test_resend_verification_email_success __
+self = <test_auth_service.TestAuthService object at 0xe7f64db0>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f75530>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$ySAUsFILwSRPTZCE$5e8cf9c11e04a4...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_resend_verification_email_success(self, auth_service, valid_user_dto):
+        """Test successful verification email resend"""
+        # Setup
+        valid_user_dto.is_verified = False
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:173: AttributeError
+___ TestAuthService.test_request_password_reset_success ____
+self = <test_auth_service.TestAuthService object at 0xe7f64230>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7f36250>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$6M8ujMtDZFloBhHM$584ae33b6932df...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_request_password_reset_success(self, auth_service, valid_user_dto):
+        """Test successful password reset request"""
+        # Setup
+>       auth_service.user_service.get_user_by_email.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:186: AttributeError
+___ TestAuthService.test_confirm_password_reset_success ____
+self = <test_auth_service.TestAuthService object at 0xe7f64b90>
+auth_service = <flask_app.user.auth.services.auth_service.AuthService object at 0xe7e539d0>
+valid_user_dto = UserDTO(id=1, username=None, email='test@example.com', password_hash='scrypt:32768:8:1$7eWOsa8worDbzj60$4257d20ac6e397...t=None, created_at=None, last_login=None, failed_login_attempts=0, last_failed_login=None, avatar_path=None, info=None)
+
+    def test_confirm_password_reset_success(self, auth_service, valid_user_dto):
+        """Test successful password reset confirmation"""
+        # Setup
+        valid_user_dto.password_reset_token = "valid_token"
+        valid_user_dto.password_reset_expiry = datetime.utcnow() + timedelta(hours=1)
+>       auth_service.user_service.get_user_by_password_reset_token.return_value = valid_user_dto
+E       AttributeError: 'AuthService' object has no attribute 'user_service'
+
+tests/uint/user/auth/test_auth_service.py:201: AttributeError
+================= short test summary info ==================FAILED tests/uint/user/auth/test_auth_controller.py::TestAuthController::test_register_password_mismatch - flask_app.user.auth.exceptions.AuthException: ('Passwor...
+FAILED tests/uint/user/auth/test_auth_controller.py::TestAuthController::test_login_success - flask_app.user.auth.exceptions.AuthException: ('An unex...
+FAILED tests/uint/user/auth/test_auth_controller.py::TestAuthController::test_logout - RuntimeError: Working outside of request context.
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_login_user_success - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_login_user_inactive - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_login_user_wrong_password - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_login_user_locked_account - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_login_user_unverified - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_success - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[-test@example.com-password-All fields are required.] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[test--password-All fields are required.] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[test-test@example.com--All fields are required.] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[te-test@example.com-password-Username must be 3-30 characters long] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[test@user-test@example.com-password-Username must be 3-30 characters long] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-invalid-email-password-Invalid email format] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-test@example.com-short-Password must be at least 12 characters long] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-test@example.com-nouppercase123!-Password must contain at least one uppercase letter] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-test@example.com-NOLOWERCASE123!-Password must contain at least one lowercase letter] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-test@example.com-NoDigits!-Password must contain at least one digit] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_register_user_validation[testuser-test@example.com-NoSpecialChars123-Password must contain at least one special character] - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_verify_email_success - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_verify_email_expired - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_resend_verification_email_success - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_request_password_reset_success - AttributeError: 'AuthService' object has no attribute '...
+FAILED tests/uint/user/auth/test_auth_service.py::TestAuthService::test_confirm_password_reset_success - AttributeError: 'AuthService' object has no attribute '...
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_entry_page_get
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_login_success
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_login_failure
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_register_success
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_verify_email_success
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_password_reset_flow
+ERROR tests/integration/auth/test_auth_routes.py::TestAuthRoutes::test_logout
+========= 25 failed, 5 passed, 7 errors in 12.02s ==========/storage/emulated/0/gitserver/cakeworld $

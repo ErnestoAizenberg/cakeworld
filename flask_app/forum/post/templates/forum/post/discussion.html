@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic HTML Creator</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 800px;
+        }
+        .editor {
+            width: 100%;
+            height: 300px;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            background: #2e3440;
+            color: #fff;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .editor:focus {
+            outline: none;
+        }
+        .tag-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .tag-buttons button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #ff6f61;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .tag-buttons button:hover {
+            background: #ff3b2f;
+        }
+        .highlight {
+            color: #ff6f61; /* Цвет для подсветки тегов */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Epic HTML Creator</h1>
+        <p>Создайте свой эпичный HTML-код, который будет безопасно обработан и отображен.</p>
+        <input type="hidden" id="csrf-token" name="csrf_token" value="{{ csrf_token() }}"> 
+        
+        <!-- Поле для ввода HTML -->
+        <div id="htmlInput" class="editor" contenteditable="true" placeholder="Введите ваш HTML код здесь..."></div>
+        
+        <!-- Кнопки для вставки тегов -->
+        <div class="tag-buttons">
+            <button onclick="insertTag('<h1>', '</h1>')">&lt;h1&gt;</button>
+            <button onclick="insertTag('<p>', '</p>')">&lt;p&gt;</button>
+            <button onclick="insertTag('<a href=\'\'>', '</a>')">&lt;a&gt;</button>
+            <button onclick="insertTag('<strong>', '</strong>')">&lt;strong&gt;</button>
+            <button onclick="insertTag('<em>', '</em>')">&lt;em&gt;</button>
+            <button onclick="insertTag('<ul><li>', '</li></ul>')">&lt;ul&gt;</button>
+            <button onclick="insertTag('<img src=\'\' alt=\'\'>')">&lt;img&gt;</button>
+        </div>
+
+        <button onclick="submitHTML()">Отправить</button>
+    </div>
+
+    <script>
+        // Функция для подсветки тегов
+        function highlightTags(text) {
+            // Регулярное выражение для поиска тегов
+            const tagRegex = /(<[^>]+>)/g;
+            // Разделяем текст на части: теги и обычный текст
+            const parts = text.split(tagRegex);
+            // Оборачиваем теги в <span> с классом highlight
+            return parts.map(part => {
+                if (tagRegex.test(part)) {
+                    return `<span class="highlight">${part}</span>`;
+                }
+                return part;
+            }).join('');
+        }
+
+        // Функция для обновления содержимого редактора с подсветкой
+        function updateHighlight() {
+            const editor = document.getElementById('htmlInput');
+            const text = editor.innerText;
+            editor.innerHTML = highlightTags(text);
+        }
+
+        // Функция для вставки тегов
+        function insertTag(startTag, endTag = '') {
+            const editor = document.getElementById('htmlInput');
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            const selectedText = range.toString();
+
+            // Создаём новый текстовый узел с тегами
+            const newText = startTag + selectedText + endTag;
+            const textNode = document.createTextNode(newText);
+
+            // Удаляем выделенный текст и вставляем новый
+            range.deleteContents();
+            range.insertNode(textNode);
+
+            // Перемещаем курсор после вставленного текста
+            const newRange = document.createRange();
+            newRange.setStart(textNode, newText.length);
+            newRange.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+
+            // Фокусируемся на редакторе
+            editor.focus();
+
+            // Обновляем подсветку
+            updateHighlight();
+        }
+
+        // Функция для отправки HTML
+        function submitHTML() {
+            const htmlContent = document.getElementById('htmlInput').innerText;
+            const csrfToken = document.getElementById('csrf-token').value;
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({ html: htmlContent }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('HTML успешно отправлен и обработан!');
+                updateHighlight(); // Обновляем подсветку после отправки
+                document.getElementById('htmlInput').innerText = ''; // Очищаем редактор
+                updateHighlight(); // Обновляем подсветку
+                document.getElementById('htmlInput').focus(); // Фокусируемся на редакторе
+                } else {
+                    alert('Ошибка при обработке HTML: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+
+        // Обновляем подсветку при каждом изменении текста
+        const editor = document.getElementById('htmlInput');
+        editor.addEventListener('input', updateHighlight);
+
+        // Инициализация подсветки при загрузке страницы
+        document.addEventListener('DOMContentLoaded', updateHighlight);
+    </script>
+</body>
+</html>

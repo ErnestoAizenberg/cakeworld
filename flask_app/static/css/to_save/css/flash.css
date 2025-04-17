@@ -1,0 +1,77 @@
+/* Общие стили для контейнера flash-сообщений */
+.flash-messages {
+    width: 100%; /* Занимает всю ширину родительского элемента */
+    margin-bottom: 15px; /* Отступ снизу для отделения от остального контента */
+}
+
+/* Стиль для каждого отдельного flash-сообщения */
+.flash-messages .alert {
+    padding: 10px 20px; /* Внутренние отступы для содержимого */
+    margin-bottom: 10px; /* Отступ между сообщениями */
+    border-radius: 4px; /* Закругленные углы */
+    color: #fff; /* Цвет текста по умолчанию */
+    /* Добавьте тень для лучшей видимости */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    position: relative; /* Для позиционирования кнопки закрытия */
+}
+
+/* Стиль для различных типов сообщений (например, success, error, info, warning) */
+.flash-messages .alert-success {
+    background-color: #28a745; /* Зеленый */
+    border-color: #28a745;
+}
+
+.flash-messages .alert-error, /* Обычно для ошибок */
+.flash-messages .alert-danger {
+    background-color: #FF670015 /* Тёмно красный */
+    border-color: #dc3545;
+}
+
+.flash-messages .alert-info {
+    background-color: #17a2b8; /* Голубой */
+    border-color: #17a2b8;
+}
+
+.flash-messages .alert-warning {
+    background-color: #ffc107; /* Желтый */
+    border-color: #ffc107;
+    color: #212529; /* Темный текст для лучшей читаемости на желтом фоне */
+}
+
+/* Кнопка закрытия для flash-сообщений (опционально) */
+.flash-messages .alert .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7); /* Полупрозрачный цвет для лучшей видимости */
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    /* Удаление стандартных стилей кнопки */
+    text-decoration: none;
+}
+
+/* Эффект при наведении на кнопку закрытия */
+.flash-messages .alert .close-button:hover {
+    color: #fff; /* Более яркий цвет при наведении */
+}
+
+/* Анимация для появления (опционально) */
+.flash-messages .alert {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

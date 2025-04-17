@@ -1,24 +1,20 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
-  <section id="hero" class="text-center">
-    <canvas id="hero-background"></canvas>
-    <h1>Welcome to the Minecraft Forum</h1>
-    <button class="btn btn-primary" @mouseover="animateButton">Explore</button>
-  </section>
+    {% include 'include/server-vidget.html' %}
 
-  <div class="container mt-5">
-    <div class="row">
-      {% for post in latest_posts %}
-        <div class="col-md-4">
-          <div class="card" @mouseover="hoverCard">
-            <div class="card-body">
-              <h5 class="card-title">{{ post.title }}</h5>
-              <p class="card-text">{{ post.summary }}</p>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+    {% include 'banners/prayer/pray_1.html' %} 
+    <div class="main-page-text-container" style="font-family: 'Press Start 2P';">
+      {% include 'banners/forum/base_categories.html' %}
+     </div>
+       {% include 'about/about_server.html' %}
     </div>
-  </div>
+    
+{#
+
+    {% include 'forum/navbar/index.html' %}
+
+    {% include 'include/chat-icons.html' %}
+
+#}
+
 {% endblock %}

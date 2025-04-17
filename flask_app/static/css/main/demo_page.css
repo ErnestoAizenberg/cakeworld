@@ -1,0 +1,108 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    background: linear-gradient(135deg, #3db9ff, #ff9a00);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.announcement, .login-prompt, .banner {
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    animation: pop 0.3s ease-in-out;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header i {
+    font-size: 2rem;
+    margin-right: 10px;
+    animation: bounce 1s infinite;
+}
+
+.content p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.join-server, .login-button, button {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.join-server:hover, .login-button:hover, button:hover {
+    background-color: #ff9845;
+    transform: scale(1.05);
+}
+
+.banner {
+    background-image: url('https://example.com/minecraft-banner.jpg'); /* Замените на свою картинку */
+    background-size: cover;
+    color: #fff;
+}
+
+.banner-content {
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.fade-out {
+    animation: fade 0.5s forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

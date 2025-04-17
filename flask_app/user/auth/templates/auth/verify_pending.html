@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Подтвердите ваш email{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <div class="auth-message">
+    <h2>Почти готово!</h2>
+    <p>Мы отправили письмо с подтверждением на <strong>{{ email }}</strong>.</p>
+    <p>Пожалуйста, проверьте вашу почту и перейдите по ссылке в письме.</p>
+    
+    <div class="auth-links">
+      <p>Не получили письмо?</p>
+      <form action="{{ url_for('auth.resend_verification') }}" method="POST">
+       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="email" value="{{ email }}">
+        <button type="submit" class="btn btn-link">Отправить повторно</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

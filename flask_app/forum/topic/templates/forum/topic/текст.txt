@@ -1,0 +1,14 @@
+Расскажи что будет происходить здесь: my_project/
+├── app.py
+├── forum/
+    ├── templates/
+    │   ├── base.html
+    │   ├── folder/
+    │   │   ├── template1.html
+    │   │   ├── template2.html 
+
+├── game/
+     ├── templates/ 
+     │   ├── folder/
+     │       ├── template3.html
+     │       └── template2.html

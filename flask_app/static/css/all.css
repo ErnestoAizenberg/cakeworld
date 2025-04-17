@@ -1,0 +1,195 @@
+/* Основной контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Разделитель */
+.separator {
+    height: 2px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+/* Информация о форуме */
+.forum-info {
+    margin-bottom: 40px;
+}
+
+/* Описание */
+.description {
+    font-size: 1.2em;
+    line-height: 1.5;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Темы */
+.topics {
+    margin-bottom: 40px;
+}
+
+/* Отдельная секция */
+.shadow-host {
+    margin-bottom: 40px;
+}
+
+/* Сообщения постов */
+.post-messages {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+
+
+
+
+
+
+    body {
+        margin: 0;
+        
+        font-family: 'Arial', sans-serif;
+        background-color: #1b1b1b;
+        color: #fff;
+    }
+
+    .banner {
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Высота баннера 100% экрана */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+    }
+
+
+.banner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(110%) contrast(90%) saturate(80%) blur(1px) opacity(90%);
+    z-index: 1; /* ниже остальных элементов */
+    -webkit-filter: brightness(110%) contrast(90%) saturate(80%) blur(1px) opacity(90%);
+}
+   .banner-content {
+        z-index: 2; /* выше фонового изображения */
+        color: #ffffff;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.5); /* полупрозрачный фон для текста */
+        transition: transform 0.3s ease;
+        max-width: 600px; /* Ограничиваем максимальную ширину контента */
+        margin: 0 auto; /* Центрируем контент */
+    }
+
+    .banner-content h1 {
+        font-size: 3em;
+        margin: 0;
+        letter-spacing: 2px;
+    }
+
+    .banner-content p {
+        font-size: 1.5em;
+        margin: 10px 0;
+    }
+
+    .banner-content button {
+        padding: 10px 20px;
+        margin-top: 15px;
+        font-size: 1em;
+        border: none;
+        background-color: #0073e6;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .banner-content button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Медиазапросы для изменения стилей на мобильных устройствах */
+    @media (max-width: 768px) {
+        .banner-content h1 {
+            font-size: 2em; /* Уменьшаем размер заголовка */
+        }
+
+        .banner-content p {
+            font-size: 1em; /* Уменьшаем размер текста */
+        }
+
+        .banner-content button {
+            font-size: 0.9em; /* Уменьшаем размер кнопки */
+        }
+    }
+
+
+
+
+
+
+
+
+  .profile-icon {
+   
+    color: white;
+    text-decoration: none;
+    margin-left: auto;
+    opacity: 0; /* Начальная непрозрачность для анимации */
+    transform: translateY(-10px); /* Начальное положение для анимации */
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar-brand {
+    flex-grow: 1;
+  }
+
+
+
+
+
+
+
+
+.server-widget {
+    position: absolute; /* Абсолютное позиционирование для виджета */
+    top: 20px; /* Отступ сверху */
+    left: 20px; /* Отступ слева */
+    width: 60px; /* Ширина виджета */
+    height: 60px; /* Высота виджета */
+    border-radius: 50%; /* Круглая форма */
+    overflow: hidden; /* Скрываем часть изображения */
+    border: 3px solid #4CAF50; /* Цвет рамки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Фон виджета */
+    z-index: 1000; /* Передний план */
+    cursor: move; /* Курсор для перетаскивания */
+}
+
+.server-widget img {
+    width: 100%; /* Ширина изображения */
+    height: auto; /* Высота автоматически */
+    border-radius: 50%; /* Круглая форма картинки */
+}

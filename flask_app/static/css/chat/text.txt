@@ -1,0 +1,39 @@
+/* Chat Icons */
+.chat-icons {
+  margin-top: 20px;
+  text-align: center;
+}
+.chat-icon {
+  font-size: 24px;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.chat-icon:hover {
+  transform: scale(1.2);
+  color: #45a049;
+}
+.social-icons {
+  margin-top: 15px;
+}
+.social-icon {
+  color: #fff
+}
+
+
+/* Иконки соцсетей */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.social-icon {
+  color: #fff;
+  font-size: 24px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icon:hover {
+  color: #4CAF50;
+  transform: scale(1.2);
+}

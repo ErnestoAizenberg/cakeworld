@@ -1,0 +1,5 @@
+CLIENT_ID=000000000000-________________________________.apps.googleusercontent.com
+CLIENT_SECRET=AAAAAA-____________________________
+SECRET_KEY=YOUR_SECRET_KEY
+MAIL_PASSWORD=may_not_have_a_sense_you_can_skip_it_I_think
+MAIL_USERNAME=username@example.com

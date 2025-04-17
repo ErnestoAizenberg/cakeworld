@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ topic.title }}{% endblock %}
+{% block page_class %}dark_page{% endblock %}
+{% block additional_css %}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js"></script>
+{% endblock %}
+{% block content %}
+
+<header class="dark-header">
+    <h1>{{ topic.title }}</h1>
+</header>
+
+
+<div class="main-container">
+    <!-- Лента постов -->
+    <div class="post-container">
+        {% if posts %}
+            {% include 'forum/topic/includes/posts_in_topic_feed.html' %}
+        {% else %}
+            <div class="no-posts">
+                <p>Здесь пока нет постов. Будьте первым, кто добавит что-то интересное! 🎉</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Форма создания нового поста -->
+    <div class="create-post-container">
+        <h1>Создать новый тред</h1>
+        {% include 'forum/topic/includes/create_post_form.html' %}
+        <div>
+            <h2>Результат:</h2>
+            <div id="outputDiv"></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/htmltext_form_input_safely_on_page.js') }}" defer></script>
+{% endblock %}
+
+

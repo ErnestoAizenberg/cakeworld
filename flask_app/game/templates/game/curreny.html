@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валютный сервис</title>
+</head>
+<body>
+    <h1>Валютный сервис</h1>
+    
+    <div>
+        <h2>Проверка баланса</h2>
+        <button id="checkBalance">Проверить баланс</button>
+        <p id="balanceResult"></p>
+    </div>
+
+    <div>
+        <h2>Добавить валюту</h2>
+        <input type="number" id="addAmount" placeholder="Сумма для добавления" min="1">
+        <button id="addCurrency">Добавить</button>
+        <p id="addResult"></p>
+    </div>
+
+    <div>
+        <h2>Списать валюту</h2>
+        <input type="number" id="deductAmount" placeholder="Сумма для списания" min="1">
+        <button id="deductCurrency">Списать</button>
+        <p id="deductResult"></p>
+    </div>
+
+    <script>
+        document.getElementById('checkBalance').addEventListener('click', async () => {
+            const response = await fetch('/get_balance');
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('balanceResult').innerText = `Ваш баланс: ${data.balance} единиц.`;
+            } else {
+                document.getElementById('balanceResult').innerText = data.error;
+            }
+        });
+
+        document.getElementById('addCurrency').addEventListener('click', async () => {
+            const amount = document.getElementById('addAmount').value;
+            const response = await fetch('/add_currency', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount: Number(amount) }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('addResult').innerText = data.message;
+                document.getElementById('addAmount').value = ''; // Очистить поле ввода
+            } else {
+                document.getElementById('addResult').innerText = data.error;
+            }
+        });
+
+        document.getElementById('deductCurrency').addEventListener('click', async () => {
+            const amount = document.getElementById('deductAmount').value;
+            const response = await fetch('/deduct_currency', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount: Number(amount) }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('deductResult').innerText = data.message;
+                document.getElementById('deductAmount').value = ''; // Очистить поле ввода
+            } else {
+                document.getElementById('deductResult').innerText = data.error;
+            }
+        });
+    </script>
+</body>
+</html>

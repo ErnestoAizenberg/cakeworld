@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .user-card {
+            transition: transform 0.2s;
+        }
+        .user-card:hover {
+            transform: scale(1.02);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Список пользователей</h1>
+
+        <div class="search-container">
+            <input type="text" id="userSearch" class="form-control" placeholder="Поиск пользователей...">
+        </div>
+
+        <div id="userList" class="row">
+            {% for user in users %}
+            <div class="col-md-4 mb-4 user-card">
+                <div class="card">
+                     
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.username }}</h5>
+                        <p class="card-text">{{ user.email }}</p>
+                        <a href="/profile/{{ user.id }}" class="btn btn-primary">Просмотреть профиль</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('userSearch');
+            const userList = document.getElementById('userList');
+
+            searchInput.addEventListener('input', function () {
+                const filter = searchInput.value.toLowerCase();
+                const users = userList.getElementsByClassName('user-card');
+
+                Array.from(users).forEach(userCard => {
+                    const username = userCard.querySelector('.card-title').textContent.toLowerCase();
+                    if (username.includes(filter)) {
+                        userCard.classList.remove('hidden');
+                    } else {
+                        userCard.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

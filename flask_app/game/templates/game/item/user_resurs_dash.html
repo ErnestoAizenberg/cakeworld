@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin-Style Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="{{ url_for('static', filename='css/user_resurs_dash.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/prayer_page.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+</head>
+<body>
+    <div class="container" data-csrf-token="{{ csrf_token() }}">
+        <!-- Ресурсы -->
+        <div class="resource-bar">
+            <div class="resource-item" data-resource-type="coins">
+                <i class="fas fa-coins"></i>
+                <span class="resource-value">0</span>
+            </div>
+            <div class="resource-item" data-resource-type="stones">
+                <i class="fas fa-star"></i>
+                <span class="resource-value">0</span>
+            </div>
+            <div class="resource-item" data-resource-type="gems">
+                <i class="fas fa-gem"></i>
+                <span class="resource-value">0</span>
+            </div>
+        </div>
+
+        <div class="mobile-menu">
+            <div class="mobile-menu-item" data-menu-id="shop">Магазин</div>
+            <div class="mobile-menu-item" data-menu-id="daily-quests">Ежедневные квесты</div>
+            <div class="mobile-menu-item" data-menu-id="weekly-quests">Еженедельные квесты</div>
+            <div class="mobile-menu-item" data-menu-id="prayer">Священная Молитва</div>
+        </div>
+
+        <div id="content">
+            <div id="shop">...</div>
+            <div id="daily-quests" style="display: ;"></div>
+            <div id="weekly-quests" style="display: ;"></div>
+            <div id="inventory-grid" style="display: ;"></div>
+            <div id="achievement-grid" style="display: ;"></div>
+            <div id="prayer" style="display: none;">
+                <h1 style="text-align: center; color: #94a3b8;">Священная Молитва</h1>
+                <div class="banner-grid" id="banners">
+                    <div class="banner-card">
+                        <img src="https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png" 
+                             class="banner-image" 
+                             alt="Эпический баннер">
+                        <div class="banner-content">
+                            <h3>Легендарные Свитки</h3>
+                            <p>Шанс получить редкие артефакты увеличен!</p>
+                            <button class="pray-button" onclick="startPrayer()">
+                                <span>1</span>
+                                <i class="fas fa-gem"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Экран молитвы -->
+                <div class="prayer-overlay" id="prayerOverlay" style="display: none;">
+                    <div class="prayer-result" id="prayerResult">
+                        <h3>Получено!</h3>
+                        <img src="https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png" class="result-image" alt="Результат">
+                        <button class="pray-button" onclick="closeResult()">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

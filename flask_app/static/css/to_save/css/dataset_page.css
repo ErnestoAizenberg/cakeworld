@@ -1,0 +1,74 @@
+.datasets_page {
+  height: 2000px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+}
+
+header {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  justify-content: center;
+}
+
+.competitions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.competition-card {
+  background: rgba(50, 0, 100, .9);
+  border: 2px solid rgba(230, 230, 230, .7);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform .2s, background .2s, border .2s;
+}
+
+.competition-card:hover {
+  transform: scale(1.05);
+  border: 2px solid #fc0;
+}
+
+.competition-date {
+  color: #0F0;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.join-button,
+.create-button {
+  background: #1a1a1a;
+  color: #fc0;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid rgba(230, 230, 230, .7);
+  display: inline-block;
+  transition: background .2s, color .2s, border .2s;
+  margin: 10px 0;
+}
+
+.join-button:hover {
+  background: #fc0;
+  color: #000;
+  border: 2px solid #fc0;
+}
+
+.create-button {
+  margin: 20px auto;
+  display: block;
+  width: 250px;
+}
+
+.create-button:active {
+  background: #fc0;
+  border: 2px solid #fc0;
+}

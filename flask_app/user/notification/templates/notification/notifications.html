@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уведомления - Темная Тема</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212; /* Темный фон */
+            color: #ffffff; /* Белый текст */
+        }
+        .notification {
+            background-color: #1e1e1e; /* Фон уведомления */
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .notification:hover {
+            background-color: #272727; /* Изменение фона при наведении */
+            transform: scale(1.02);
+        }
+        .notification.read {
+            background-color: #2a2a2a; /* Цвет для прочитанных уведомлений */
+        }
+        .notification .message {
+            flex: 1;
+            padding-right: 10px;
+        }
+        .notification .timestamp {
+            font-size: 0.8em;
+            color: #aaaaaa; /* Серый цвет для временной метки */
+        }
+        .notification i {
+            color: #60a0ff; /* Цвет для иконки */
+            margin-right: 10px;
+        }
+        #notificationCount {
+            font-size: 1.5rem;
+            color: #ff4081; /* Цвет для счётчика уведомлений */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Уведомления</h1>
+        <div id="notificationCount" class="text-center">0</div> <!-- Счётчик уведомлений -->
+        <div id="notifications" class="mt-3">
+            <!-- Здесь будут отображаться уведомления -->
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    const userId = {{ user.id }}; 
+
+    async function fetchNotifications() {
+        const response = await fetch(`/notifications/${userId}`);
+        const notifications = await response.json();
+        const notificationsContainer = document.getElementById('notifications');
+        notificationsContainer.innerHTML = notifications.map(notification => `
+            <div class="notification ${notification.is_read ? 'read' : ''}" data-notification-id="${notification.id}">
+                <div class="message">
+                    <i class="fas fa-bell"></i>
+                    <strong>${notification.type || 'Notification'}</strong>: ${notification.message}
+                </div>
+                <div class="timestamp">
+                    ${new Date(notification.created_at).toLocaleTimeString()}
+                </div>
+            </div>
+        `).join('');
+
+        // Добавление обработчиков событий для новых уведомлений
+        document.querySelectorAll('.notification').forEach(item => {
+    item.addEventListener('click', function() {
+        console.log('Commencing read action');
+        const notificationId = this.dataset.notificationId;
+        const csrfToken = "{{ csrf_token() }}"; // Получение CSRF-токена
+
+        fetch(`/notifications/${notificationId}/mark_as_read`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Указываем, что отправляем JSON
+                'X-CSRFToken': csrfToken // Добавляем CSRF-токен
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.classList.add('read');
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+}
+
+
+    async function fetchNotificationsCount() {
+        const response = await fetch(`/notifications/${userId}/count`);
+        const data = await response.json();
+        document.getElementById('notificationCount').innerText = data.count;
+    }
+
+    // Invoking the function to load notifications upon page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        await fetchNotifications();
+        await fetchNotificationsCount();
+
+        // Initiating periodic updates
+        setInterval(async () => {
+            await fetchNotifications();
+            await fetchNotificationsCount();
+        }, 5000); // 5000 milliseconds = 5 seconds
+    });
+</script>
+
+</body>
+</html>

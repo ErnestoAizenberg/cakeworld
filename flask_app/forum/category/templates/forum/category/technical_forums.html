@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Minecraft&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000000; /*  Черный фон */
+      color: #ffffff; /* Белый текст */
+      font-family: 'Luckiest Guy', cursive;
+    }
+
+    .card {
+      background-color: ; /* #1c1c1c Темные карточки */
+      border: none;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Увеличение при наведении */
+    }
+
+    .card-header {
+      border-bottom: 2px solid #ffffff; /* Белая линия под заголовком */
+    }
+
+    .btn {
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ffffff; /* Изменение цвета кнопок при наведении */
+      color: #000000;
+    }
+  </style>
+  <!-- Основной контент -->
+  <div class="container mt-5">
+    <h1 class="text-center mb-5 animated-title">Технический Форум CakeWorld</h1>
+
+    <!-- Категория 1: Технические Проблемы -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h2><i data-feather="bug"></i> Технические Проблемы</h2>
+      </div>
+      <div class="card-body">
+        <h3>Обсуждение багов и ошибок</h3>
+        <p>В этом разделе пользователи могут сообщать о найденных ошибках и дефектах в работе сервера.</p>
+        <div class="row">
+          {% for server_topic in server_topics %}
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <h4>{{ server_topic.title }}</h4>
+                  <p>{{ server_topic.description }}</p>
+                  <a href="{{ url_for('forum_topic.view_topic', url_name=server_topic.url_name) }}" class="btn btn-primary">Перейти</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+ 
+    <!-- Категория 2: Сотрудничество с YouTube -->
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white">
+        <h2>Сотрудничество с YouTube</h2>
+      </div>
+      <div class="card-body">
+        <h3>Партнерство и взаимовыгодные сотрудничества</h3>
+        <p>Узнайте, как стать частью нашей команды.</p>
+        <div class="row">
+          {% for youtube_topic in youtube_topics %}
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4>{{ youtube_topic.title }}</h4>
+                  <a href="{{ url_for('forum_topic.view_topic', url_name=youtube_topic.url_name) }}" class="btn btn-success">Перейти</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Категория 3: Правила и Политики -->
+    <div class="card mb-4">
+      <div class="card-header bg-warning text-dark">
+        <h2>Правила и Политики</h2>
+      </div>
+      <div class="card-body">
+        <h3>Основные правила форума</h3>
+        <p>Ознакомьтесь с правилами поведения на форуме.</p>
+        <div class="row">
+          {% for rule_topic in rule_topics %}
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4>{{ rule_topic.title }}</h4>
+                  <a href="{{ url_for('forum_topic.view_topic', url_name=rule_topic.url_name) }}" class="btn btn-warning">Перейти</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  
+    <!-- Категория 4: Группа ВКонтакте -->
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white">
+        <h2>Группа ВКонтакте</h2>
+      </div>
+      <div class="card-body">
+        <h3>Сообщество и обсуждения</h3>
+        <p>Присоединяйтесь к нашей группе ВКонтакте.</p>
+        <a href="#" class="btn btn-info">Перейти</a>
+      </div>
+    </div>
+
+    <!-- Категория 5: Жалобы на администрацию -->
+    <div class="card mb-4">
+      <div class="card-header bg-danger text-white">
+        <h2>Жалобы на администрацию</h2>
+      </div>
+      <div class="card-body">
+        {% if administration_topic %}
+          <h3>{{ administration_topic.title }}</h3>
+          <p>Оставьте свои жалобы и предложения.</p>
+          <a href="{{ url_for('forum_topic.view_topic', url_name=administration_topic.url_name) }}" class="btn btn-danger">Перейти</a>
+        {% else %}
+          <p>На данный момент жалобы не принимаются.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        feather.replace(); // Заменяем иконки Feather
+        anime({
+          targets: '.card',
+          opacity: [0, 1],
+          translateY: [50, 0],
+          duration: 1000,
+          easing: 'easeInOutQuad',
+          delay: anime.stagger(100), // Задержка по порядку
+        });
+      });
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Minecraft&display=swap');
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('/static/fonts/Minecraft.woff2') format('woff2'),
+       url('/static/fonts/Minecraft.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.grey_page {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* #f0f0f0 Серо-белый фон для всей страницы */
+  font-family: 'Minecraft', sans-serif;
+}
+
+.datasets_page {
+  height: 2000px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  color: #fff;
+}
+
+.grey_header {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  justify-content: center;
+}
+
+.community_menu {
+  background-color: #d3d3d3; Серо-белый фон для меню */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.server-name h1 {
+  font-family: 'Minecraft', sans-serif;
+  font-size: 48px;
+  color: #000000;
+  text-shadow: 2px 2px 0 #000,
+               -2px -2px 0 #000,
+               2px -2px 0 #000,
+               -2px 2px 0 #000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+.line {
+  width: 100%;
+  height: 4px;
+  background-color: #000000;
+  margin-top: 10px;
+}
+
+.description p {
+  font-family: 'Minecraft', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  margin: 20px 0;
+}
+
+.buttons_column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttons_column button {
+  font-family: 'Minecraft', sans-serif;
+  font-size: 18px;
+  color: #000000;
+  background-color: #a9a9a9; /* Серый цвет кнопок */
+  border: 2px solid #000000;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+ 
+}
+
+.buttons_column button:hover {
+  background-color: #8b8b8b; /* Темнее при наведении */
+}
+
+
+.chat-links a {
+  font-family: 'Minecraft', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  text-decoration: none;
+  display: block;
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+.chat-links a:hover {
+  text-decoration: underline;
+}
+
+/* Анимация загрузки */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-circle {
+  border: 4px solid #ffffff;
+  border-top: 4px solid #000000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+/* Hero Section */
+#hero {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Тень для эффекта */
+}
+
+#hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+/* Cards */
+.card {
+  background: #2c3e50; /* Цвет карт */
+  border: 2px solid rgba(139, 69, 19, 0.5); /* Полупрозрачная рамка */
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Тень для эффекта */
+}
+
+.card-title {
+  font-size: 1.5rem; /* Увеличенный размер заголовка */
+  margin: 0;
+  color: #ffcc00; /* Золотой цвет заголовка */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6); /* Тень для текста заголовка */
+}
+
+.card-text {
+  color: #cccccc; /* Светло-серый цвет текста */
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5); /* Тень для текста */
+}
+
+
+/* Buttons */
+.btn-primary {
+  background-color: #8B4513;
+  border-color: #8B4513;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #a0522d;
+  border-color: #a0522d;
+}
+
+/* Footer */
+footer {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 3px solid #8B4513;
+  position: relative;
+}
+
+/* create_thread */
+/* Стили для формы создания треда */
+#createThreadForm {
+  background-color: #34495e;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(139, 69, 19, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Тень для эффекта */
+}
+
+#createThreadForm label {
+  color: #fff;
+}
+
+#createThreadForm input,
+#createThreadForm textarea {
+  background-color: #3b4e5f;
+  color: #fff;
+  border: 1px solid #8B4513;
+}
+
+#createThreadForm input:focus,
+#createThreadForm textarea:focus {
+  background-color: #4e6a7d;
+  border-color: #a0522d;
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
+}

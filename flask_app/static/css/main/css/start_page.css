@@ -1,0 +1,117 @@
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2f3142;
+            color: white;
+        }
+
+        .header {
+            background-color: #2f3142;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .url-bar {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #6b6e85;
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-line {
+            width: 25px;
+            height: 3px;
+            background-color: #00a8ff;
+            border-radius: 3px;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .avatar-circle {
+            width: 120px;
+            height: 120px;
+            margin: 30px auto;
+            background: linear-gradient(to right, #ffd700 50%, #87CEEB 50%);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 32px;
+            margin: 20px 0;
+        }
+
+        .subtitle {
+            color: #6b6e85;
+            font-size: 18px;
+            margin: 20px 0 40px 0;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 15px auto;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }

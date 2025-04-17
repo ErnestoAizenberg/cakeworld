@@ -1,0 +1,69 @@
+ 
+<style>      .server-widget {
+            position: absolute; /* Изменяем на абсолютное позиционирование */
+            top: 20px; /* Отступ сверху */
+            left: 20px; /* Отступ слева */
+            width: 60px; /* Ширина виджета */
+            height: 60px; /* Высота виджета */
+            border-radius: 50%; /* Круглая форма */
+            overflow: hidden; /* Скрываем часть изображения */
+            border: 3px solid #4CAF50; /* Цвет рамки */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff; /* Фон виджета */
+            z-index: 1000; /* Обеспечиваем, чтобы виджет был на переднем плане */
+            cursor: move; /* Изменяем курсор, чтобы показать, что элемент можно перетаскивать */
+        }
+
+        .server-widget img {
+            
+            width: 100%; /* Ширина изображения */
+            height: auto; /* Высота автоматически */
+            border-radius: 50%; /* Круглая форма картинки */
+        }
+    </style>
+</head>
+<body>
+
+<div class="server-widget" id="avatarWidget">
+    <img src="https://via.placeholder.com/120" alt="Аватарка" id="avatarImg">
+</div>
+
+<script>
+    // Перетаскивание функциональности
+    let isDragging = false;
+    const widget = document.getElementById('avatarWidget');
+
+    widget.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        let offsetX = e.clientX - widget.getBoundingClientRect().left;
+        let offsetY = e.clientY - widget.getBoundingClientRect().top;
+
+        const mouseMoveHandler = (e) => {
+            if (isDragging) {
+                widget.style.left = e.clientX - offsetX + 'px';
+                widget.style.top = e.clientY - offsetY + 'px';
+            }
+        };
+
+        const mouseUpHandler = () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+        };
+
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+    });
+
+    // Пример JavaScript для динамической замены изображения
+    function changeAvatar(newSrc) {
+        const imgElement = document.getElementById('avatarImg');
+        imgElement.src = newSrc;
+    }
+
+    // Вы можете использовать эту функцию для замены аватарки
+    // Например, changeAvatar('https://example.com/new-avatar.jpg');
+</script>

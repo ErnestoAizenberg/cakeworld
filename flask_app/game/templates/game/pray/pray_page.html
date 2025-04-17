@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Prayer System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #94a3b8;">Священная Молитва</h1>
+        
+        <!-- Секция баннеров -->
+        <div class="banner-grid" id="banners">
+            <div class="banner-card">
+                <img src="https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png" 
+                     class="banner-image" 
+                     alt="Эпический баннер">
+                <div class="banner-content">
+                    <h3>Легендарные Свитки</h3>
+                    <p>Шанс получить редкие артефакты увеличен!</p>
+                    <button class="pray-button" onclick="startPrayer()">
+                        <span>1</span>
+                        <i class="fas fa-gem"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран молитвы -->
+        <div class="prayer-overlay" id="prayerOverlay">
+            <div class="prayer-result" id="prayerResult">
+                <h3>Получено!</h3>
+                <img src="https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png" class="result-image" alt="Результат">
+                <button class="pray-button" onclick="closeResult()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createStars() {
+            const overlay = document.getElementById('prayerOverlay');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                overlay.appendChild(star);
+            }
+        }
+
+        function startPrayer() {
+            const overlay = document.getElementById('prayerOverlay');
+            overlay.style.display = 'flex';
+            createStars();
+
+            // Симуляция запроса на сервер
+            setTimeout(() => {
+                showResult();
+            }, 3000);
+        }
+
+        function showResult() {
+            const result = document.getElementById('prayerResult');
+            result.classList.add('active');
+        }
+
+        function closeResult() {
+            const overlay = document.getElementById('prayerOverlay');
+            overlay.style.display = 'none';
+            overlay.innerHTML = '<div class="prayer-result" id="prayerResult"></div>';
+        }
+    </script>
+</body>
+</html>

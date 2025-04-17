@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геншин-подобная Игра</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Стили для баннеров */
+        .banners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .banner-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .banner-info {
+            padding: 15px;
+        }
+
+        .pray-button {
+            width: 100%;
+            padding: 12px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pray-button:hover {
+            background: #c0392b;
+        }
+
+        /* Анимация молитвы */
+        @keyframes prayEffect {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .praying {
+            animation: prayEffect 1s ease-in-out;
+        }
+
+        /* Инвентарь */
+        .scrolls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .scroll-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .scroll-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Анимация появления */
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-in {
+            animation: slideUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Молитва за Свитки</h1>
+        
+        <!-- Баннеры -->
+        <div class="banners-grid" id="banners-container"></div>
+
+        <!-- Инвентарь -->
+        <h2>Ваши свитки</h2>
+        <div class="scrolls-grid" id="inventory"></div>
+    </div>
+
+    <script>
+        const banners = [
+            {
+                "id": 1,
+                "image": "https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png",
+                "description": "Эпический баннер с редкими свитками",
+                "duration": "До конца сезона"
+            },
+            {
+                "id": 2,
+                "image": "https://easydonate.s3.easyx.ru/images/products/faa29838deefaf5090cba6228d153328178c05da5c8808f18d67a77dc2cc53bf.png",
+                "description": "Особый баннер новичка",
+                "duration": "Перманентный"
+            }
+        ];
+
+        let inventory = [];
+
+        // Инициализация баннеров
+        function initBanners() {
+            const container = document.getElementById('banners-container');
+            banners.forEach(banner => {
+                const bannerElement = document.createElement('div');
+                bannerElement.className = 'banner-card animate-in';
+                bannerElement.innerHTML = `
+                    <img src="${banner.image}" class="banner-image" alt="Баннер">
+                    <div class="banner-info">
+                        <p>${banner.description}</p>
+                        <p><small>${banner.duration}</small></p>
+                        <button class="pray-button" onclick="performPray(${banner.id})">
+                            Совершить молитву (1 гем)
+                        </button>
+                    </div>
+                `;
+                container.appendChild(bannerElement);
+            });
+        }
+
+        // Молитва
+        function performPray(bannerId) {
+            const button = event.target;
+            button.classList.add('praying');
+            
+            setTimeout(() => {
+                button.classList.remove('praying');
+                
+                // Генерация случайного свитка
+                const newScroll = {
+                    id: Date.now(),
+                    code: generateScrollCode(),
+                    bannerId: bannerId,
+                    date: new Date().toLocaleString()
+                };
+                
+                inventory.push(newScroll);
+                updateInventory();
+                showPrayResult(newScroll);
+            }, 1000);
+        }
+
+        // Генерация кода свитка
+        function generateScrollCode() {
+            return 'CODE-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        }
+
+        // Обновление инвентаря
+        function updateInventory() {
+            const container = document.getElementById('inventory');
+            container.innerHTML = '';
+            
+            inventory.forEach(scroll => {
+                const scrollElement = document.createElement('div');
+                scrollElement.className = 'scroll-card animate-in';
+                scrollElement.innerHTML = `
+                    <div>
+                        <div>${scroll.code}</div>
+                        <small>${scroll.date}</small>
+                    </div>
+                    <i class="fas fa-copy"></i>
+                `;
+                scrollElement.onclick = () => copyScrollCode(scroll.code);
+                container.appendChild(scrollElement);
+            });
+        }
+
+        // Копирование кода
+        function copyScrollCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Код скопирован: ' + code);
+            });
+        }
+
+        // Показ результата молитвы
+        function showPrayResult(scroll) {
+            const result = confirm(`Вы получили свиток!\nКод: ${scroll.code}\nНажмите OK для копирования кода`);
+            if (result) copyScrollCode(scroll.code);
+        }
+
+        // Инициализация при загрузке
+        window.onload = () => {
+            initBanners();
+            updateInventory();
+        };
+    </script>
+</body>
+</html>

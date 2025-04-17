@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}You are Welcome{% endblock %}
+{% block page_class %}{% endblock %}
+{% block content %}
+<div class="community_menu" id="cakeworld" style="background-color:{{ server.color_scheme }}">    
+    <div class="forum-info">
+        <div class="server-name">
+            <h1>{{ server.server_name }}</h1>
+            {% include 'server/includes/main_create_options.html' %}
+            <div class="line"></div>
+            {% include 'server/includes/some_chats_list.html' %}
+        </div>
+
+        <div class="description">
+            <p>{{ server.server_description }}</p>
+        </div>
+    </div>
+    {% include 'server/includes/topic_category_carts.html' %}
+    {% include 'server/includes/shadow_host.html' %}
+    {% include 'forum/post/includes/post_messages_feed.html' %}
+</div>
+{% endblock content %}

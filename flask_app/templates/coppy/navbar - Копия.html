@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <span class="logo-text">{{ server.server_name }}</span>
+    </a>
+    <!-- Иконка профиля -->
+    {% if user %}
+        <a class="profile-icon" href="{{ url_for("profile", profile_url=user.username ~ "." ~ user.id ) }}">
+    {% else %}
+         <a class="profile-icon" href="{{ url_for("auth.entry") }}">
+    {% endif %}
+      <i class="fas fa-user-circle fa-2x"></i> <!-- Иконка профиля -->
+    </a>
+  </div>
+</nav>
+
+<!-- Подключаем Font Awesome для иконок -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+  /* Стили для иконки профиля */
+  .profile-icon {
+    color: white; /* Цвет иконки */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: transform 0.3s ease; /* Анимация при наведении */
+  }
+
+  .profile-icon:hover {
+    transform: scale(1.1); /* Увеличиваем иконку при наведении */
+  }
+
+  /* Убедимся, что иконка профиля всегда справа */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    flex-grow: 1; /* Логотип занимает всё доступное пространство слева */
+  }
+
+  .profile-icon {
+    margin-left: auto; /* Иконка профиля прижимается к правому краю */
+  }
+</style>

@@ -1,0 +1,146 @@
+/* Основной контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Разделитель */
+.separator {
+    height: 2px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+/* Информация о форуме */
+.forum-info {
+    margin-bottom: 40px;
+}
+
+/* Описание */
+.description {
+    font-size: 1.2em;
+    line-height: 1.5;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Темы */
+.topics {
+    margin-bottom: 40px;
+}
+
+/* Отдельная секция */
+.shadow-host {
+    margin-bottom: 40px;
+}
+
+/* Сообщения постов */
+.post-messages {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1b1b1b;
+    color: #fff;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 40vh; /* Сделаем его еще более горизонтальным */
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end; /* Выравниваем элементы по нижнему краю */
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+}
+
+.banner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Поддерживаем обрезку изображения */
+    filter: brightness(50%); /* Затемняем фон */
+    z-index: 1; /* Ниже остальных элементов */
+}
+
+.banner-content {
+    z-index: 2; /* Выше фонового изображения */
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    padding: 15px; /* Уменьшенные отступы */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для текста */
+    transition: transform 0.3s ease;
+    max-width: 80%; /* Сделаем ширину текстового блока большей */
+    width: auto; /* Делаем ширину адаптивной */
+    margin: 20px 0; /* Увеличиваем отступ снизу и убираем отступы сбоку */
+    position: relative;
+}
+
+.banner-content h1 {
+    font-size: 2.5em; /* Уменьшаем размер заголовка для мобильных устройств */
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.banner-content p {
+    font-size: 1.2em; /* Уменьшаем размер текста для мобильных устройств */
+    margin: 10px 0;
+}
+
+.banner-content button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 1em;
+    border: none;
+    background-color: #0073e6;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.banner-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Медиазапросы для изменения стилей на мобильных устройствах */
+@media (max-width: 768px) {
+    .banner {
+        height: 50vh; /* Даем еще больше высоты на мобильных устройствах */
+    }
+
+    .banner-content h1 {
+        font-size: 2em; /* Уменьшаем размер заголовка */
+    }
+
+    .banner-content p {
+        font-size: 1em; /* Уменьшаем размер текста */
+    }
+
+    .banner-content button {
+        font-size: 0.9em; /* Уменьшаем размер кнопки */
+    }
+}
+</style>

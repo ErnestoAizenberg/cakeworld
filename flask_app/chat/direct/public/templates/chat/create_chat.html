@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Создание Чата{% endblock %}
+{% block page_class %}{% endblock %}
+{% block content %}
+
+
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">Создание нового Чата</h1>
+
+<div class="decorative-elements mt-5">
+    <svg width="100%" height="100" class="decorative-svg">
+        <rect width="100%" height="100" fill="#f0f8ff" />
+        <circle cx="50%" cy="25%" r="20" fill="#d1e7dd" />
+        <circle cx="10%" cy="80%" r="40" fill="#e0f7fa" />
+        <circle cx="90%" cy="80%" r="40" fill="#e0f7fa" />
+    </svg>
+</div>
+
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {{ form.title(class="form-control", placeholder="Введите название чата") }}
+                </div>
+                <div class="form-group">
+                    {{ form.url_name.label(class="form-control-label") }}
+                    {{ form.url_name(class="form-control", placeholder="Введите URL для чата") }}
+                </div>
+                <div class="form-group form-check">
+                    {{ form.is_private(class="form-check-input") }}
+                    {{ form.is_private.label(class="form-check-label") }}
+                </div>
+                <div class="form-group">
+                    {{ form.description.label(class="form-control-label") }}
+                    {{ form.description(class="form-control", placeholder="Введите описание") }}
+                </div>
+                <div class="form-group">
+                    {{ form.avatar_path.label(class="form-control-label") }}
+                    {{ form.avatar_path(class="form-control", placeholder="Введите URL для аватара (опционально)") }}
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Создать Чат</button>
+            </form>
+        </div>
+    </div>
+    
+    <h2 class="mt-5 text-center">Все Чаты</h2>
+    <div class="list-group mt-3">
+        {% for chat in chats %}
+            <a href="{{ url_for('chat', url_name=chat.url_name) }}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ chat.title }}</h5>
+                    <small>{{ chat.is_private if chat.is_private else 'Публичный' }}</small>
+                </div>
+                <p class="mb-1">{{ chat.description }}</p>
+                {% if chat.avatar_path %}
+                    <img src="{{ chat.avatar_path }}" alt="Аватар" class="img-thumbnail" style="width: 50px; height: 50px;">
+                {% endif %}
+            </a>
+        {% else %}
+            <p class="text-center">Нет доступных чатов.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block additional_js %}
+{% endblock additional_js %}

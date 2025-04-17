@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объявление сервера Minecraft</title>
+</head>
+    {% include 'head/head.html' %}
+<body>
+    {% include 'include/navbar.html' %}
+    {% include 'include/chat-icons.html' %}
+    <div class="banner">
+       <img src="{{ url_for('static', filename='images/prayer_banners/pray_1.jpeg') }}" alt="" 
+     style="border: 5px solid black; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 300px; height: auto; transition: transform 0.2s;">
+
+    <button onclick="openPage('game')">Участвовать</button>
+    </div>
+     
+    <div class="banner">
+        <h5 class="card-title"><a href="/server_topics">Questions about CakeWorld server?</a></h5>
+        <p class="card-text">Возникли баги или хотите что-то предложить? Спрашивайте здесь.</p>
+    </div>
+
+    <div class="banner">
+        <h5 class="card-title"><a href="/community_topics">Community Builds</a></h5>
+        <p class="card-text">Здесь, Вы можете делится своим контентом, находить интересующие вас темы и обсуждать их вместе.</p>
+    </div>
+
+
+    <h2>О нашем сервере</h2>
+    <ul>
+        <li>Зашифрованое безопасное общение в реальном времени</li>
+        <li>Директ беседы и общие чаты</li>
+        <li>Форум с большими возможностями для публикации интересного контента</li>
+        <li>Быстрая обработка запросов к серверу</li>
+    </ul>
+
+  {% include 'footer.html' %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+
+
+function openPage(page, newTab = true) {
+    if (newTab) {
+        window.open(page, '_blank');
+    } else {
+        window.location.href = page;
+    }
+}
+
+    </script>
+</body>
+</html>

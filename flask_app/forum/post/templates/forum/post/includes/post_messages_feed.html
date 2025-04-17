@@ -1,0 +1,155 @@
+<style>
+
+
+    .message-feed {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #f8f9fa; /*#f8f9fa Светлый фон */
+        color: #212529; /* Темный цвет текста */
+        padding: 20px;
+    }
+    .messages-container {
+        max-width: 600px;
+        margin: auto;
+        background-color: #ffffff; /* Белый фон для контейнера сообщений */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        padding: 20px;
+        overflow-y: auto; /* Включаем прокрутку по вертикали */
+        max-height: 400px; /* Ограничение высоты контейнера для прокрутки */
+    }
+
+    .post, .reply {
+        border-bottom: 1px solid #e9ecef; /* Легкая граница между сообщениями */
+        padding: 15px 0;
+    }
+
+    .post:last-child, .reply:last-child {
+        border-bottom: none; /* Убираем границу у последнего элемента */
+    }
+
+    .content {
+        margin-left: 10px; /* Отступ для удобства */
+    }
+
+    .content p {
+        line-height: 1.6; /* Увеличенное расстояние между строками */
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff; /* Цвет ссылок */
+        transition: color 0.2s; /* Плавный переход цвета */
+    }
+
+    a:hover {
+        color: #0056b3; /* Цвет ссылки при наведении */
+    }
+
+    .loading-indicator, .error-message {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1.2em;
+        color: #6c757d; /* Нейтральный цвет для текста загрузки и ошибок */
+    }
+
+    .loading-indicator {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+<div class="message-feed">
+    <div class="messages-container" id="messages-container">
+        <!-- Сообщения будут добавляться сюда -->
+    </div>
+    <div class="loading-indicator" id="loading-indicator">Загрузка...</div>
+    <div class="error-message" id="error-message"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let page = 1;
+    let isLoading = false;
+    let hasMore = true;
+
+    loadMessages(page);
+    page++;
+
+    function loadMessages(page) {
+        if (isLoading || !hasMore) return;
+
+        isLoading = true;
+        document.getElementById('loading-indicator').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+
+        const container = document.getElementById('messages-container');
+        const previousScrollHeight = container.scrollHeight; // Сохраняем высоту перед добавлением новых постов
+
+        fetch(`/load-post-messages-feed?page=${page}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети или сервера');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.posts || data.posts.length === 0) {
+                    hasMore = false;
+                    return;
+                }
+
+                data.posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = post.is_reply ? 'reply' : 'post';
+                    let link; 
+                    if (!post.post_id) { 
+                        link = `<a href="/view_topic/${post.topic_url_name}">${post.topic_title}</a>`; 
+                    } else { 
+                        link = `<a href="/view_post/${post.post_id}">${post.post_title}</a>`; 
+                    }
+                    postElement.innerHTML = `
+                    <div class="content">
+                        <p>${post.text}</p>
+                        <a href="/profile/${post.user_id}">${post.author}</a>
+                        <small>${post.time_ago}</small>
+                        <small>${link}</small>
+                    </div>
+                    `;
+                    container.appendChild(postElement);
+                });
+
+                // Сравниваем новую высоту с предыдущей высотой и, если необходимо, корректируем scrollTop
+                const newScrollHeight = container.scrollHeight;
+                container.scrollTop = newScrollHeight - previousScrollHeight > 0 ? previousScrollHeight : container.scrollTop;
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке сообщений:', error);
+                document.getElementById('error-message').innerText = 'Ошибка при загрузке данных. Пожалуйста, попробуйте позже.';
+                document.getElementById('error-message').style.display = 'block';
+            })
+            .finally(() => {
+                isLoading = false;
+                document.getElementById('loading-indicator').style.display = 'none';
+            });
+    }
+
+    // Прокрутка по сообщению будет отслеживаться внутри самого контейнера
+    const messageContainer = document.getElementById('messages-container');
+    messageContainer.addEventListener('scroll', function () {
+        const { scrollTop, scrollHeight, clientHeight } = messageContainer;
+
+        if (scrollTop + clientHeight >= scrollHeight - 100 && !isLoading && hasMore) {
+            loadMessages(page);
+            page++;
+        }
+    });
+});
+</script>

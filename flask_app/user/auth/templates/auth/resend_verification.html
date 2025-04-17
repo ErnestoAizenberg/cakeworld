@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Повторная отправка подтверждения{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <h2>Повторная отправка подтверждения</h2>
+  
+  {% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+  
+  <form action="{{ url_for('auth.resend_verification') }}" method="POST" class="auth-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ email }}" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+  </form>
+</div>
+{% endblock %}

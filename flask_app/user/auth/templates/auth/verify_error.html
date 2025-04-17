@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка подтверждения{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <div class="auth-message error">
+    <h2>Ошибка подтверждения email</h2>
+    <p>{{ error }}</p>
+    <div class="auth-links">
+      <a href="{{ url_for('auth.resend_verification') }}">Отправить новую ссылку</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

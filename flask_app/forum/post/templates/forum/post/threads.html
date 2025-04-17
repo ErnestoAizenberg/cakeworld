@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if discussions %}
+    <ul>
+        {% for discussion in discussions %}
+            <li>
+                <strong>{{ discussion.title }}</strong> — {{ discussion.content }} (Posted on: {{ discussion.created_at }})
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+     Ищем посты...
+    {% endif %}
+
+<script>
+// Отправка ответа
+document.getElementById('replyForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const content = document.getElementById('replyContent').value;
+
+  if (content.trim()) {
+    const newReply = {
+      author: "Вы",
+      author_avatar: "https://via.placeholder.com/50",
+      date: new Date().toLocaleDateString(),
+      content: content
+    };
+
+    // Добавляем новый ответ в список
+    const repliesContainer = document.querySelector('.card-body');
+    const replyCard = document.createElement('div');
+    replyCard.className = 'card mb-3';
+    replyCard.innerHTML = `
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <img src="${newReply.author_avatar}" alt="Аватар" class="rounded-circle me-3" width="50">
+          <div>
+            <h5>${newReply.author}</h5>
+            <small class="text-muted">${newReply.date}</small>
+          </div>
+        </div>
+        <p>${newReply.content}</p>
+      </div>
+    `;
+
+    repliesContainer.appendChild(replyCard);
+
+    // Очищаем поле ввода
+    document.getElementById('replyContent').value = '';
+
+    // Анимация нового ответа
+    anime({
+      targets: replyCard,
+      opacity: [0, 1],
+      translateY: [20, 0],
+      duration: 500
+    });
+  }
+});
+</script>
+{% endblock %}

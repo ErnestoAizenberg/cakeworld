@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.admin-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    
+}
+
+.menu {
+    background-color: #2c353f;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.menu ul li a {
+    color: #ffffff;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    transition: background 0.3s;
+    width: 100%;
+    text-align: center;
+}
+
+.menu ul li a:hover {
+    background-color: #35424a;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    width: 100%;
+    max-width: 600px; /* Ограничение ширины секций для ПК */
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form select {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #35424a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background-color: #2c353f;
+}
+
+#bannedList {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+}
+</style>
+    <title>Админ-панель модерации</title>
+</head>
+<body>
+    <div class="admin-panel">
+        <header>
+            <h1>Админ-панель</h1>
+        </header>
+        <nav class="menu">
+            <ul>
+                <li><a href="#ban-user"><i class="fas fa-user-slash"></i> Забанить пользователя</a></li>
+                <li><a href="#unban-user"><i class="fas fa-user-check"></i> Разбанить пользователя</a></li>
+                <li><a href="#banned-users"><i class="fas fa-ban"></i> Забаненные пользователи</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <section id="ban-user">
+                <h2>Забанить пользователя</h2>
+                <form id="banForm" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF-токен -->
+                    <input type="text" name="user_id" placeholder="ID пользователя" required>
+                    <input type="number" name="ban_duration" placeholder="Продолжительность бана (дни)" required>
+                    <input type="text" name="reason" placeholder="Причина" required>
+                    <select name="ban_type" required>
+                        <option value="post_publication">Публикация постов</option>
+                        <option value="reply_to_post">Ответ на посты</option>
+                    </select>
+                    <button type="submit">Забанить</button>
+                </form>
+            </section>
+            <section id="unban-user">
+                <h2>Разбанить пользователя</h2>
+                <form id="unbanForm" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF-токен -->
+                    <input type="text" name="user_id" placeholder="ID пользователя" required>
+                    <button type="submit">Разбанить</button>
+                </form>
+            </section>
+            <section id="banned-users">
+                <h2>Забаненные пользователи</h2>
+                <div id="bannedList">
+                    <!-- Список забаненных пользователей будет здесь -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script>
+document.getElementById('banForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const userId = this[1].value;
+    const banDuration = this[2].value;
+    const reason = this[3].value;
+    const banType = this[4].value;
+    const csrfToken = this.querySelector('input[name="csrf_token"]').value; // Получаем CSRF-токен
+
+    const response = await fetch('/ban_user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-Token': csrfToken // Отправляем CSRF-токен
+        },
+        body: new URLSearchParams({
+            user_id: userId,
+            ban_duration: banDuration,
+            reason: reason,
+            ban_type: banType
+        })
+    });
+
+    if (response.ok) {
+        alert('Пользователь забанен!');
+        this.reset();
+        fetchBannedUsers(); // Обновить список забаненных
+    } else {
+        alert('Ошибка при добавлении бана.');
+    }
+});
+
+document.getElementById('unbanForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const userId = this[1].value;
+    const csrfToken = this.querySelector('input[name="csrf_token"]').value; // Получаем CSRF-токен
+
+    const response = await fetch(`/unban_user/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-Token': csrfToken // Отправляем CSRF-токен
+        }
+    });
+
+    if (response.ok) {
+        alert('Пользователь разблокирован!');
+        this.reset();
+        fetchBannedUsers(); // Обновить список забаненных
+    } else {
+        alert('Ошибка при разблокировании пользователя.');
+    }
+});
+
+async function fetchBannedUsers() {
+    const response = await fetch('/banned_users');
+    const bannedUsers = await response.json();
+    const bannedList = document.getElementById('bannedList');
+    bannedList.innerHTML = '';
+    
+    bannedUsers.forEach(user => {
+        const userDiv = document.createElement('div');
+        userDiv.textContent = `ID: ${user.user_id}, Забанен до: ${user.ban_until}, Причина: ${user.reason}, Тип: ${user.ban_type}`;
+        bannedList.appendChild(userDiv);
+    });
+}
+
+// Загружаем список забаненных пользователей при загрузке страницы
+fetchBannedUsers();
+</script>
+</body>
+</html>

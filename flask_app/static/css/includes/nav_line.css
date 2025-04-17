@@ -1,0 +1,52 @@
+
+        body {
+            background-color: #1b1b1b; /* Цвет фона страницы */
+            color: #fff; /* Цвет текста страницы */
+        }
+
+        .breadcrumb {
+            background-color: #333; /* Тёмный фон */
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap; /* Позволяет элементам "заворачивать" в случае узкого экрана */
+        }
+
+        .breadcrumb ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb li {
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .breadcrumb li:last-child {
+            margin-right: 0;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #0073e6; /* Цвет ссылок */
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #0056b3; /* Тёмно-синий при наведении */
+        }
+
+        .breadcrumb span {
+            color: #ccc; /* Серый цвет для текущей страницы */
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '>';
+            color: #555;
+            margin-left: 10px;
+            margin-right: 10px;
+        }

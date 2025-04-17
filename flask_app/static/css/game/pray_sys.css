@@ -1,0 +1,24 @@
+.currency-display {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2c2c44;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.currency-display p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.currency-display ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.currency-display li {
+    font-size: 16px;
+    margin: 5px 0;
+}

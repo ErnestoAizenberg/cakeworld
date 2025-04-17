@@ -1,0 +1,44 @@
+
+   .profile-menu-container { display: flex; align-items: center; gap: 20px; position: relative; }
+
+  /* Стили для иконки меню */
+  .profile-menu {
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+
+  .profile-menu:hover {
+    background-color: #333;
+  }
+
+  /* Стили для выпадающего меню */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 150px;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #555;
+  }

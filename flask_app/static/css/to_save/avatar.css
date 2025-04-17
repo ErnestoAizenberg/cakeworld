@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1e1e1e;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-container {
+  background-color: #2d2d2d;
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile Section */
+.profile-section {
+  text-align: center;
+}
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer; /* Indicate clickability */
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #4CAF50;
+  transition: transform 0.3s ease;
+}
+
+.avatar-fallback {
+  display: none; /* Default to none, shown only if img fails */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #A600A6;
+  color: #fff;
+  font-size: 40px;
+  display: flex; /* Use Flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Centering small avatar */
+.avatar-fallback {
+  top: 0;
+  left: 0;
+  display: flex; /* Use Flexbox for centering */
+}
+
+/* For displaying large avatar toggle */
+.large-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Remaining CSS... */
+.username {
+  font-size: 24px;
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+/* Chat Icons */
+.chat-icons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.chat-icon {
+  font-size: 24px;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.chat-icon:hover {
+  transform: scale(1.2);
+  color: #45a049;
+}
+
+/* Avatar Click Menu */
+.avatar-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.menu-content {
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.edit-btn, .save-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover, .save-btn:hover {
+  background-color: #45a049;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icon {
+  color: #fff

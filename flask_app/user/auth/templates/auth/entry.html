@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block additional_css %}
+  <link href="{{ url_for('static', filename='css/auth/style.css') }}" rel="stylesheet">
+{% endblock  %}
+
+{% block title %}
+  {% if mode == 'login' %}Вход{% else %}Регистрация{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <div class="auth-tabs">
+    <a href="{{ url_for('auth.entry', mode='login') }}" class="{% if mode == 'login' %}active{% endif %}">Вход</a>
+    <a href="{{ url_for('auth.entry', mode='signup') }}" class="{% if mode == 'signup' %}active{% endif %}">Регистрация</a>
+  </div>
+
+  
+  {% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  {% if mode == 'login' %}
+  <form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ email }}" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+    <div class="auth-links">
+      <a href="{{ url_for('auth.forgot_password') }}">Забыли пароль?</a>
+    </div>
+  </form>
+  {% else %}
+  <form action="{{ url_for('auth.register') }}" method="POST" class="auth-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="form-group">
+      <label for="username">Имя пользователя</label>
+      <input type="text" id="username" name="username" value="{{ username }}" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ email }}" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Подтвердите пароль</label>
+      <input type="password" id="confirm_password" name="confirm_password" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
+
+    

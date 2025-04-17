@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}{{ thread.title }}{% endblock %}
+
+{% block additional_css %}
+<style>
+/* Стили для треда */
+.dark_gren_page {
+  background-color: rgb(44, 62, 80);
+}
+.card {
+  background-color: #2c3e50;
+  border: 1px solid #8B4513;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #8B4513 !important;
+  border-bottom: 1px solid #a0522d;
+}
+
+.card-body {
+  background-color: #34495e;
+}
+
+/* Аватарки */
+.rounded-circle {
+  border: 2px solid #8B4513;
+}
+
+/* Форма ответа */
+#replyForm textarea {
+  background-color: #2c3e50;
+  color: #fff;
+  border: 1px solid #8B4513;
+}
+
+#replyForm textarea:focus {
+  background-color: #34495e;
+  border-color: #a0522d;
+  box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+}
+
+/* Кнопки */
+.btn-primary {
+  background-color: #8B4513;
+  border-color: #8B4513;
+}
+
+.btn-primary:hover {
+  background-color: #a0522d;
+  border-color: #a0522d;
+}
+</style>
+{% endblock additional_css %}
+
+{% block page_class %}dark_gren_page{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <!-- Заголовок треда -->
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">
+        <h3>{{ thread.title }}</h3>
+        <small>{{ thread.author }} | {{ thread.created.strftime('%Y-%m-%d %H:%M') }} | <i class="fas fa-eye"></i> 
+{% if thread.views is not none %}
+    {{ thread.views | length }}
+{% else %}
+    0
+{% endif %}
+</small>
+      </div>
+      <div class="card-body">
+        <p>{{ thread.content | safe }}</p>
+      </div>
+    </div>
+
+    <!-- Ответы -->
+    <h2 class="mb-4">Ответы</h2>
+    {% for reply in reply_list %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-3">
+            <img src="hz_how_to_get" alt="Аватар" class="rounded-circle me-3" width="50">
+            <div>
+              <h5>{{ reply.author }}</h5>
+              <small class="text-muted">{{ reply.created.strftime('%Y-%m-%d,') }}</small> <!-- Исправлено -->
+            </div>
+          </div>
+          <p>{{ reply.content }}</p>
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- Форма для ответа -->
+    <div class="card mt-5">
+      <div class="card-header bg-success text-white">
+        <h3>Оставить ответ</h3>
+      </div>
+      <div class="card-body">
+        <form id="replyForm" action="{{ url_for('reply_post', post_id=thread.id) }}" method="post">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.content.label(class="form-label") }}
+            {{ form.content(class="form-control", rows=5) }}
+            {% for error in form.content.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+          {{ form.submit(class="btn btn-primary") }}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

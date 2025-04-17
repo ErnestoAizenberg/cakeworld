@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat/direct_chat.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <!-- Chat Header -->
+    <div class="header">
+        <img src="{{ owner.avatar_path }}" alt="{{ owner.username }} Avatar">
+        <div>
+            <h1>{{ owner.username }}</h1>
+            <p>Last seen recently</p>
+        </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div id="messages" class="messages" style="height: 500px; overflow-y: auto;"  data-chat-id="{{ direct_chat.id }}" data-user-id="{{ user.id }}"
+data-owner-id="{{ owner.id }}"
+data-user-username="{{ user.username }}" 
+data-chat-url-name="{{ direct_chat.url_name }}">
+
+
+
+
+        <!-- JavaScript will populate the messages here -->
+    </div>
+
+    <div id="unread-counter" style="position: fixed; bottom: 20px; right: 20px;">
+        <button id="scroll-to-bottom">↓ <span id="unread-count">0</span></button>
+    </div>
+
+    <!-- Chat Input -->
+    <form id="messageForm" class="input-area">
+        <input id="messageInput" type="text" placeholder="Type a message...">
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+<script type="module" src="{{ url_for('static', filename='js/chat/main_direct_chat.js') }}"></script>
+</body>
+</html>

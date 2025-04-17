@@ -1,0 +1,130 @@
+        body {
+            background-color: #1a202c; /* bg-gray-900 */
+            color: white; /* text-white */
+            font-family: sans-serif; /* font-sans */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px; /* max-w-4xl */
+            margin: 32px auto; /* my-8 */
+            padding: 16px; /* p-4 */
+            background-color: #2d3748; /* bg-gray-800 */
+            border-radius: 10px; /* rounded-lg */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* shadow-lg */
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px; /* mt-6 */
+        }
+        .header img {
+            width: 40px; /* w-10 */
+            height: 40px; /* h-10 */
+            border-radius: 50%; /* rounded-full */
+            margin-right: 16px; /* space-x-4 */
+        }
+        .header h1 {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+        }
+        .header p {
+            font-size: 0.875rem; /* text-sm */
+            color: #a0aec0; /* text-gray-400 */
+        }
+        .messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* space-y-4 */
+        }
+        .message {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px; /* space-x-2 */
+        }
+        .message img {
+            width: 32px; /* w-8 */
+            height: 32px; /* h-8 */
+            border-radius: 50%; /* rounded-full */
+        }
+        .message-content {
+            max-width: 70%; /* Ограничение ширины сообщения */
+            padding: 8px 12px; /* p-2 */
+            border-radius: 12px; /* rounded-lg */
+            font-size: 0.875rem; /* text-sm */
+            color: white; /* text-white */
+            position: relative;
+        }
+        .message-content.user {
+            background-color: #6b46c1; /* bg-purple-600 */
+            margin-left: auto; /* ml-auto */
+        }
+        .message-content.other {
+            background-color: #4c51bf; /* bg-indigo-600 */
+        }
+        .timestamp {
+            color: #a0aec0; /* text-gray-400 */
+            font-size: 0.75rem; /* text-xs */
+            margin-top: 4px; /* mt-1 */
+            text-align: right;
+        }
+        .options {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px; /* space-x-2 */
+            margin-top: 8px; /* mt-2 */
+            padding: 8px; /* p-2 */
+            background-color: #4a5568; /* bg-gray-700 */
+            border-radius: 8px; /* rounded-lg */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .message:hover .options {
+            opacity: 1;
+        }
+        .options button {
+            background: none;
+            border: none;
+            color: #a0aec0; /* text-gray-400 */
+            cursor: pointer;
+            font-size: 0.875rem; /* text-sm */
+            transition: color 0.3s ease;
+        }
+        .options button:hover {
+            color: white; /* text-white */
+        }
+        .input-area {
+            display: flex;
+            align-items: center;
+            margin-top: 16px; /* mt-4 */
+            gap: 8px; /* space-x-2 */
+        }
+        .input-area input {
+            background-color: #2d3748; /* bg-gray-700 */
+            color: white; /* text-white */
+            padding: 8px 12px; /* p-2 */
+            border-radius: 12px; /* rounded-lg */
+            width: 100%;
+            outline: none;
+            border: 1px solid #4a5568; /* border-gray-600 */
+            transition: border-color 0.3s ease;
+        }
+        .input-area input:focus {
+            border-color: #4299e1; /* border-blue-500 */
+        }
+        .input-area button {
+            background-color: #4299e1; /* bg-blue-500 */
+            border: none;
+            border-radius: 50%; /* rounded-full */
+            padding: 8px; /* p-2 */
+            color: white; /* text-white */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .input-area button:hover {
+            background-color: #3182ce; /* bg-blue-600 */
+        }
+        .input-area svg {
+            width: 24px; /* w-6 */
+            height: 24px; /* h-6 */
+        }

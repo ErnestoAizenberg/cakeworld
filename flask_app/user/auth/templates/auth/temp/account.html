@@ -1,0 +1,45 @@
+<!-- templates/auth/account.html -->
+<h2>Account Settings</h2>
+<form method="POST" action="{{ url_for('auth.account_settings') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" name="username" value="{{ user.username }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" value="{{ user.email }}" disabled>
+  </div>
+  
+  {% from "auth/components/_password_field.html" import password_field %}
+  {{ password_field(
+    id="current_password",
+    name="current_password",
+    label="Current Password",
+    placeholder="Enter current password",
+    autocomplete="current-password"
+  ) }}
+  
+  {{ password_field(
+    id="new_password",
+    name="new_password",
+    label="New Password",
+    placeholder="Enter new password",
+    autocomplete="new-password",
+    show_strength=true,
+    minlength=12
+  ) }}
+  
+  {{ password_field(
+    id="confirm_password",
+    name="confirm_password",
+    label="Confirm Password",
+    placeholder="Confirm new password",
+    autocomplete="new-password"
+  ) }}
+  
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+  <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary">Log Out</a>
+</form>

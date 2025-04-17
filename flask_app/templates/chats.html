@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат-страница</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #1f2937;
+            color: #ffffff;
+        }
+        .light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="flex flex-col h-screen">
+        <header class="flex justify-between items-center p-4 border-b border-gray-300">
+            <h1 class="text-2xl font-bold">Чат</h1>
+            <button id="toggle-theme" class="flex items-center p-2 rounded bg-gray-200 hover:bg-gray-300 transition duration-300">
+                <i class="fas fa-sun"></i>
+            </button>
+        </header>
+        <main class="flex flex-grow overflow-hidden">
+            <aside class="w-1/4 p-4 border-r border-gray-300">
+                <h2 class="text-xl font-semibold">Список пользователей</h2>
+                <ul id="user-list" class="mt-4">
+                    <!-- Пользователи подгрузятся сюда -->
+                </ul>
+            </aside>
+            <section class="flex-grow p-4">
+                <div class="border border-gray-300 rounded-md p-4 h-full flex flex-col">
+                    <h2 class="text-xl font-semibold">Чат</h2>
+                    <div id="chat" class="flex-grow overflow-y-auto mt-2">
+                        <!-- Сообщения подгрузятся сюда -->
+                    </div>
+                    <div class="mt-2">
+                        <input id="chat-input" type="text" placeholder="Введите сообщение..." class="w-full p-2 border border-gray-300 rounded-md"/>
+                        <button id="send-button" class="mt-2 w-full p-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600 transition duration-300">
+                            Отправить
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Mock данные
+        const users = [
+            { id: 1, name: "Пользователь 1" },
+            { id: 2, name: "Пользователь 2" },
+            { id: 3, name: "Пользователь 3" },
+            { id: 4, name: "Пользователь 4" }
+        ];
+
+        const messages = [
+            { userId: 1, text: "Привет!" },
+            { userId: 2, text: "Как дела?" },
+            { userId: 1, text: "Все хорошо!" }
+        ];
+
+        // Функция для подгрузки пользователей
+        function loadUsers() {
+            const userList = document.getElementById('user-list');
+            users.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = user.name;
+                listItem.className = "p-2 hover:bg-gray-200 transition duration-300 cursor-pointer";
+                userList.appendChild(listItem);
+            });
+        }
+
+        // Функция для подгрузки сообщений
+        function loadMessages() {
+            const chat = document.getElementById('chat');
+            messages.forEach(msg => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = "my-1 p-2 rounded border";
+                msgDiv.classList.add(msg.userId === 1 ? 'bg-blue-100' : 'bg-gray-100');
+                msgDiv.textContent = msg.text;
+                msgDiv.classList.add('fade-in');
+                chat.appendChild(msgDiv);
+            });
+        }
+
+        // Обработка отправки сообщения
+        document.getElementById('send-button').onclick = function() {
+            const input = document.getElementById('chat-input');
+            if (input.value.trim() !== "") {
+                const newMessage = { userId: 1, text: input.value };
+                messages.push(newMessage);
+                loadMessages(); // обновляем сообщения
+                input.value = ""; // очищаем поле
+            }
+        };
+
+        // Переключение тем
+        document.getElementById('toggle-theme').onclick = function() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+            const icon = document.querySelector('#toggle-theme i');
+            icon.classList.toggle('fa-sun');
+            icon.classList.toggle('fa-moon');
+        };
+
+        // Загрузка данных при старте
+        loadUsers();
+        loadMessages();
+    </script>
+</body>
+</html>

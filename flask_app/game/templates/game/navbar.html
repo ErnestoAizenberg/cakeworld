@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    
+    {% include 'include/server-vidget.html' %}
+<div>
+    {% if user %}
+      <a class="profile-icon" href="{{ url_for('profile', profile_url=user.username ~ '.' ~ user.id) }}">
+    {% else %}
+  
+      <a class="profile-icon" href="{{ url_for('auth.entry') }}">
+    {% endif %}
+      <i class="fas fa-user-circle fa-2x"></i>
+    </a>
+</div>
+  </div>
+</nav>

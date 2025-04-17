@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .stat-card .latest-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="my-4">Admin Dashboard</h1>
+
+        <!-- Top Row: Small Stat Cards -->
+        <div class="row" id="stat-cards">
+            <!-- Stat Cards will be dynamically inserted here -->
+        </div>
+
+        <!-- User Registration Trends -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h3><i class="fas fa-users icon"></i>User Registration Trends</h3>
+                    <canvas id="userRegistrationChart"></canvas>
+                    <p id="userRegistrationLatest"></p>
+                </div>
+            </div>
+
+            <!-- Message Sent Trends -->
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h3><i class="fas fa-comments icon"></i>Message Sent Trends</h3>
+                    <canvas id="messageSentChart"></canvas>
+                    <p id="messageSentLatest"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Created Trends -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="chart-container">
+                    <h3><i class="fas fa-newspaper icon"></i>Post Created Trends</h3>
+                    <canvas id="postCreatedChart"></canvas>
+                    <p id="postCreatedLatest"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Fetch data from the server
+        fetch('/admin/statistics')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Логируем полученные данные
+                const userRegistrationData = data.user_registration_trends || [];
+                const messageSentData = data.message_sent_trends || [];
+                const postCreatedData = data.post_created_trends || [];
+
+                // Render charts and last data
+                renderUserRegistrationChart(userRegistrationData);
+                renderMessageSentChart(messageSentData);
+                renderPostCreatedChart(postCreatedData);
+                displayLatestData(userRegistrationData, messageSentData, postCreatedData);
+            })
+            .catch(err => console.error('Error fetching data:', err));
+
+        function renderUserRegistrationChart(data) {
+            const labels = data.map(item => item.month);
+            const counts = data.map(item => item.count);
+
+            const ctx = document.getElementById('userRegistrationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Users Registered',
+                        data: counts,
+                        borderColor: '#007bff',
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderMessageSentChart(data) {
+            const labels = data.map(item => item.day);
+            const counts = data.map(item => item.count);
+
+            const ctx = document.getElementById('messageSentChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Messages Sent',
+                        data: counts,
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderPostCreatedChart(data) {
+            const labels = data.map(item => item.week);
+            const counts = data.map(item => item.count);
+
+            const ctx = document.getElementById('postCreatedChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Posts Created',
+                        data: counts,
+                        backgroundColor: '#dc3545',
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function displayLatestData(userRegistrationData, messageSentData, postCreatedData) {
+            // Отображаем последние данные под графиками
+            const latestUserRegistration = userRegistrationData.length > 0 ? userRegistrationData[userRegistrationData.length - 1] : {month: 'N/A', count: 0};
+            const latestMessageSent = messageSentData.length > 0 ? messageSentData[messageSentData.length - 1] : {day: 'N/A', count: 0};
+            const latestPostCreated = postCreatedData.length > 0 ? postCreatedData[postCreatedData.length - 1] : {week: 'N/A', count: 0};
+
+            document.getElementById('userRegistrationLatest').innerText = `Последнее значение: ${latestUserRegistration.count} пользователей зарегистрировано в ${latestUserRegistration.month}`;
+            document.getElementById('messageSentLatest').innerText = `Последнее значение: ${latestMessageSent.count} сообщений отправлено на ${latestMessageSent.day}`;
+            document.getElementById('postCreatedLatest').innerText = `Последнее значение: ${latestPostCreated.count} постов создано за ${latestPostCreated.week}`;
+        }
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

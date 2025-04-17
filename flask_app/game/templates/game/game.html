@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Prayer System & Genshin-Style Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+.server-widget {
+    position: absolute; /* Абсолютное позиционирование для виджета */
+    top: 20px; /* Отступ сверху */
+    left: 20px; /* Отступ слева */
+    width: 60px; /* Ширина виджета */
+    height: 60px; /* Высота виджета */
+    border-radius: 50%; /* Круглая форма */
+    overflow: hidden; /* Скрываем часть изображения */
+    border: 3px solid #4CAF50; /* Цвет рамки */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Фон виджета */
+    z-index: 1000; /* Передний план */
+    cursor: move; /* Курсор для перетаскивания */
+}
+
+.server-widget img {
+    width: 100%; /* Ширина изображения */
+    height: auto; /* Высота автоматически */
+    border-radius: 50%; /* Круглая форма картинки */
+}
+</style>
+    <link href="{{ url_for('static', filename='css/game/game.css') }}" rel="stylesheet">
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+<body>
+
+    {#% include 'game/navbar.html' %#}
+
+    {% include 'include/server-vidget.html' %}
+    <div class="combined-container">
+        <h1 style="text-align: center; color: #94a3b8;">Священная Молитва</h1>
+        
+        <!-- Секция баннеров -->
+        <div class="banner-grid" id="banners"></div>
+
+        <!-- Экран молитвы -->
+        <div class="prayer-overlay" id="prayerOverlay" style="display: none;">
+            <div class="prayer-result" id="prayerResult">
+                <h3 class="result-text"></h3>
+                <img src="" class="result-image" alt="Результат">
+                <button class="banner-button" onclick="closeResult()">Закрыть</button>
+            </div>
+        </div>
+
+        <!-- Ресурсы -->
+        <div class="resource-bar">
+            <div class="resource-item">
+                <i class="fas fa-coins"></i>
+                <span id="coins">0</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-star"></i>
+                <span id="stones">0</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-gem"></i>
+                <span id="gems">0</span>
+            </div>
+        </div>
+
+        <!-- Меню квестов -->
+        <h2>Ежедневные квесты</h2>
+        <div class="quest-grid" id="daily-quests"></div>
+
+        <h2>Еженедельные квесты</h2>
+        <div class="quest-grid" id="weekly-quests"></div>
+
+        <!-- Инвентарь -->
+        <h2>Инвентарь</h2>
+        <div class="inventory-grid" id="inventory"></div>
+
+        <!-- Достижения -->
+        <h2>Достижения</h2>
+        <div class="achievement-grid" id="achievements"></div>
+    </div>
+
+<script>
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const DATA_URL = '/game/data';
+    const MAKE_PRAYER_URL = '/game/make_prayer';
+    
+    let resources, banners, dailyQuests, weeklyQuests, inventory, achievements;
+
+    async function fetchData() {
+        const response = await fetch(DATA_URL, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            }
+        });
+        const data = await response.json();
+        resources = data.resources;
+        banners = data.banners;
+        dailyQuests = data.daily_quests;
+        weeklyQuests = data.weekly_quests;
+        inventory = data.inventory;
+        console.log(inventory);
+        achievements = data.achievements;
+    }
+
+    function updateResources() {
+        document.getElementById('coins').textContent = resources.coins;
+        document.getElementById('stones').textContent = resources.stones;
+        document.getElementById('gems').textContent = resources.gems;
+    }
+
+    function renderBanners() {
+        const container = document.getElementById('banners');
+        container.innerHTML = banners.map(banner => `
+            <div class="banner-card">
+                <img src="${banner.icon}" class="banner-image" alt="Эпический баннер">
+                <div class="banner-content">
+                    <h3>${banner.title}</h3>
+                    <p>${banner.description}</p>
+                    <button class="banner-button" onclick="startPrayer(${banner.id})">
+                        <span>1</span>
+                        <i class="fas fa-gem"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderQuests(quests, containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = quests.map(quest => `
+            <div class="quest-card fade-in">
+                <div class="quest-title">${quest.title}</div>
+                <div class="quest-progress">
+                    <div class="progress-bar" style="width: ${(quest.progress / quest.goal) * 100}%"></div>
+                </div>
+                <div class="quest-reward">
+                    <i class="fas fa-${quest.reward.type}"></i>
+                    <span>${quest.reward.amount}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderInventory() {
+        const container = document.getElementById('inventory');
+        container.innerHTML = inventory.map(item => `
+            <div class="item-card fade-in">
+                <img src="${item.image_path}" class="item-image" alt="${item.name}">
+                <div>${item.name}</div>
+                <div>Количество: ${item.quantity}</div>
+            </div>
+        `).join('');
+    }
+
+    function renderAchievements() {
+        const container = document.getElementById('achievements');
+        container.innerHTML = achievements.map(achievement => `
+            <div class="achievement-card fade-in">
+                <div class="achievement-title">${achievement.title}</div>
+                <div class="achievement-description">${achievement.description}</div>
+                <div class="achievement-progress">
+                    <div class="achievement-progress-bar" style="width: ${(achievement.progress / achievement.goal) * 100}%"></div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function init() {
+        fetchData().then(() => {
+            updateResources();
+            renderBanners();
+            renderQuests(dailyQuests, 'daily-quests');
+            renderQuests(weeklyQuests, 'weekly-quests');
+            renderInventory();
+            renderAchievements();
+        });
+    }
+
+    function createStars() {
+        const overlay = document.getElementById('prayerOverlay');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'prayer-star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            overlay.appendChild(star);
+        }
+    }
+
+    function startPrayer(bannerId) {
+        const overlay = document.getElementById('prayerOverlay');
+        overlay.style.display = 'flex';
+        createStars();
+        
+        // Отправить ID баннера на сервер
+        setTimeout(() => {
+            showResult(bannerId);
+        }, 3000);
+    }
+
+    function showResult(bannerId) {
+        const overlay = document.getElementById('prayerOverlay');
+        
+        // Получение изображения через AJAX запрос к маршруту make_prayer с передачей bannerId
+        fetch(MAKE_PRAYER_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ id: bannerId }) // Передаем данные на сервер
+        })
+        .then(response => response.json())
+        .then(data => {
+            const result = document.getElementById('prayerResult');
+            const textElement = result.querySelector('.result-text'); 
+            const imgElement = result.querySelector('.result-image');
+            success = data.success;
+            if (success) {
+                textElement.innerHTML = "Получено !";
+            } else {
+                textElement.innerHTML = "Упс...";
+            }
+
+
+            imgElement.src = data.image;   // Устанавливаем src изображения
+            result.classList.add('active'); // Показываем результат
+            overlay.style.display = 'flex'; // Обязательно показываем overlay
+        })
+        .catch(error => {
+            console.error('Ошибка при получении результата:', error);
+        });
+    }
+
+    function closeResult() {
+        const overlay = document.getElementById('prayerOverlay');
+        overlay.style.display = 'none';
+        
+        const result = document.getElementById('prayerResult');
+        const imgElement = result.querySelector('.result-image');
+        
+        // Сбросить изображение, чтобы при повторном открытии можно было загрузить новое
+        imgElement.src = "";
+        
+        // Удаляем класс active, чтобы скрыть содержимое результата
+        result.classList.remove('active');
+    }
+
+    window.onload = init;
+</script>
+<script src="{{ url_for('static', filename='js/widget.js') }}"></script>
+</body>
+</html>

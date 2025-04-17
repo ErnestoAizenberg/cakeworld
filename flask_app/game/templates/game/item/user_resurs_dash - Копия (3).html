@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin-Style Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="{{ url_for('static', filename='css/user_resurs_dash.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/game.js') }}" defer></script>
+</head>
+<body>
+    <div class="container" data-csrf-token="{{ csrf_token() }}">
+        <!-- Ресурсы -->
+        <div class="resource-bar">
+            <div class="resource-item" data-resource-type="coins">
+                <i class="fas fa-coins"></i>
+                <span class="resource-value">0</span>
+            </div>
+            <div class="resource-item" data-resource-type="stones">
+                <i class="fas fa-star"></i>
+                <span class="resource-value">0</span>
+            </div>
+            <div class="resource-item" data-resource-type="gems">
+                <i class="fas fa-gem"></i>
+                <span class="resource-value">0</span>
+            </div>
+        </div>
+
+        <!-- Мобильное меню -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-item" data-menu-id="prayer">Молитва</div>
+            <div class="mobile-menu-item" data-menu-id="quests">Квесты</div>
+            <div class="mobile-menu-item" data-menu-id="shop">Магазин</div>
+            <div class="mobile-menu-item" data-menu-id="inventory">Инвентарь</div>
+            <div class="mobile-menu-item" data-menu-id="achievements">Достижения</div>
+        </div>
+
+        <!-- Контент -->
+        <div id="content">
+            {% include 'include/prayer_page.html' %}
+            <!-- Магазин -->
+            <div id="shop" class="fade-in">
+                <h2>Магазин</h2>
+                <div class="shop-grid">
+                    <div class="shop-card">
+                        <h3>Обмен камней на гемы</h3>
+                        <p>160 камней = 1 гем</p>
+                        <button id="exchange-button">Обменять</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Квесты -->
+            <div id="quests" class="fade-in" style="display: none;">
+                <h2>Ежедневные квесты</h2>
+                <div class="quest-grid" id="daily-quests"></div>
+
+                <h2>Еженедельные квесты</h2>
+                <div class="quest-grid" id="weekly-quests"></div>
+            </div>
+
+            <!-- Инвентарь -->
+            <div id="inventory" class="fade-in" style="display: none;">
+                <h2>Инвентарь</h2>
+                <div class="inventory-grid" id="inventory-grid"></div>
+            </div>
+
+            <!-- Достижения -->
+            <div id="achievements" class="fade-in" style="display: none;">
+                <h2>Достижения</h2>
+                <div class="achievement-grid" id="achievement-grid"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

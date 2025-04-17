@@ -1,1 +1,5 @@
-.env
+g/
+gubrish/
+_*
+.*
+*.db

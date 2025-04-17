@@ -1,0 +1,14 @@
+
+            {% for post in posts %}
+                <div class="post-card" data-post-id="{{ post.id }}">
+                    <div class="card-body">
+                        <h3><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></h3>
+                        <i>{{ post.content[:100] }} {% if post.content | count >= 100 %}...{% endif %}</i>
+                        <p class="text-muted">Автор: {{ post.author }} | {{ post.created.date() }} | Просмотры: {% if post.views is not none %}
+    {{ post.views | length }}
+{% else %}
+    0
+{% endif %}</p>
+                    </div>
+                </div>
+            {% endfor %}

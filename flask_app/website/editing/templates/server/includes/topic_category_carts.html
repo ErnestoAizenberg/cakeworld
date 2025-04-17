@@ -1,0 +1,21 @@
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <a href="{{ url_for('community_topics') }}" class="card" @mouseover="hoverCard">
+        <div class="card-body">
+          <h5 class="card-title">Community Builds</h5>
+          <p class="card-text">Здесь, Вы можете делится своим контентом, находить интересующие вас темы и обсуждать их вместе.</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="{{ url_for('server_categories') }}" class="card" @mouseover="hoverCard">
+        <div class="card-body">
+          <h5 class="card-title">Questions about CakeWorld server?</h5>
+          <p class="card-text">Возникли баги или хотите что-то предложить? Спрашивайте здесь.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div><br>

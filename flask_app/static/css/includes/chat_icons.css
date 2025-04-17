@@ -1,0 +1,68 @@
+
+    .chat-icons-banner {
+         font-family: 'Arial', sans-serif;
+        background-color: rgba(0, 0, 0, 0.1); /* Полупрозрачный тёмный фон */
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-around;
+        align-items: center; /* Выравнивание по центру по оси Y */
+        flex-wrap: nowrap;  /* Элементы не будут переноситься */
+        overflow: hidden;   /* Скрытие переполнения */
+        max-width: 1000px; /* Максимальная ширина баннера */
+        margin: 20px auto;  /* Центрирование блока */
+    }
+
+    .chat-icon {
+        flex: 1; /* Каждый элемент занимает равное пространство */
+        text-align: center;
+        margin: 0 10px; /* Горизонтальные отступы между иконками */
+    }
+
+    .chat-icons-banner i {
+        font-size: 2.5em; 
+        margin-bottom: 5px; 
+        transition: transform 0.3s, color 0.3s;
+    }
+
+    .chat-icons-banner i:hover {
+        transform: scale(1.2);
+        color: #ffd700; /* Желтый цвет при наведении */
+    }
+
+    .chat-icon h1 {
+        margin: 10px 0;
+        font-size: 1em; /* Размер шрифта для подписями */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Медиа-запросы для адаптивного уменьшения размера шрифта и иконок */
+    @media (max-width: 800px) {
+        .chat-icons-banner i {
+            font-size: 2em; /* Уменьшение размера иконок на мобильных */
+        }
+
+        .chat-icon h1 {
+            font-size: 0.9em; /* Уменьшение размера текста на мобильных */
+        }
+    }
+
+    @media (max-width: 500px) {
+        .chat-icons-banner i {
+            font-size: 1.5em; /* Дальнейшее уменьшение для маленьких экранов */
+        }
+
+        .chat-icon h1 {
+            font-size: 0.8em; /* Уменьшение текста ещё больше */
+        }
+    }

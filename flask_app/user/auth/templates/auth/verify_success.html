@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Email подтвержден{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <div class="auth-message success">
+    <h2>Email успешно подтвержден!</h2>
+    <p>Теперь вы можете войти в свой аккаунт.</p>
+    <a href="{{ url_for('auth.entry', mode='login') }}" class="btn btn-primary">Войти</a>
+  </div>
+</div>
+{% endblock %}

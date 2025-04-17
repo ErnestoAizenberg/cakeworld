@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ user.username }}{% endblock %}
+{% block additional_css %}
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Luckiest Guy', cursive;
+    }
+  </style>
+{% endblock additional_css %}
+
+{% block content %}
+  <div class="profile">
+    <div class="text-center">
+      <img src="{{ user.get_avatar() }}" alt="Profile Picture" class="rounded-circle">
+      <h2>{{ user.username }}</h2>
+      <p>Joined: {{ user.created }}</p>
+    </div>
+    <hr>
+    <h3>Recent Activity</h3>
+    <div class="activity">
+      {% for activity in user.activity %}
+        <p>{{ activity }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

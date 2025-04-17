@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}You are Welcome{% endblock %}
+{% block page_class %}{% endblock %}
+{% block content %}
+<div class="container" style="background-color: {{ server.color_scheme }}">
+    <header class="header">
+        <h1 class="server-name">{{ server.server_name }}</h1>
+      
+    </header>
+ 
+        {% include 'server/includes/main_create_options.html' %}
+
+    <div class="separator"></div>
+
+    <section class="forum-info">
+        <div class="description">
+            <p>{{ server.server_description }}</p>
+        </div>
+        {% include 'server/includes/some_chats_list.html' %}
+    </section>
+
+    <section class="topics">
+        <h2>Темы</h2>
+        {% include 'server/includes/topic_category_carts.html' %}
+    </section>
+
+    <section class="shadow-host">
+        {% include 'server/includes/shadow_host.html' %}
+    </section>
+
+    <section class="post-messages">
+        {% include 'forum/post/includes/post_messages_feed.html' %}
+    </section>
+</div>
+{% endblock content %}

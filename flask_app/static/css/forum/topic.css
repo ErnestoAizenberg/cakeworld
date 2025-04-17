@@ -1,0 +1,32 @@
+/* Основные стили для view_topic.html */
+body {
+  font-family: 'Minecraft', sans-serif;
+  background-#color: #f8f9fa;
+}
+
+h1, h2, h3 {
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 1px;
+}
+
+/* Поиск */
+#searchResults .alert {
+  cursor: pointer;
+}
+
+#searchResults .alert:hover {
+  background-color: #e2e3e5;
+}

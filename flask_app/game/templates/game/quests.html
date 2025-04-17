@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest System</title>
+</head>
+<body>
+    <h1>Quest System</h1>
+    <h2>Welcome, {{ user.username }}!</h2> <!-- Отображаем имя пользователя -->
+
+    <div>
+        <h2>Create a Quest</h2>
+        <input id="questName" placeholder="Quest Name" />
+        <input id="questDescription" placeholder="Quest Description" />
+        <button onclick="createQuest()">Create Quest</button>
+    </div>
+
+    <div>
+        <h2>Start a Quest</h2>
+        <input id="userIdStart" value="{{ user.id }}" type="hidden"/> <!-- Скрытое поле с ID пользователя -->
+        <input id="questIdStart" placeholder="Quest ID" />
+        <button onclick="startQuest()">Start Quest</button>
+    </div>
+
+    <div>
+        <h2>Update Progress</h2>
+        <input id="userIdUpdate" value="{{ user.id }}" type="hidden"/> <!-- Скрытое поле с ID пользователя -->
+        <input id="questIdUpdate" placeholder="Quest ID" />
+        <button onclick="updateProgress()">Update Progress</button>
+    </div>
+
+    <div>
+        <h2>Get Rewards</h2>
+        <input id="questIdRewards" placeholder="Quest ID" />
+        <button onclick="getRewards()">Get Rewards</button>
+        <pre id="rewardsOutput"></pre>
+    </div>
+
+    <script>
+        async function createQuest() {
+            const name = document.getElementById("questName").value;
+            const description = document.getElementById("questDescription").value;
+
+            const response = await fetch('/quests/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Передача CSRF токена
+                },
+                body: JSON.stringify({ name, description })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function startQuest() {
+            const userId = document.getElementById("userIdStart").value;
+            const questId = document.getElementById("questIdStart").value;
+
+            const response = await fetch('/quests/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Передача CSRF токена
+                },
+                body: JSON.stringify({ user_id: userId, quest_id: questId })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+        
+        async function updateProgress() {
+            const userId = document.getElementById("userIdUpdate").value;
+            const questId = document.getElementById("questIdUpdate").value;
+
+            const response = await fetch('/quests/update_progress', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Передача CSRF токена
+                },
+                body: JSON.stringify({ user_id: userId, quest_id: questId })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        async function getRewards() {
+            const questId = document.getElementById("questIdRewards").value;
+
+            const response = await fetch(`/quests/rewards/${questId}`);
+            const data = await response.json();
+            document.getElementById("rewardsOutput").innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>

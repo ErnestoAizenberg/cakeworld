@@ -1,1 +1,0 @@
-from .views import static_files, add_cache_headers

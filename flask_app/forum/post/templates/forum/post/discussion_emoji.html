@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="messages-container">
+    <!-- Messages will be added here -->
+</div>
+<div id="loading-indicator" style="display: none;">Loading...</div>
+<div id="error-message" style="display: none; color: red;"></div>
+
+<!-- Reaction Menu (hidden by default) -->
+<div id="reaction-menu" style="display: none; position: absolute; background: white; border: 1px solid #ccc; padding: 10px;">
+    <button onclick="addReactionFromMenu('👍')">👍</button>
+    <button onclick="addReactionFromMenu('❤️')">❤️</button>
+    <button onclick="addReactionFromMenu('😂')">😂</button>
+    <button onclick="addReactionFromMenu('😢')">😢</button>
+    <button onclick="addReactionFromMenu('😡')">😡</button>
+</div>
+
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    let page = 1;
+    let isLoading = false;
+    let hasMore = true;
+
+    let currentMessageId = null; // Track the message ID for the reaction menu
+
+    loadMessages(page);
+    page++;
+
+    function loadMessages(page) {
+        if (isLoading || !hasMore) return;
+
+        isLoading = true;
+        document.getElementById('loading-indicator').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+
+        fetch(`/load-post-messages-feed?page=${page}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network or server error');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.posts || data.posts.length === 0) {
+                    hasMore = false;
+                    return;
+                }
+
+                const container = document.getElementById('messages-container');
+                if (!container) {
+                    console.error('Messages container not found');
+                    return;
+                }
+
+                data.posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = post.is_reply ? 'reply' : 'post';
+                    let link;
+                    if (!post.post_id) {
+                        link = `<a href="/view_topic/${post.topic_id}">Topic</a>`;
+                    } else {
+                        link = `<a href="/view_post/${post.post_id}">Post</a>`;
+                    }
+                    postElement.innerHTML = `
+                        <div class="content">
+                            <p>${post.text}</p>
+                            <a href="/profile/${post.user_id}">${post.author}</a>
+                            <small>${post.time_ago}</small>
+                            <small>On: ${link}</small>
+                            <div class="reactions" data-message-id="${post.id}">
+                                <!-- Reactions will be loaded here -->
+                            </div>
+                            <button onclick="openReactionMenu(${post.id}, event)">React</button>
+                        </div>
+                    `;
+                    container.appendChild(postElement);
+
+                    // Load reactions for this message after it is rendered
+                    setTimeout(() => loadReactions(post.id), 0);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading messages:', error);
+                const errorMessage = document.getElementById('error-message');
+                if (errorMessage) {
+                    errorMessage.innerText = 'Error loading data. Please try again later.';
+                    errorMessage.style.display = 'block';
+                }
+            })
+            .finally(() => {
+                isLoading = false;
+                const loadingIndicator = document.getElementById('loading-indicator');
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+            });
+    }
+
+    function loadReactions(message_id) {
+        const reactionsContainer = document.querySelector(`.reactions[data-message-id="${message_id}"]`);
+        if (!reactionsContainer) {
+            console.error(`Reactions container for message ${message_id} not found`);
+            return;
+        }
+
+        fetch(`/message/${message_id}/reactions`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load reactions');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (!data.reactions || typeof data.reactions !== 'object') {
+                    // If there are no reactions, display a placeholder
+                    reactionsContainer.innerHTML = '<span>No reactions yet</span>';
+                    return;
+                }
+
+                reactionsContainer.innerHTML = '';
+                for (const [emoji, count] of Object.entries(data.reactions)) {
+                    const reactionElement = document.createElement('span');
+                    reactionElement.className = 'reaction';
+                    reactionElement.innerText = `${emoji} ${count}`;
+                    reactionsContainer.appendChild(reactionElement);
+                }
+            })
+            .catch(error => {
+                console.error(`Error loading reactions for message ${message_id}:`, error);
+                reactionsContainer.innerHTML = '<span style="color: red;">Failed to load reactions</span>';
+            });
+    }
+
+    function openReactionMenu(message_id, event) {
+        // Set the current message ID
+        currentMessageId = message_id;
+
+        // Position the reaction menu near the clicked button
+        const menu = document.getElementById('reaction-menu');
+        if (!menu) {
+            console.error('Reaction menu not found');
+            return;
+        }
+
+        menu.style.display = 'block';
+        menu.style.left = `${event.clientX}px`;
+        menu.style.top = `${event.clientY}px`;
+    }
+
+    function addReactionFromMenu(emoji) {
+        if (!currentMessageId) {
+            console.error('No message ID set for reaction');
+            return;
+        }
+
+        const user_id = sessionStorage.getItem('user_id'); // Ensure user_id is stored in sessionStorage
+        if (!user_id) {
+            console.error('User ID not found in sessionStorage');
+            return;
+        }
+
+        fetch('/react', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_id, message_id: currentMessageId, emoji })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add reaction');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                // Reload reactions for this message
+                loadReactions(currentMessageId);
+            }
+        })
+        .catch(error => {
+            console.error('Error adding reaction:', error);
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessage.innerText = 'Failed to add reaction. Please try again.';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Hide the reaction menu
+        const menu = document.getElementById('reaction-menu');
+        if (menu) {
+            menu.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('scroll', function () {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+        if (scrollTop + clientHeight >= scrollHeight - 100) {
+            loadMessages(page);
+            page++;
+        }
+    });
+});
+
+</script>
+{% endblock %}

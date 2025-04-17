@@ -1,0 +1,106 @@
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2f3142;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #1a1b26;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .close-button {
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: #4a4c5e;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            width: 5%;
+            height: 100%;
+            background-color: #6f7fff;
+        }
+
+        .question-container {
+            padding: 20px;
+            min-height: 80vh;
+        }
+
+        .question-number {
+            color: #9397ad;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .radio-button {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #9397ad;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #1a1b26;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            color: #9397ad;
+            cursor: pointer;
+        }
+
+option.selected {
+    background-color: #6f7fff;
+}

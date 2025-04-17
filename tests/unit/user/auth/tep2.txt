@@ -1,0 +1,1 @@
+python -m pytest tests/unit/auth/test_auth_controller.py

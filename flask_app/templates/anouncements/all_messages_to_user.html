@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объявления Серверов</title>
+    <style>
+        body {
+            background-color: #371230;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .announcement-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .announcement {
+            color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s;
+            width: 100%;
+        }
+
+        .announcement:hover {
+            transform: scale(1.05);
+        }
+
+        .contest {
+            background: #6700a0;
+        }
+
+        .giveaway {
+            background: linear-gradient(90deg, #f56042, #ff8c00);
+        }
+
+        .lobby-opened {
+            background: #4caf50;
+        }
+
+        .top-donate {
+            background: #673ab7;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .announcement {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em; /* Уменьшаем размер заголовка на мобильных устройствах */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="announcement-container">
+    <div class="announcement contest">
+        <h1>👑 КОНКУРС В ЧЕСТЬ ВАЙПА 👑</h1>
+    </div>
+    <div class="announcement giveaway">
+        <h1>МЕГАРАЗДАЧА ПОСЛЕДНЯЯ в 20 00 МСК!!!</h1>
+    </div>
+    <div class="announcement lobby-opened">
+        <h1>ЛОББИ ОТКРЫТО, залетаем и занимаем МЕСТА!! ✔️</h1>
+    </div>
+    <div class="announcement top-donate">
+        <h1>12:00 МСК - выдаём всем САМЫЙ ТОПОВЫЙ ДОНАТ!!</h1>
+    </div>
+</div>
+
+</body>
+</html>

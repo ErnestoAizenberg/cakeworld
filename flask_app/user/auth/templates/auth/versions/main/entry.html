@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Account Settings" if user else ("Sign Up" if mode == 'signup' else "Log In") }}</title>
+    
+    <!-- Favicon -->
+    <link href="{{ url_for('static', filename='icons/favicon.ico') }}" rel="icon" type="image/x-icon">
+    
+    <!-- Stylesheets -->
+    <link href="{{ url_for('static', filename='css/auth/auth.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} animated">
+                        {{ message }}
+                        <span class="close-flash" onclick="this.parentElement.remove()">&times;</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+{% with messages = get_flashed_messages(with_categories=True) %} {% if messages %} <div class="alert alert-dismissible fade show" role="alert"> {% for category, message in messages %} <div class="alert alert-{{ category }}">{{ message }}</div> {% endfor %} <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть"> <span aria-hidden="true">&times;</span> </button> </div> {% endif %} {% endwith %}
+    </div>
+
+    <div class="login-page-container">
+        {% if user %}
+            <!-- Authenticated User View -->
+            <div class="form-container">
+                <h2 class="text-center">Account Settings</h2>
+                <form id="accountForm" class="entry-form" method="post" action="{{ url_for('edit_account') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" name="username" value="{{ user.username }}" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" value="{{ user.email }}" disabled>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-primary btn-block animated">
+                            <span class="btn-text">Save Changes</span>
+                            <div class="loader"></div>
+                        </button>
+                        <button type="button" class="btn btn-secondary animated" 
+                                onclick="window.location.href='{{ url_for('auth.reset_password') }}'">
+                            <i class="fas fa-key"></i> Change Password
+                        </button>
+                        <button type="button" class="btn btn-secondary animated" 
+                                onclick="window.location.href='{{ url_for('auth.logout') }}'">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </button>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <!-- Authentication Forms -->
+            <div class="form-container">
+                <h2 class="text-center">{{ "Create Account" if mode == 'signup' else "Welcome Back" }}</h2>
+                
+                <form id="authForm" class="entry-form" method="post" action="{{ url_for('auth.entry', mode=mode) }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <input type="hidden" name="mode" value="{{ mode }}">
+                    
+                    <!-- Username field (only for signup) -->
+                    {% if mode == 'signup' %}
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Choose a username" name="username" 
+                               value="{{ username }}" autocomplete="username" required>
+                        <div class="username-feedback"></div>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Email field -->
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Your email address" name="email" 
+                               value="{{ email }}" autocomplete="email" required>
+                    </div>
+                    
+                    <!-- Password field -->
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" 
+                               placeholder="{{ 'Create a password' if mode == 'signup' else 'Enter your password' }}" 
+                               autocomplete="{{ 'new-password' if mode == 'signup' else 'current-password' }}" required>
+                        <span class="toggle-password" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        {% if mode == 'signup' %}
+                            <div class="password-strength">
+                                <div class="strength-bar" id="strengthBar"></div>
+                            </div>
+                            <small class="text-muted">Use 12+ characters with letters, numbers & symbols</small>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Confirm Password (signup only) -->
+                    {% if mode == 'signup' %}
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirm_password" 
+                               placeholder="Confirm password" autocomplete="new-password" required>
+                        <span class="toggle-password" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        <div class="password-match-feedback"></div>
+                    </div>
+                    {% endif %}
+                    
+                    <button type="submit" class="btn btn-primary btn-block animated">
+                        <span class="btn-text">{{ "Sign Up" if mode == "signup" else "Log In" }}</span>
+                        <div class="loader"></div>
+                    </button>
+                    
+                    <!-- Social Login -->
+                    <div class="social-login">
+                        <p class="divider"><span>or continue with</span></p>
+                        <div class="social-buttons">
+                            <a href="{{ url_for('oauth.oauth2_authorize', provider='google') }}" class="btn btn-social google">
+                                <i class="fab fa-google"></i> Google
+                            </a>
+                            <a href="{{ url_for('oauth.oauth2_authorize', provider='github') }}" class="btn btn-social github">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Toggle between login/signup -->
+                    <p class="text-center toggle-auth">
+                        {% if mode == "signup" %}
+                            Already have an account? <a href="{{ url_for('auth.entry', mode='login', username=username, email=email) }}">Log In</a>
+                        {% else %}
+                            Don't have an account? <a href="{{ url_for('auth.entry', mode='signup', username=username, email=email) }}">Sign Up</a>
+                        {% endif %}
+                    </p>
+                    
+                    <!-- Additional links -->
+                    <div class="additional-links">
+                        <a href="{{ url_for('auth.resend_verification') }}">Resend verification email</a>
+                        <a href="{{ url_for('auth.reset_password') }}">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        
+        <!-- Navigation links -->
+        <div class="links-container">
+            <div class="links">
+                <a href="/main.index">Home</a>
+                <a href="/main.help">Help Center</a>
+                <a href="/main.privacy">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize form submissions
+            initForms();
+            
+            // Auto-dismiss flash messages
+            autoDismissFlash();
+            
+            // Initialize real-time validations
+            if (document.getElementById('authForm')) {
+                initValidations();
+            }
+        });
+
+        function initForms() {
+            const forms = ['authForm', 'accountForm'];
+            
+            forms.forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            const btnText = submitBtn.querySelector('.btn-text');
+                            if (btnText) btnText.textContent = 'Processing...';
+                            const loader = submitBtn.querySelector('.loader');
+                            if (loader) loader.style.display = 'block';
+                        }
+                    });
+                }
+            });
+        }
+
+        function autoDismissFlash() {
+            setTimeout(() => {
+                document.querySelectorAll('.alert').forEach(alert => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 300);
+                });
+            }, 5000);
+        }
+
+        function initValidations() {
+            // Password strength indicator
+            const passwordInput = document.getElementById('password');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function() {
+                    checkPasswordStrength(this.value);
+                });
+            }
+
+            // Password match checker
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (confirmPassword) {
+                confirmPassword.addEventListener('input', checkPasswordMatch);
+            }
+
+            // Username availability checker
+            const usernameInput = document.querySelector('input[name="username"]');
+            if (usernameInput) {
+                usernameInput.addEventListener('input', checkUsernameAvailability);
+            }
+        }
+
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (!field) return;
+            
+            const icon = field.nextElementSibling.querySelector('i');
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthBar = document.getElementById('strengthBar');
+            if (!strengthBar) return;
+            
+            let strength = 0;
+            if (password.length >= 12) strength += 1;
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[a-z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            const width = (strength / 5) * 100;
+            strengthBar.style.width = width + '%';
+            
+            // Color coding
+            if (width < 40) {
+                strengthBar.style.backgroundColor = 'var(--error-color)';
+            } else if (width < 70) {
+                strengthBar.style.backgroundColor = 'var(--warning-color)';
+            } else {
+                strengthBar.style.backgroundColor = 'var(--success-color)';
+            }
+        }
+
+        function checkPasswordMatch() {
+            const password = document.getElementById('password');
+            const confirm = document.getElementById('confirmPassword');
+            const feedback = document.querySelector('.password-match-feedback');
+            
+            if (!password || !confirm || !feedback) return;
+            
+            if (confirm.value && password.value !== confirm.value) {
+                feedback.textContent = 'Passwords do not match';
+                feedback.style.color = 'var(--error-color)';
+            } else if (confirm.value) {
+                feedback.textContent = 'Passwords match';
+                feedback.style.color = 'var(--success-color)';
+            } else {
+                feedback.textContent = '';
+            }
+        }
+
+        let usernameTimeout;
+        function checkUsernameAvailability() {
+            clearTimeout(usernameTimeout);
+            const input = this;
+            const feedback = document.querySelector('.username-feedback');
+            
+            if (input.value.length < 3) {
+                feedback.textContent = 'Username must be at least 3 characters';
+                feedback.style.color = 'var(--error-color)';
+                return;
+            }
+            
+            usernameTimeout = setTimeout(() => {
+                fetch(`/api/check-username?username=${encodeURIComponent(input.value)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.available) {
+                            feedback.textContent = 'Username available';
+                            feedback.style.color = 'var(--success-color)';
+                        } else {
+                            feedback.textContent = 'Username already taken';
+                            feedback.style.color = 'var(--error-color)';
+                        }
+                    })
+                    .catch(() => {
+                        feedback.textContent = 'Error checking username';
+                        feedback.style.color = 'var(--error-color)';
+                    });
+            }, 500);
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-error animated';
+            errorDiv.innerHTML = message + ' <span class="close-flash" onclick="this.parentElement.remove()">&times;</span>';
+            
+            const flashContainer = document.querySelector('.flash-messages');
+            flashContainer.prepend(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.style.opacity = '0';
+                setTimeout(() => errorDiv.remove(), 3000);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+

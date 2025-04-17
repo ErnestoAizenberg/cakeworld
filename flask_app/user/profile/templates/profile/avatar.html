@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'profile/head/profile_head.html' %}
+<body>
+
+    {% include 'include/server-vidget.html' %}
+
+ 
+ 
+
+  <div class="avatar_page_container" style="display: flex; flex-direction: column; align-items: center;">
+  
+    <div class="profile-menu-container" id="profileNavbar">
+      <!-- Menu Icon -->
+      <div class="profile-menu" id="profileMenu">=</div>
+
+      <!-- Dropdown Menu -->
+      <div class="dropdown-menu" id="dropdownMenu">
+       
+        <a href="{{ url_for('admin_dashboard') }}">Админ Панель</a>
+        <a href="{{ url_for('list_users') }}">Участники</a>
+        <a href="/auth/entry">Акаунт</a>
+        <a href="{{ url_for('notifications') }}">Уведомления</a>
+        <a href="/profile/settings">Настройки</a>
+        <a href="/profile/friends">Друзья</a>
+        <a href="/profile/chats">Чаты</a>
+        <a href="/profile/posts">Посты</a>
+        <a href="/profile/activity">Активность</a>
+        <a href="/admin/site_statistics">Статистика Сайта</a>
+      </div>
+
+      <!-- Notification Block -->
+      <div class="notification-box">
+        <span class="notification-count">6</span>
+        <div class="notification-bell">
+          <span class="bell-top"></span>
+          <span class="bell-middle"></span>
+          <span class="bell-bottom"></span>
+          <span class="bell-rad"></span>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="profile-container">
+      <!-- Profile Section -->
+      <div class="profile-section">
+        <div class="avatar-container" onClick="showAvatarMenu(this)" aria-hidden="true">
+          <img src="{{ owner.avatar_path }}" alt="Avatar" class="avatar" loading="lazy">
+        </div>
+        <div class="user-info">
+          <h1 class="username">{{ owner.username }}</h1>
+          <div class="stats">
+            <div class="stat">
+              <i class="fas fa-comment"></i>
+              <span>Posts: {{ post_amount }}</span>
+            </div>
+            <div class="stat">
+              <i class="fas fa-clock"></i>
+              <span>Joined: {{ owner.created_at.year }}</span>
+            </div>
+            <div class="stat">
+              <i class="fas fa-trophy"></i>
+              <span>Rank: User</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Chat Icons -->
+      <div class="chat-icons">
+        <i class="fas fa-comment-dots chat-icon" onClick="chatIconClick(this)"></i>
+      </div>
+
+      {% if owner.id == viewer.id %}
+      <div class="avatar-menu" id="avatar-menu">
+        <div class="menu-content">
+          <!-- Close Button -->
+          <span class="close-btn" onClick="closeAvatarMenu()" role="button" tabindex="0">×</span>
+
+          <!-- Large Avatar -->
+          <div class="avatar-wrapper">
+            <img src="{{ owner.avatar_path }}" alt="Large Avatar" class="large-avatar">
+            <div class="avatar-fallback">{{ owner.username[0] }}</div>
+          </div>
+
+          <!-- Username -->
+          <h2 class="username">{{ owner.username }}</h2>
+
+          <!-- Avatar Upload Form -->
+          <form method="post" enctype="multipart/form-data" class="avatar-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+            <input type="file" class="edit-btn" name="avatar" required>
+            <button type="submit" class="save-btn">Save Changes</button>
+          </form>
+
+          <!-- Social Icons -->
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-icon" aria-label="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    {#
+    {% if owner.id == viewer.id %}
+    <div class="profile-container">
+      {% for user_chat in user_chats %}
+      <div class="chat-option">
+        <span class="new-messages-count">1</span>
+        <a class="chat_link_in_menu" href="{{ url_for('chat', url_name=user_chat.url_name) }}">{{ user_chat.title }}</a>
+      </div>
+
+      {% endfor %}
+    </div>
+    {% endif %}
+   #}
+
+    {#
+     <div class="profile-container" style="flex-direction: row;">
+      <div>Home</div> <div>Чаты</div>
+     </div>
+  #}
+  </div>
+
+
+  <script>
+    // Logic for opening/closing the dropdown menu
+    document.addEventListener('DOMContentLoaded', function () {
+      const profileMenu = document.getElementById('profileMenu');
+      const dropdownMenu = document.getElementById('dropdownMenu');
+
+      profileMenu.addEventListener('click', function () {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // Close the menu when clicking outside of it
+      document.addEventListener('click', function (event) {
+        if (!profileMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownMenu.style.display = 'none';
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const showAvatarMenu = (element) => {
+        const menu = document.getElementById('avatar-menu');
+        if (menu) {
+          menu.style.display = 'flex'; // Show menu
+          setTimeout(() => menu.classList.add('active'), 10); // Add smooth appearance
+          const avatarImg = element.querySelector('.avatar');
+          const largeAvatar = menu.querySelector('.large-avatar');
+          if (avatarImg && largeAvatar) {
+            largeAvatar.src = avatarImg.src;
+            largeAvatar.style.display = 'block';
+          }
+        }
+      };
+
+      // Closing the menu
+      const closeAvatarMenu = () => {
+        const menu = document.getElementById('avatar-menu');
+        if (menu) {
+          menu.classList.remove('active'); // Remove smooth appearance
+          setTimeout(() => menu.style.display = 'none', 300); // Hide after animation
+        }
+      };
+
+      // Chat icon animation
+      const chatIconClick = (icon) => {
+        icon.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+          icon.style.transform = 'scale(1)';
+        }, 300);
+        window.location.href = '{{ url_for("direct_chat", profile_url=owner.username ~ "." ~ owner.id ) }}';
+      };
+
+      // Assign functions to the global scope
+      window.closeAvatarMenu = closeAvatarMenu;
+      window.showAvatarMenu = showAvatarMenu;
+      window.chatIconClick = chatIconClick;
+    });
+  </script>
+     
+ <script src="{{ url_for('static', filename='js/widget.js') }}"></script>
+</body>
+</html>

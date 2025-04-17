@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Item Management</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+    /* styles.css */
+
+.items-list {
+    margin-top: 30px;
+}
+
+.item-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-actions button {
+    margin-left: 10px;
+    width: auto;
+    padding: 5px 10px;
+}
+
+.delete-btn {
+    background: #ff4444;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+
+.error {
+    color: red;
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Store Item Management</h1>
+        
+        <form id="itemForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" required></textarea>
+            
+            <label for="image_url">Image URL:</label>
+            <input type="text" id="image_url" required>
+
+            <input type="number" id="price_gems" placeholder="Price in gems">
+            <input type="number" id="price_coins" placeholder="Price in coins">
+            <input type="number" id="rarity" placeholder="Rarity">           
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="items-list" id="itemsContainer"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/item_folder.js') }}"></script> 
+</body>
+</html>

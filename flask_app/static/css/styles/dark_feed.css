@@ -1,0 +1,131 @@
+
+    body {
+        background-color: #1a1a1a; /* Тёмный фон страницы */
+        color: #e0e0e0; /* Светлый текст для контраста */
+    }
+
+    .dark-header {
+        background-color: #333; /* Тёмно-серый фон заголовка */
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #444; /* Граница снизу */
+        margin: 0; /* Убираем отступы */
+        position: sticky;
+        top: 0;
+        z-index: 1000; /* Заголовок поверх других элементов */
+    }
+
+    .dark-header h1 {
+        color: #e0e0e0; /* Светлый текст заголовка */
+        margin: 0; /* Убираем отступы */
+    }
+
+    .main-container {
+        display: flex;
+        gap: 20px; /* Расстояние между лентой постов и формой */
+        padding: 20px;
+    }
+
+    .post-container {
+        flex: 3; /* Лента постов занимает больше места */
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* Расстояние между постами */
+        max-height: 80vh; /* Высота контейнера */
+        overflow-y: auto; /* Включение вертикального скролла */
+        padding: 15px;
+        border: 1px solid #444; /* Граница контейнера */
+        border-radius: 0.25rem; /* Закругление углов */
+        background-color: #262626; /* Тёмный фон контейнера */
+    }
+
+    .post-card {
+        border: 1px solid #444; /* Цвет границы карточки */
+        border-radius: 0.25rem; /* Закругление углов */
+        transition: transform 0.2s; /* Эффект при наведении */
+        padding: 15px;
+        background-color: #333; /* Тёмный фон карточки */
+    }
+
+    .post-card:hover {
+        transform: scale(1.02); /* Увеличение карточки при наведении */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    }
+
+    .card-body h3 a {
+        text-decoration: none; /* Убираем подчеркивание ссылки */
+        color: #4dabf7; /* Цвет ссылки */
+    }
+
+    .card-body h3 a:hover {
+        text-decoration: underline; /* Подчеркивание ссылки при наведении */
+    }
+
+    .text-muted {
+        font-size: 0.9rem; /* Уменьшение размера текста для дополнительных сведений */
+        margin-top: 10px; /* Отступ сверху */
+        color: #a0a0a0; /* Цвет текста */
+    }
+
+    .card-body i {
+        font-style: italic; /* Курсив для краткого содержания */
+        color: #a0a0a0; /* Цвет текста для краткого содержания */
+        display: block; /* Краткое содержание на отдельной строке */
+        margin-bottom: 10px; /* Отступ снизу */
+    }
+
+    .no-posts {
+        text-align: center;
+        padding: 20px;
+        font-size: 1.2rem;
+        color: #a0a0a0; /* Цвет текста */
+    }
+
+    .create-post-container {
+        flex: 1; /* Форма занимает меньше места */
+        padding: 20px;
+        background-color: #333; /* Тёмный фон контейнера */
+        border-radius: 0.25rem; /* Закругление углов */
+        border: 1px solid #444; /* Граница контейнера */
+    }
+
+    .create-post-container h1 {
+        color: #e0e0e0; /* Светлый текст заголовка */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        color: #e0e0e0; /* Светлый текст для меток формы */
+    }
+
+    .form-control {
+        background-color: #262626; /* Тёмный фон полей ввода */
+        color: #e0e0e0; /* Светлый текст в полях ввода */
+        border: 1px solid #444; /* Граница полей ввода */
+    }
+
+    .form-control:focus {
+        background-color: #333; /* Фон при фокусе */
+        border-color: #4dabf7; /* Цвет границы при фокусе */
+        color: #e0e0e0; /* Текст при фокусе */
+    }
+
+    .btn-primary {
+        background-color: #4dabf7; /* Цвет кнопки */
+        border: none; /* Убираем границу */
+    }
+
+    .btn-primary:hover {
+        background-color: #3b8ec6; /* Цвет кнопки при наведении */
+    }
+
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column; /* На мобильных форма под лентой */
+        }
+
+        .post-container {
+            max-height: 60vh; /* Уменьшение высоты контейнера для мобильных устройств */
+        }
+    }

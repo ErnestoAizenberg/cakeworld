@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объявление сервера Minecraft</title>
+    <link href="{{ url_for('static', filename='icons/favicon.ico') }}" rel="icon" type="image/x-icon">
+
+
+   <link rel="shortcut icon" href="/static/icons/favicon.ico" type="image/x-icon"> <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Minecraft&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/navbar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo_page.css') }}">
+
+ <style>
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    background: linear-gradient(135deg, #3db9ff, #ff9a00);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.announcement, .login-prompt, .banner {
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    animation: pop 0.3s ease-in-out;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header i {
+    font-size: 2rem;
+    margin-right: 10px;
+    animation: bounce 1s infinite;
+}
+
+.content p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.join-server, .login-button, button {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.join-server:hover, .login-button:hover, button:hover {
+    background-color: #ff9845;
+    transform: scale(1.05);
+}
+
+.banner {
+    background-image: url('https://example.com/minecraft-banner.jpg'); /* Замените на свою картинку */
+    background-size: cover;
+    color: #fff;
+}
+
+.banner-content {
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.fade-out {
+    animation: fade 0.5s forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    {% include 'include/navbar.html' %}
+    <div class="announcement">
+        <div class="header">
+            <i class="fas fa-bullhorn"></i>
+            <h1>СЕРВЕР ОТКРЫТ!</h1>
+        </div>
+        <div class="content">
+            <p>💥 ЗАЛЕТАЕМ НА ВАЙП!! 💥</p>
+            <p>🎉 РАЗДАЁМ РИЛЛИКИ на ВСЕХ ГРИФАХ в 18:00 МСК!! 🎉</p>
+            <p>👾 ОТКРЫТИЕ ЭНДА сегодня в 13:00 МСК 👾</p>
+        </div>
+        <button class="join-server" onclick="openPage('mk')">Присоединиться!</button>
+    </div>
+    {% if not user %}
+    <div class="login-prompt">
+        <div class="message">
+            <i class="fas fa-user"></i>
+            <p>автарзиуйтесь на сервере</p>
+        </div>
+        <button class="login-button" onclick="openPage('entry')">Log In</button>
+    </div>
+    {% endif %}
+    <div class="banner">
+        <div class="banner-content">
+            <i class="fas fa-comments"></i>
+            <h1>Откройте чаты!</h1>
+            <p>Общайтесь, стройте и исследуйте вместе!</p>
+            <button onclick="openPage('chats')">Начать общение</button>
+        </div>
+    </div>
+    <div class="banner">
+        <h5 class="card-title"><a href="/server_topics">Questions about CakeWorld server?</a></h5>
+        <p class="card-text">Возникли баги или хотите что-то предложить? Спрашивайте здесь.</p>
+    </div>
+
+    <div class="banner">
+        <h5 class="card-title"><a href="/community_topics">Community Builds</a></h5>
+        <p class="card-text">Здесь, Вы можете делится своим контентом, находить интересующие вас темы и обсуждать их вместе.</p>
+    </div>
+
+
+    <h2>О нашем сервере</h2>
+    <ul>
+        <li>Зашифрованое безопасное общение в реальном времени</li>
+        <li>Директ беседы и общие чаты</li>
+        <li>Форум с большими возможностями для публикации интересного контента</li>
+        <li>Быстрая обработка запросов к серверу</li>
+    </ul>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2025 Minecraft Forum. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+
+
+function openPage(page, newTab = true) {
+    if (newTab) {
+        window.open(page, '_blank');
+    } else {
+        window.location.href = page;
+    }
+}
+
+    </script>
+</body>
+</html>

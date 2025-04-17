@@ -1,0 +1,8 @@
+<div class="description">
+    <div id="shadow-host"></div>
+</div>
+<script>
+    const host = document.getElementById('shadow-host');
+    const shadow = host.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `<p>{{ server.content_html | safe }}</p>`;
+</script>

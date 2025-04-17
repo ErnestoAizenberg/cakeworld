@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    margin: 0; /* Убедитесь, что отступы по умолчанию установлены в 0 */
+}
+
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Т.к. на 100% - изгибы будут оточены */
+    height: 100%; /* Для полной высоты */
+}
+
+.form-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    text-align: center;
+    width: 800px; /* Или любое другое фиксированное значение */
+    max-width: 90%; /* Чтобы контейнер не выходил за границы экрана */
+    margin: auto; /* Ценрирование контейнера */
+}
+
+
+
+
+h1 {
+    color: #00ffff;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #77ffff;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 13px;
+    cursor: pointer;
+    color: #00ffff;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #00ffff;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin: 5px 0; /* Add margin for spacing */
+}
+
+button:hover {
+    background: #00cccc;
+}
+
+.google-login {
+    display: flex;
+    align-items: center; /* Центрируем иконку по вертикали */
+    justify-content: center; /* Центрируем текст по горизонтали */
+    background: #4285F4; /* Google Blue */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.google-login:hover {
+    background: #357AE8; /* Темнее синий на наведение */
+}
+
+.google-icon {
+    width: 20px; /* Укажите подходящий размер */
+    height: 20px; /* Укажите подходящий размер */
+    margin-right: 8px; /* Расстояние между иконкой и текстом */
+}
+
+.toggle {
+    margin-top: 15px;
+    color: #fff;
+}
+
+.toggle a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.toggle a:hover {
+    text-decoration: underline;
+}
+
+
+
+.neon-cursor {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 100%;
+    height: 20px;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+/* Предыдущие стили остаются без изменений */
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.links-container {
+    background-color: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон */
+    border: 2px solid white; /* Белая граница */
+    border-radius: 10px; /* Скругленные углы */
+    padding: 20px;
+    text-align: center; /* Центрирование текста */
+}
+
+.links a {
+    color: white; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    margin: 0 15px; /* Отступы между ссылками */
+    font-size: 20px; /* Размер шрифта */
+}
+
+.links a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}

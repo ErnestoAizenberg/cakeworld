@@ -1,0 +1,27 @@
+
+--direct_chat.js
+import { MessageLoader } from './directMessageLoader.js';
+import { MessageViewTracker } from './directMessageViewTracker.js';
+
+export class Chat {
+    constructor(chatId, userId, userUsername, chatUrlName) 
+
+
+--directMessageLoader.js
+export class MessageLoader {
+    constructor(messagesContainer, chatId, userId, limit)
+
+
+--directMessageViewTracker.js
+export class MessageViewTracker {
+    constructor(messagesContainer, userId)
+
+
+###direct_chat.js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script type="module" src="{{ url_for('static', filename='js/direct_chat.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chat = new Chat('{{ direct_chat.id }}', '{{ viewer.id }}', '{{ viewer.username }}', '{{ direct_chat.url_name }}');
+    });
+</script>

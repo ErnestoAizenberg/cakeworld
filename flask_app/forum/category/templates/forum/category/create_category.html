@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block title %}Добавить категорию {% endblock %}
+{% block page_class %}{%endblock%}
+{% block content %}
+
+    <div class="container mt-5">
+        <h1>Добавьте ещё одну категорию</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.name.label(class="form-control-label") }}
+                {{ form.name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="form-control-label") }}
+                {{ form.description(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.color.label(class="form-control-label") }}
+                {{ form.color(class="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Создать категорию</button>
+        </form>
+    </div>
+
+{% endblock content %}

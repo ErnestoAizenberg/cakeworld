@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Form</title>
+
+
+    <link href="{{ url_for('static', filename='icons/favicon.ico') }}" rel="icon" type="image/x-icon">
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/flash.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Добавьте свои стили для анимаций и кнопок */
+        .animated {
+            transition: 0.3s;
+        }
+
+        .animated:hover {
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Flash Messages -->
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+
+
+<div class="login-page-container">
+    {% if user %}
+    <div class="form-container">
+        <form class="entry-form" method="post" action="{{ url_for('edit_account') }}">
+           
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+            <div class="input-group">
+                <input type="text" placeholder="Имя пользователя" name="username"  value="{{ user.username }}" required />
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" value="{{ user.email }}" required disabled />
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="input-group">
+                <button type="button" class="animated" onclick="window.location.href='{{ url_for('auth.reset_password') }}'">
+                    <i class="fas fa-key"></i> Сбросить пароль
+                </button>
+                <span class="toggle-password" onclick="togglePassword()">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="animated">Сохранить</button> 
+                <button type="button" class="animated" onclick="window.location.href='{{ url_for('auth.logout') }}'">Выйти</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="form-container">
+        <div class="neon-cursor" id="animatedLine"></div>
+        <form class="entry-form" id="authForm" method="post" action="{{ url_for('auth.entry', mode=mode) }}" onsubmit="return handleLogin();">
+
+
+            <div class="input-group" id="nicknameGroup" style="{{ 'display: block;' if mode == 'signup' else 'display: none;' }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> 
+                <input type="text" placeholder="Nickname" name="username" value="{{ username }}" />
+            </div>
+
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" value="{{ email }}" required />
+            </div>
+
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder="Password" required />
+                <span class="toggle-password" onclick="togglePassword()">👁️
+            </div>
+
+            <button type="submit">{{ "Register" if mode == "signup" else "Log In" }}</button>
+            <p id="toggleLink" class="toggle">
+
+
+                {% if mode == "signup" %}
+                    Already have an account? <a href="{{ url_for('auth.entry', mode='login', username=username, email=email) }}">Log In</a>
+
+
+                {% else %}
+                    Don't have an account? <a href="{{ url_for('auth.entry', mode='signup', username=username, email=email) }}">Register</a>
+ 
+
+
+
+            <div class="input-group">
+                <button type="button" class="animated">
+                    <i class="fas fa-email"></i> 
+<a href="{{ url_for('auth.resend_verification') }}">Resend email</a>
+
+                </button>
+            
+
+
+
+            
+                <button type="button" class="animated" onclick="window.location.href='{{ url_for('auth.reset_password') }}'">
+                    <i class="fas fa-key"></i> Сбросить пароль
+                </button>
+                <span class="toggle-password" onclick="togglePassword()">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+
+                {% endif %}
+
+
+            </p>
+        </form>
+        <p><a href="{{ url_for('oauth.oauth2_authorize', provider='google') }}">Sign in with Google</a></p>
+    </div>
+{% endif %}
+
+
+
+    <div class="links-container">
+        <div class="links">
+            <a href="/">HOME</a>
+            <a href="/help">HELP</a>
+        </div>
+    </div>
+</div>
+    
+<script src="{{ url_for('static', filename="js/login.js") }}"></script>
+</body>
+</html>
