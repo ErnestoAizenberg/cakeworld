@@ -5,13 +5,7 @@
 ![Flask-WTF](https://img.shields.io/badge/Flask--WTF-1.2.2-blue)
 ![Flask-Mail](https://img.shields.io/badge/Flask--Mail-0.10.0-blue)
 ![Flask-Migrate](https://img.shields.io/badge/Flask--Migrate-4.1.0-blue)
-
-
-![Werkzeug](https://img.shields.i
-
-
-
-o/badge/Werkzeug-2.2.2-blue)
+![Werkzeug](https://img.shields.io/badge/Werkzeug-2.2.2-blue)
 ![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.1-blue)
 ![urllib3](https://img.shields.io/badge/urllib3-2.3.0-blue)
 ![requests](https://img.shields.io/badge/requests-2.32.3-blue)
