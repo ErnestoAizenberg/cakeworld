@@ -3,7 +3,7 @@ from flask_app.extensions import db, socketio
 from instance.manager import (create_banners, create_categories, create_chats,
                               create_default_currencies, create_topics)
 
-app = create_app()
+app = create_app("instance.config.Config")
 
 
 def initialize_database():
