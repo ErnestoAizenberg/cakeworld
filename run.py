@@ -21,7 +21,7 @@ def initialize_database():
 if __name__ == "__main__":
     initialize_database()
     app.run(
-      debug=app.config["DEBUG],
+      debug=app.config["DEBUG"],
       port=app.config["PORT"],
       host=app.config["HOST"]
     )

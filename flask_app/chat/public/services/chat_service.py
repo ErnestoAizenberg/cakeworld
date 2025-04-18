@@ -9,31 +9,7 @@ import redis
 from flask_app.chat.message.dtos import MessageDTO
 from flask_app.chat.public.dtos import ChatDTO
 from flask_app.user.chat_user.dtos import ChatUserDTO
-
-
-class ChatServiceError(Exception):
-    """Base exception for chat service errors."""
-
-    pass
-
-
-class ValidationError(ChatServiceError):
-    """Exception for validation errors."""
-
-    pass
-
-
-class ChatCreationError(ChatServiceError):
-    """Exception for chat creation failures."""
-
-    pass
-
-
-class ChatUserCreationError(ChatServiceError):
-    """Exception for chat user creation failures."""
-
-    pass
-
+from flask_app.chat.exceptions import *
 
 class CacheKeys:
     """Namespace for Redis key patterns."""

@@ -1,6 +1,6 @@
 g/
 gubrish/
-_*
+__pycache__/
 .*
 *.db
 *.rdb

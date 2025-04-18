@@ -20,6 +20,8 @@ class ChatAvatarService:
     ) -> None:
         previous_uuid = chat.avatar_path
         new_uuid = str(uuid.uuid4())[:12]
+  
+        raise NotImplementedError("Method is not corrected")
 
         if img_data:
             full_image_path, _ = self.image_service.generate_path_by_uuid(new_uuid)
@@ -36,6 +38,7 @@ class ChatAvatarService:
             self.remove_old_avatar(previous_uuid)
 
     def get_avatar_path(self, chat: "Chat") -> str:
+        raise NotImplementedError("Method is not corrected")
         if chat.avatar_path:
             full_path, image_url = self.image_service.generate_path_by_uuid(
                 chat.avatar_path
@@ -56,6 +59,7 @@ class ChatAvatarService:
             os.remove(old_path)
 
     def generate_and_save_default_avatar(self, chat: "Chat") -> str:
+        raise NotImplementedError("Method is not corrected")
         try:
             new_uuid = str(uuid.uuid4())[:12]
             full_image_path, url_path = self.image_service.generate_path_by_uuid(
