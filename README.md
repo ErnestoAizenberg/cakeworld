@@ -25,6 +25,25 @@
 A big web application with clean and scalable architecture.
 
 ## Features
+## Key Features
+
+- **Authentication**: 
+  Built-in authentication system with robust OAuth support to ensure secure user access.
+
+- **Real-Time Chats**: 
+  Facilitate direct messaging and group conversations, enhancing user engagement within the platform.
+
+- **Prayer System**: 
+  Comprehensive features including quest management, inventory tracking, a virtual store, and in-app currency management for a complete user experience.
+
+- **Forum**:
+  Structured community forum featuring categorized topics and threaded posts to encourage rich discussions among users.
+
+- **Site Customization**:
+  User-friendly options for easily customizing the visual appearance of the website, allowing for a personalized experience.
+
+
+Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
 - **Authentication**: Built-in authentication and OAuth support.
 - **Real-Time Chats**: Engage in direct and group chats with your friends.
 - **Prayer System**: Includes features like quests, inventory, store, and currency management.
