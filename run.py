@@ -3,7 +3,7 @@ from flask_app.extensions import db, socketio
 from instance.manager import (create_banners, create_categories, create_chats,
                               create_default_currencies, create_topics)
 
-app = create_app("instance.config.Config")
+app = create_app("instance.configs.development.DevelopmentConfig")
 
 
 def initialize_database():
@@ -20,4 +20,8 @@ def initialize_database():
 
 if __name__ == "__main__":
     initialize_database()
-    app.run(debug=False, port=5050)
+    app.run(
+      debug=app.config["DEBUG],
+      port=app.config["PORT"],
+      host=app.config["HOST"]
+    )
