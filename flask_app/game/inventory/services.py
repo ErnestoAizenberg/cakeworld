@@ -1,7 +1,6 @@
 import logging
 from typing import List, Optional
 
-from sqlalchemy.orm import Session
 
 from flask_app.game.item.dtos import StoreItemDTO
 

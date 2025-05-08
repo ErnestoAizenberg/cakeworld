@@ -1,8 +1,8 @@
 import uuid
-from typing import Dict, List, Optional
+from typing import List
 
-from .models import Item, ItemCode, ItemImage
-from .repositories import ItemCodeRepository, ItemImageRepository, ItemRepository
+from .models import ItemCode
+from .repositories import ItemCodeRepository
 
 
 class ItemCodeService:

@@ -1,8 +1,5 @@
-from typing import Optional
 
-from flask import jsonify, request
 
-from .dtos import UserDTO
 
 
 class UserController:  # UnMock NEEDED!

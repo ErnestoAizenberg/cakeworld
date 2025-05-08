@@ -1,5 +1,5 @@
 # flask_app/repositories/reaction_repository.py
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 from sqlalchemy import func
 from sqlalchemy.orm import Session

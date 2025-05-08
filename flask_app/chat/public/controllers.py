@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional
 
-from flask import jsonify
 
 
 class ValidationError(Exception):
@@ -64,7 +63,7 @@ class ChatController:
                 "message": f"Ошибка валидации: {str(e)}",
                 "chat": None,
             }
-        except Exception as e:
+        except Exception:
             raise
             return {
                 "status": "error",

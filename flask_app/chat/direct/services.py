@@ -1,7 +1,6 @@
 # chat/direct/services.py
 from typing import Optional
 
-from ..message.models import Message
 from ..message.services import MessageService
 from ..public.services import ChatService
 

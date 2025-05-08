@@ -1,6 +1,5 @@
 # chat/message/models.py
 from datetime import datetime
-from typing import List, Optional
 
 from flask_app.extensions import db
 

@@ -1,14 +1,7 @@
 # flask_app/routes/user.py
 from flask import (
-    abort,
-    flash,
-    g,
     jsonify,
-    redirect,
     render_template,
-    request,
-    session,
-    url_for,
 )
 
 

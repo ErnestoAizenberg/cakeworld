@@ -4,7 +4,6 @@ from typing import Dict
 from sqlalchemy import func
 
 from ..models import Reaction
-from .dtos.reaction_dto import ReactionDTO
 
 
 class ReactionService:

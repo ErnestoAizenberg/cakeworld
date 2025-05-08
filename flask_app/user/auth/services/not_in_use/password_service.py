@@ -1,7 +1,8 @@
-from typing import Any, Dict, Optional
+from typing import Optional
 
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from itsdangerous import URLSafeSerializer as Serializer
+from flask import current_app
 
 class PasswordService:
     @staticmethod
@@ -25,5 +26,5 @@ class TokenService:
         try:
             user_id = s.loads(token)["user_id"]
             return user_id
-        except:
-            return None
+        except Exception as e:
+            raise ValueError(str(e))

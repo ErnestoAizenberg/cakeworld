@@ -1,8 +1,7 @@
 import json
 import logging
 from dataclasses import asdict
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Tuple, Union
+from typing import List, Optional
 
 import redis
 

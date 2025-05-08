@@ -1,1 +1,0 @@
-python -m pytest flask_app/user/auth/tests/test_auth_controller.py

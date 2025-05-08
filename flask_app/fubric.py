@@ -1,11 +1,7 @@
 # flask_app/fabric.py
 import os
-from typing import Any, Dict, Optional
 
 from flask import Flask
-from flask_mail import Mail
-from flask_socketio import SocketIO
-from flask_sqlalchemy import SQLAlchemy
 from redis import Redis
 
 
@@ -228,7 +224,6 @@ class AppFactory:
         from .chat.public.controllers import ChatController
         from .forum.category.controllers import CategoryController
         from .forum.post.controllers import PostController
-        from .forum.topic.controllers import TopicController
         from .user.auth.controllers import AuthController
         from .user.ban.controllers import BanController
         from .user.controllers import UserController
@@ -286,8 +281,6 @@ class AppFactory:
     def _register_routes(self):
         """Register all application routes"""
         from .base.routes import (
-            configure_cache_routes,
-            configure_exception_routes,
             setup_request_hooks,
         )
         from .chat.direct.routes import DirectChatRoutes
@@ -345,7 +338,6 @@ class AppFactory:
             services["chat"],
         )
         # Other routes
-        from .website.statistics.performance import SitePerformanceChecker
 
         ###performance_checker = SitePerformanceChecker(self.app)# danger!!!
         configure_site_statistics(self.app, controllers["site_stats"])

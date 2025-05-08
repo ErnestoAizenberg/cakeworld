@@ -2,7 +2,6 @@ from typing import List, Optional
 
 from .dtos import MessageDTO
 from .models import Message
-from .repositories import MessageRepository
 
 
 class MessageService:

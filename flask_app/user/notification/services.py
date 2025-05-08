@@ -1,10 +1,10 @@
 from typing import List, Optional
 
 from .dtos import NotificationDTO
-
+from .repositories import NotificationRepository
 
 class NotificationService:
-    def __init__(self, repository: "NotificationRepository"):
+    def __init__(self, repository: NotificationRepository):
         self.repository = repository
 
     def mark_notification_as_read(

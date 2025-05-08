@@ -1,5 +1,7 @@
 from functools import wraps
+from flask import session
 
+from .models import BannedUser
 
 def check_ban(ban_type):
     if True:

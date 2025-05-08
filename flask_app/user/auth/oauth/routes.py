@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, redirect, request, session, url_for
+from flask import Blueprint, request
 
 oauth_bp = Blueprint("oauth", __name__)
 

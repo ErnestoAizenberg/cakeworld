@@ -1,5 +1,5 @@
 from flask_app import create_app
-from flask_app.extensions import db, socketio
+from flask_app.extensions import db
 from instance.manager import (
     create_banners,
     create_categories,
@@ -20,7 +20,6 @@ def initialize_database():
         create_default_currencies()
         create_banners()
 
-        from flask_app.base.db.signals import create_currency
 
 
 if __name__ == "__main__":

@@ -1,11 +1,16 @@
 from flask import jsonify, request, session
 
+from .services import NotificationService
+
 
 class NotificationController:
-    def __init__(self, notification_service):
+    def __init__(self,
+        notification_service: NotificationService
+     ):
         self.service = notification_service
 
     def mark_notification_as_read(self, notification_id):
+        #TO CHECK: notification_id is int or str?
         notification_dto = self.service.mark_notification_as_read(notification_id)
         if notification_dto is None:
             return jsonify({"error": "Notification not found"}), 404

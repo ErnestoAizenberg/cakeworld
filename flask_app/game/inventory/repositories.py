@@ -1,9 +1,8 @@
-from typing import List, Optional
+from typing import List
 
 from sqlalchemy.orm import Session, joinedload
 
 from flask_app.base.repositories import BaseRepository
-from flask_app.game.item.models import StoreItem  # Import the StoreItem model
 
 from .dtos import InventoryItemDTO
 from .models import InventoryItem

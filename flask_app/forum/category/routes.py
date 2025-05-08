@@ -1,4 +1,4 @@
-from flask import Flask, abort, flash, g, redirect, render_template, session, url_for
+from flask import flash, g, redirect, render_template, url_for
 
 
 def configure_topic_category_routes(app, category_controller, CategoryForm):

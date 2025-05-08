@@ -1,13 +1,8 @@
-import bleach
 from flask import (
     flash,
     g,
-    jsonify,
     redirect,
     render_template,
-    request,
-    session,
-    url_for,
 )
 
 from .forms import ServerForm
@@ -17,7 +12,6 @@ from .models import Server
 def configure_editsite_routes(app, server_form):
     @app.route("/create_server", methods=["GET", "POST"])
     def create_server():
-        user = g.current_user
         server = (
             Server.get_server()
         )  # Получаем сервер (или создаем новый, если его нет)

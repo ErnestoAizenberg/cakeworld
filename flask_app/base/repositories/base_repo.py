@@ -149,7 +149,7 @@ class BaseRepository:
                 f"{ConsoleColors.OKGREEN}Successfully deleted DTO: {dto}{ConsoleColors.ENDC}"
             )
             return True
-        except ValueError as e:
+        except ValueError:
             logger.error(
                 f"{ConsoleColors.FAIL}Invalid object or identifier provided: {dto}{ConsoleColors.ENDC}"
             )

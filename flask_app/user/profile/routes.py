@@ -43,10 +43,14 @@ def configure_profile_routes(app, controller):
             if viewer and viewer.id == owner.id:
                 file = request.files.get("avatar")
                 if file:
-                    avatar_path = controller.update_avatar(owner.id, file)
+                    status = controller.update_avatar(owner.id, file)
+                    if status:
+                        flash("Avatar updated successfully", "success")
+                    else:
+                        flash("An error ocured please tru again", "error")
                     return redirect(url_for("profile", profile_url=profile_url))
                 else:
-                    flash("error", "error")
+                    flash("New file is required", "error")
                     return redirect(url_for("profile", profile_url=profile_url))
             else:
                 abort(403)

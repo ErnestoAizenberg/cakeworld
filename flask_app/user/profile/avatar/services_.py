@@ -1,21 +1,22 @@
-import logging
 import os
 import uuid
 from io import BytesIO
-from typing import Any, Optional
+from typing import Optional
 
 import redis
 from flask import current_app
 
 from .utils import generate_path_by_uuid
-
+from flask_app.user.dtos import UserDTO
+from flask_app.user.repositories import UserRepository
+from flask_app.base.services import ImageService, AvatarGenerator
 
 class AvatarService:
     def __init__(
         self,
-        user_repo,
-        image_service: "ImageService",
-        avatar_generator: "AvatarGenerator",
+        user_repo: UserRepository,
+        image_service: ImageService,
+        avatar_generator: AvatarGenerator,
         redis_client: redis.Redis,
     ):
         self.avatar_generator = avatar_generator
@@ -43,7 +44,7 @@ class AvatarService:
         else:
             return self.generate_avatar(user_dto)
 
-    def generate_avatar(self, user_dto: "UserDTO") -> str:
+    def generate_avatar(self, user_dto: UserDTO) -> str:
         """Generate and save a default avatar for the user."""
         try:
             new_uuid = str(uuid.uuid4())[:12]
@@ -64,16 +65,17 @@ class AvatarService:
 
     def set_avatar(
         self,
-        user_dto: "UserDTO",
+        user_dto: UserDTO,
         img_data: Optional[BytesIO] = None,
         name: Optional[str] = None,
-    ) -> "UserDTO":
+    ) -> UserDTO:
         new_uuid = str(uuid.uuid4())[:12]
         full_image_path, _ = self._path_by_uuid(new_uuid)
 
         if img_data:
             self.image_service.process_image(img_data, full_image_path)
 
+        previous_uuid = user_dto.avatar_path
         user_dto.avatar_path = new_uuid
         updated_user_dto = self.user_repo.update(user_dto)
 

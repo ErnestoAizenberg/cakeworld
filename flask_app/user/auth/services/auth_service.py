@@ -4,15 +4,12 @@ import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash
 
 from flask_app.user.dtos import UserDTO
 
 from ..exceptions import (
-    AccountLockedError,
-    AuthenticationError,
     EmailAlreadyVerifiedError,
-    EmailNotVerifiedError,
     TokenExpiredError,
     TokenInvalidError,
     TooManyRequestsError,

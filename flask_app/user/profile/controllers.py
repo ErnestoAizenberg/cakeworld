@@ -1,9 +1,8 @@
 import logging
 from typing import Optional, Tuple
 
-from flask import jsonify, request
 
-from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
+from flask_app.user.exceptions import UserNotFoundError
 
 from ..dtos import UserDTO
 
@@ -70,7 +69,7 @@ class ProfileController:
 
         try:
             avatar_path = self.avatar_service.set_avatar(user_dto, file)
-            return "Avatar updated successfully", 200
+            return avatar_path
         except Exception as e:
             logger.error(f"Error updating avatar for user {user_dto.id}: {e}")
             return str(e), 500

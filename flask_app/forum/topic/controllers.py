@@ -1,5 +1,5 @@
 from functools import lru_cache
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from flask_app.forum.post.dtos import PostDTO
 

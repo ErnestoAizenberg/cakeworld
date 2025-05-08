@@ -1,7 +1,6 @@
 # flask_app/controllers/message_reaction_controller.py
 from flask import jsonify, request
 
-from .dtos import ReactionDTO
 
 
 class MessageReactionController:

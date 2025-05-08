@@ -1,7 +1,6 @@
 # flask_app/controllers/ban_controller.py
 from typing import Dict, List
 
-from .dtos import BannedUserDTO
 
 
 class BanController:

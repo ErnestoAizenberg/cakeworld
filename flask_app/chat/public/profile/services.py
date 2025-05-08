@@ -4,7 +4,6 @@ from io import BytesIO
 from typing import Optional
 
 from flask import current_app
-from PIL import Image
 
 
 class ChatAvatarService:

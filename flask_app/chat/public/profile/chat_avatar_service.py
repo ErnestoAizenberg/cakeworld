@@ -1,10 +1,9 @@
 import os
 import uuid
 from io import BytesIO
-from typing import Optional, Tuple
+from typing import Optional
 
 from flask import current_app
-from PIL import Image
 
 
 class ChatAvatarService:

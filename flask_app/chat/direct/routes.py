@@ -3,7 +3,6 @@ from typing import Any, Dict, Optional
 
 from flask import (
     abort,
-    g,
     jsonify,
     redirect,
     render_template,
@@ -11,7 +10,7 @@ from flask import (
     session,
     url_for,
 )
-from flask_socketio import SocketIO, emit
+from flask_socketio import emit
 
 # Configure logging
 logger = logging.getLogger(__name__)

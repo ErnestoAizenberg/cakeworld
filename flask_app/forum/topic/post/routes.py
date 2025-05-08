@@ -1,6 +1,4 @@
 from flask import (
-    Flask,
-    abort,
     flash,
     g,
     redirect,

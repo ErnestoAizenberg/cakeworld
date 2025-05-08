@@ -1,10 +1,7 @@
 # flask_app/user/auth/controllers.py
 import logging
-from dataclasses import asdict
 from functools import wraps
-from typing import Any, Dict, Optional
 
-from werkzeug.security import check_password_hash
 
 from flask_app.user.dtos import UserDTO
 

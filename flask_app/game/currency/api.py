@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 
 from flask_app import app
 from flask_app.services import CurrencyService, ExchangeService

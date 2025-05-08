@@ -1,5 +1,9 @@
+import logging
+from ..repositories import CurrencyRepository
+logger = logging.getLogger(__name__)
+
 class ExchangeService:
-    def __init__(self, currency_repository: "CurrencyRepository"):
+    def __init__(self, currency_repository: CurrencyRepository):
         self.currency_repository = currency_repository
 
     def exchange_stones_for_gems(self, user_id: int) -> bool:

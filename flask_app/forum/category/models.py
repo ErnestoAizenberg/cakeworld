@@ -1,4 +1,3 @@
-from typing import List
 
 from flask_app.extensions import db
 

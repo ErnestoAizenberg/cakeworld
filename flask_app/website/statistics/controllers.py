@@ -1,6 +1,4 @@
-from flask import jsonify, render_template
 from sqlalchemy import func
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from flask_app.chat.message.models import Message

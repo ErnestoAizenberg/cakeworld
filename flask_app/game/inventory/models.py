@@ -1,6 +1,5 @@
-from datetime import datetime
 
-from sqlalchemy import JSON, Column, ForeignKey, Integer, String, Text
+from sqlalchemy import Column, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 
 from flask_app.extensions import db

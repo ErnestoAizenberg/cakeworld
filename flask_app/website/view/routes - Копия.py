@@ -1,4 +1,4 @@
-from flask import render_template, session
+from flask import render_template
 
 
 def configure_pages(app, user_service):

@@ -1,6 +1,5 @@
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 
-from flask_app.routes.exceptions import bad_request
 
 from .services import PrayerService
 
@@ -41,5 +40,5 @@ def configure_pray_routes(app, prayer_service: PrayerService):
 
         except ValueError as e:
             return jsonify({"error": str(e)}), 400
-        except Exception as e:
+        except Exception:
             return jsonify({"error": "Internal server error"}), 500

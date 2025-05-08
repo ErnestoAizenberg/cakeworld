@@ -1,5 +1,5 @@
 import logging
-from typing import List, Optional
+from typing import List
 
 from .dtos import PostDTO
 from .repositories import PostRepository

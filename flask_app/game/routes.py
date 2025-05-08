@@ -1,6 +1,5 @@
-import json
 
-from flask import Flask, g, jsonify, render_template, request, url_for
+from flask import g, jsonify, render_template, request
 
 from .currency.dtos import CurrencyDTO
 
@@ -64,10 +63,8 @@ class DataReciver:
         return data
 
 
-import random
 import time
 
-from flask import g, jsonify, render_template, request
 
 
 def init_game(app, data_reciver, prayer_service, inventory_service):

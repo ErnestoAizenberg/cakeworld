@@ -1,10 +1,10 @@
-# flask_app/services/auth_service.py
 import re
 import secrets
 from datetime import datetime, timedelta
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask import current_app
 
 from flask_app.user.dtos import UserDTO
 

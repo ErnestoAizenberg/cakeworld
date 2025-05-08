@@ -4,11 +4,7 @@ from flask import jsonify, render_template
 def configure_site_statistics(app, site_statistic_controller):
     @app.route("/admin/statistics", methods=["GET"])
     def get_all_statistics():
-        try:
-            return jsonify(site_statistic_controller.compile_statistics())
-        except SQLAlchemyError as e:
-            db.session.rollback()
-            return jsonify({"error": str(e)}), 500
+        return jsonify(site_statistic_controller.compile_statistics())
 
     @app.route("/admin/users/registration_trends", methods=["GET"])
     def get_registration_trends():

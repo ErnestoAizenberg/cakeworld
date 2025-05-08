@@ -1,6 +1,5 @@
 # flask_app/dto/reaction_dto.py
 from dataclasses import dataclass
-from typing import Dict
 
 
 @dataclass(frozen=True)

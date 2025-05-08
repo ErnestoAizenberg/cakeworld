@@ -1,7 +1,5 @@
 from datetime import datetime
-from typing import List
 
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 
 from flask_app.extensions import db

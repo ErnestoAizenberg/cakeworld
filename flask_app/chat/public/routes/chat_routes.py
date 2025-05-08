@@ -1,11 +1,9 @@
 import logging
 from datetime import datetime, timedelta
-from typing import Any, Dict, Optional
 
 from flask import (
     Blueprint,
     flash,
-    g,
     jsonify,
     redirect,
     render_template,
@@ -13,7 +11,7 @@ from flask import (
     session,
     url_for,
 )
-from werkzeug.exceptions import BadRequest, Forbidden
+from werkzeug.exceptions import BadRequest
 
 # Set up logging
 logger = logging.getLogger(__name__)

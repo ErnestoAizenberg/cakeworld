@@ -1,21 +1,22 @@
-import logging
 import os
 import uuid
 from functools import lru_cache
 from io import BytesIO
-from pathlib import Path
-from typing import Any, Optional, Tuple
+from typing import Optional, Tuple
 
 import redis
 from flask import current_app
 
+from flask_app.user.repositories import UserRepository
+from flask_app.user.dtos import UserDTO
+from flask_app.base.services import ImageService, AvatarGenerator
 
 class AvatarService:
     def __init__(
         self,
-        user_repo: Any,
-        image_service: "ImageService",
-        avatar_generator: "AvatarGenerator",
+        user_repo: UserRepository,
+        image_service: ImageService,
+        avatar_generator: AvatarGenerator,
         redis_client: redis.Redis,
         files_location: str = "static/images/avatars",
         file_extension: str = ".png",
@@ -80,7 +81,7 @@ class AvatarService:
 
         return absolute_path, f"/{relative_path.replace(os.path.sep, '/')}"
 
-    def get_user_avatar_or_generate(self, user_dto: "UserDTO") -> str:
+    def get_user_avatar_or_generate(self, user_dto: UserDTO) -> str:
         """
         Get existing user avatar or generate a default one if none exists.
 
@@ -95,7 +96,7 @@ class AvatarService:
             return url_path
         return self.generate_avatar(user_dto)
 
-    def generate_avatar(self, user_dto: "UserDTO") -> str:
+    def generate_avatar(self, user_dto: UserDTO) -> str:
         """
         Generate and save a default avatar for the user.
 
@@ -132,7 +133,7 @@ class AvatarService:
 
     def set_avatar(
         self,
-        user_dto: "UserDTO",
+        user_dto: UserDTO,
         img_data: Optional[BytesIO] = None,
         name: Optional[str] = None,
         previous_uuid: Optional[str] = None,
