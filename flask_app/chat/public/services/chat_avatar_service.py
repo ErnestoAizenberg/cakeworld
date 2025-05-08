@@ -20,7 +20,7 @@ class ChatAvatarService:
     ) -> None:
         previous_uuid = chat.avatar_path
         new_uuid = str(uuid.uuid4())[:12]
-  
+
         raise NotImplementedError("Method is not corrected")
 
         if img_data:

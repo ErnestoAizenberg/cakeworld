@@ -78,7 +78,7 @@ class AvatarService:
         # Ensure the directory exists
         os.makedirs(os.path.dirname(absolute_path), exist_ok=True)
 
-        return absolute_path, f'/{relative_path.replace(os.path.sep, "/")}'
+        return absolute_path, f"/{relative_path.replace(os.path.sep, '/')}"
 
     def get_user_avatar_or_generate(self, user_dto: "UserDTO") -> str:
         """

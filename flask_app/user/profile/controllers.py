@@ -3,8 +3,7 @@ from typing import Optional, Tuple
 
 from flask import jsonify, request
 
-from flask_app.user.exceptions import (UsernameAlreadyExistsError,
-                                       UserNotFoundError)
+from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
 
 from ..dtos import UserDTO
 

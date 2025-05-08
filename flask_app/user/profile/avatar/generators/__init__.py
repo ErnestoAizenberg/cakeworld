@@ -1,1 +1,1 @@
-from .pil.avatar_genrator import AvatarGenerator #noqa
+from .pil.avatar_genrator import AvatarGenerator  # noqa

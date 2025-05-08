@@ -1,7 +1,17 @@
 import logging
 
-from flask import (Flask, abort, flash, g, jsonify, redirect, render_template,
-                   request, session, url_for)
+from flask import (
+    Flask,
+    abort,
+    flash,
+    g,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_socketio import emit, join_room, leave_room
 
 
@@ -20,7 +30,6 @@ def configure_real_time_chating(
     @app.route("/chat/<string:url_name>", methods=["GET"])
     @csrf.exempt
     def chat_deb(url_name):
-
         chat = chat_service.get_chat_by_url(url_name)
 
         user = g.current_user

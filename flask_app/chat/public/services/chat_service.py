@@ -11,6 +11,7 @@ from flask_app.chat.public.dtos import ChatDTO
 from flask_app.user.chat_user.dtos import ChatUserDTO
 from flask_app.chat.exceptions import *
 
+
 class CacheKeys:
     """Namespace for Redis key patterns."""
 

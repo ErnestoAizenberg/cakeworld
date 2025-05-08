@@ -1,12 +1,20 @@
-from flask import (abort, flash, g, jsonify, redirect, render_template,
-                   request, session, url_for)
+from flask import (
+    abort,
+    flash,
+    g,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 from flask_app.user.dtos import UserDTO
 from flask_app.user.exceptions import UserNotFoundError
 
 
 def configure_profile_routes(app, controller):
-
     @app.route("/edit_account", methods=["POST"])
     def edit_account():
         new_username = request.form.get("username")

@@ -2,8 +2,7 @@ import uuid
 from typing import Dict, List, Optional
 
 from .models import Item, ItemCode, ItemImage
-from .repositories import (ItemCodeRepository, ItemImageRepository,
-                           ItemRepository)
+from .repositories import ItemCodeRepository, ItemImageRepository, ItemRepository
 
 
 class ItemCodeService:

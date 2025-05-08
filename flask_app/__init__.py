@@ -2,8 +2,12 @@ from flask import Flask
 
 from .fubric import AppFactory
 
+__all__ = ["app", "create_app"]
 
-def create_app(config_class: str = "instance.configs.development.DevelopmentConfig") -> Flask:
+
+def create_app(
+    config_class: str = "instance.configs.development.DevelopmentConfig",
+) -> Flask:
     """Factory function to create and configure the application"""
     factory = AppFactory()
     return factory.create_app(config_class)

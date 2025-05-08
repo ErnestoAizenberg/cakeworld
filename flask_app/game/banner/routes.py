@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 
 
 def configure_store_item_service_api(app, controller):
-
     @app.route("/store-items/<int:item_id>", methods=["GET"])
     def get_store_item(item_id):
         logger.debug(f"GET store-item request for ID: {item_id}")

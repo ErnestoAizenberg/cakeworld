@@ -4,7 +4,6 @@ oauth_bp = Blueprint("oauth", __name__)
 
 
 def configure_oauth_routes(app, oauth_service):
-
     @oauth_bp.route("/authorize/<provider>")
     def oauth2_authorize(provider):
         print("[DEBUG] HERE WE GO")

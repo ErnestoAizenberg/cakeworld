@@ -1,9 +1,17 @@
-from flask import (Flask, abort, flash, g, redirect, render_template, request,
-                   session, url_for)
+from flask import (
+    Flask,
+    abort,
+    flash,
+    g,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 
 def configure_post_routes(app, post_controller, PostForm, ReplyForm):
-
     @app.route("/view_post/<int:post_id>")
     def view_post(post_id):
         post = post_controller.view_post(post_id)

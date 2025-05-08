@@ -5,8 +5,12 @@ from flask_app.forum.topic.models import Topic
 from flask_app.game.banner.models import Banner
 from flask_app.game.currency.models import Currency
 from flask_app.user.models import User
-from instance.data.initial_data import (BANNERS_DATA, CATEGORIES_DATA,
-                                        CHATS_DATA, TOPICS_DATA)
+from instance.data.initial_data import (
+    BANNERS_DATA,
+    CATEGORIES_DATA,
+    CHATS_DATA,
+    TOPICS_DATA,
+)
 
 
 def create_banners():

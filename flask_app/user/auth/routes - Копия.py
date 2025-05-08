@@ -5,7 +5,6 @@ auth_bp = Blueprint("auth", __name__)
 
 
 def init_auth_routes(app, auth_controller):
-
     @auth_bp.route("/register", methods=["POST"])
     def register():
         data = request.get_json()

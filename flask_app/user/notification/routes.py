@@ -2,7 +2,6 @@ from flask import render_template, request
 
 
 def configure_notification_routes(app, notification_controller):
-
     @app.route("/notifications")
     def notifications():
         return render_template(

@@ -1,8 +1,16 @@
 import logging
 from typing import Any, Dict, Optional
 
-from flask import (abort, g, jsonify, redirect, render_template, request,
-                   session, url_for)
+from flask import (
+    abort,
+    g,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from flask_socketio import SocketIO, emit
 
 # Configure logging

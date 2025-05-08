@@ -3,7 +3,6 @@ from sqlalchemy.exc import SQLAlchemyError
 
 
 def configure_site_statistics(app, site_statistic_controller):
-
     @app.route("/admin/statistics", methods=["GET"])
     def get_all_statistics():
         try:

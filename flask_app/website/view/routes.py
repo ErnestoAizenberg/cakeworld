@@ -4,7 +4,6 @@ main_bp = Blueprint("main", __name__)
 
 
 def configure_pages(app, user_service):
-
     @app.route("/b")
     def base():
         return render_template("base.html")

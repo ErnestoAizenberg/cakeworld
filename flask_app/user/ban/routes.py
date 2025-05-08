@@ -4,7 +4,6 @@ ban_bp = Blueprint("ban", __name__)
 
 
 def configure_ban_routes(app, ban_controller):
-
     @ban_bp.route("/ban_user", methods=["POST"])
     def ban_user():
         user_id = request.form["user_id"]

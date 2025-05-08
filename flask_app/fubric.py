@@ -23,7 +23,9 @@ class AppFactory:
             "controllers": {},
         }
 
-    def create_app(self, config_class: str = "instance.configs.development.DevelopmentConfig") -> Flask:
+    def create_app(
+        self, config_class: str = "instance.configs.development.DevelopmentConfig"
+    ) -> Flask:
         self.app = Flask(__name__, template_folder="templates", static_folder="static")
 
         if config_class:
@@ -118,8 +120,7 @@ class AppFactory:
 
     def _init_repositories(self):
         """Initialize all repositories"""
-        from .chat.message.reaction.repositories import \
-            MessageReactionRepository
+        from .chat.message.reaction.repositories import MessageReactionRepository
         from .chat.message.repositories import MessageRepository
         from .chat.public.repositories import ChatRepository
         from .forum.category.repositories import CategoryRepository
@@ -223,8 +224,7 @@ class AppFactory:
 
     def _init_controllers(self):
         """Initialize all controllers"""
-        from .chat.message.reaction.controllers import \
-            MessageReactionController
+        from .chat.message.reaction.controllers import MessageReactionController
         from .chat.public.controllers import ChatController
         from .forum.category.controllers import CategoryController
         from .forum.post.controllers import PostController
@@ -285,9 +285,11 @@ class AppFactory:
 
     def _register_routes(self):
         """Register all application routes"""
-        from .base.routes import (configure_cache_routes,
-                                  configure_exception_routes,
-                                  setup_request_hooks)
+        from .base.routes import (
+            configure_cache_routes,
+            configure_exception_routes,
+            setup_request_hooks,
+        )
         from .chat.direct.routes import DirectChatRoutes
         from .chat.message.reaction.routes import configure_reaction_routes
         from .chat.public.routes import configure_chat_routes
@@ -396,8 +398,7 @@ class AppFactory:
     def _configure_socketio(self):
         """Configure SocketIO handlers"""
         # from .chat.direct.routes import configure_direct_chating
-        from .chat.message.reaction.routes import \
-            configure_message_reaction_routes
+        from .chat.message.reaction.routes import configure_message_reaction_routes
         from .chat.public.routes import configure_real_time_chating
 
         services = self._components["services"]

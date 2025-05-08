@@ -1,12 +1,10 @@
 # flask_app/routes/auth.py
-from flask import (Blueprint, redirect, render_template, request, session,
-                   url_for)
+from flask import Blueprint, redirect, render_template, request, session, url_for
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
 def init_auth_routes(app, auth_controller):
-
     @auth_bp.route("/")
     @auth_bp.route("/entry")
     def entry():

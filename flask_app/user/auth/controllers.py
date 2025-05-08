@@ -162,7 +162,6 @@ class AuthController:
         message: str,
         type: str = "info",
     ):
-
         print(f"Sending {type} notification to {user.username}: {message}")
         self.notification_service.add_notification(
             user.id,

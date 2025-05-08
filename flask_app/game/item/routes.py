@@ -7,7 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 def configure_store_item_service_api(app: Flask, service: "StoreItemService"):
-
     @app.route("/store-items/<int:item_id>", methods=["GET"])
     def get_store_item(item_id: int) -> Dict[str, Any]:
         """Get a store item by ID."""

@@ -3,7 +3,6 @@ from sqlalchemy.exc import OperationalError
 
 
 class CustomSQLAlchemy(SQLAlchemy):
-
     def create_scoped_session(self, options=None):
         """Override the create_scoped_session to control session behavior."""
         session_options = options or {}

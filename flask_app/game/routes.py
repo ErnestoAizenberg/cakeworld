@@ -71,7 +71,6 @@ from flask import g, jsonify, render_template, request
 
 
 def init_game(app, data_reciver, prayer_service, inventory_service):
-
     @app.route("/game")
     def game_index():
         return render_template("game/game.html")
@@ -102,7 +101,9 @@ def init_game(app, data_reciver, prayer_service, inventory_service):
                 result = prayer_service.perform_prayer(user.id, banner_id)
                 if result:
                     inventory_service.add_or_update_item(
-                        user_id=user.id, store_item=result, quantity=1  # default is 1
+                        user_id=user.id,
+                        store_item=result,
+                        quantity=1,  # default is 1
                     )
                 result_image = (
                     result.image_path

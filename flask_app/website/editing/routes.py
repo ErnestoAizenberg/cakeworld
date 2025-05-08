@@ -1,6 +1,14 @@
 import bleach
-from flask import (flash, g, jsonify, redirect, render_template, request,
-                   session, url_for)
+from flask import (
+    flash,
+    g,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 from .forms import ServerForm
 from .models import Server

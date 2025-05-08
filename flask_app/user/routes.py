@@ -1,6 +1,15 @@
 # flask_app/routes/user.py
-from flask import (abort, flash, g, jsonify, redirect, render_template,
-                   request, session, url_for)
+from flask import (
+    abort,
+    flash,
+    g,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 
 def configure_user_routes(app, controller):

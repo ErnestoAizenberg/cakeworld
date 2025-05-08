@@ -7,8 +7,7 @@ from typing import Any, Optional
 import redis
 from flask import current_app
 
-from flask_app.user.exceptions import (UsernameAlreadyExistsError,
-                                       UserNotFoundError)
+from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
 
 
 class ProfileService:

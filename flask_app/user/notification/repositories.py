@@ -13,7 +13,6 @@ class NotificationRepository(BaseRepository):
         super().__init__(Notification, NotificationDTO, db_session)
 
     def _to_dto(self, instance: Notification) -> NotificationDTO:
-
         return NotificationDTO(
             id=instance.id,
             user_id=instance.user_id,
