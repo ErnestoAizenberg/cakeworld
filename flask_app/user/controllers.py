@@ -1,7 +1,3 @@
-
-
-
-
 class UserController:  # UnMock NEEDED!
     """Not implemented, shale be solved with the question about controllers reusing"""
 

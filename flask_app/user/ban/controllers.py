@@ -2,7 +2,6 @@
 from typing import Dict, List
 
 
-
 class BanController:
     def __init__(self, ban_service: "BanService"):
         self.ban_service = ban_service

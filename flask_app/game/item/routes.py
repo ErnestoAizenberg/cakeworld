@@ -4,7 +4,9 @@ from typing import Any, Dict
 from flask import Flask, jsonify, render_template, request
 from .dtos import StoreItemDTO
 from .services import StoreItemService
+
 logger = logging.getLogger(__name__)
+
 
 def configure_store_item_service_api(app: Flask, service: StoreItemService):
     @app.route("/store-items/<int:item_id>", methods=["GET"])

@@ -3,6 +3,7 @@ from typing import List, Optional
 from .dtos import NotificationDTO
 from .repositories import NotificationRepository
 
+
 class NotificationService:
     def __init__(self, repository: NotificationRepository):
         self.repository = repository

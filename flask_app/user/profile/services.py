@@ -4,6 +4,7 @@ from typing import Optional
 from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
 from flask_app.user.dtos import UserDTO
 
+
 class ProfileService:
     def __init__(self, user_repo):
         self.user_repo = user_repo

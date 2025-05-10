@@ -1,5 +1,5 @@
 from .real_time_chating import configure_real_time_chating  # noqa
 
-from .chat_routes import configure_chat_routes # noqa
+from .chat_routes import configure_chat_routes  # noqa
 
-__all__ = ['configure_real_time_chating', 'configure_chat_routes']
+__all__ = ["configure_real_time_chating", "configure_chat_routes"]

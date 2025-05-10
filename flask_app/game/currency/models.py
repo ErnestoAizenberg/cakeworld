@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, ForeignKey, Integer
 
 from flask_app.extensions import db

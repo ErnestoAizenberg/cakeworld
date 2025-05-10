@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, Integer, String, Text
 
 from flask_app.extensions import db

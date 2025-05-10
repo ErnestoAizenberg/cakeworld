@@ -3,7 +3,6 @@ from datetime import datetime
 from typing import Any, Dict, Optional
 
 
-
 class ValidationError(Exception):
     pass
 

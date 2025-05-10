@@ -11,6 +11,7 @@ from flask_app.user.dtos import UserDTO
 from flask_app.user.repositories import UserRepository
 from flask_app.base.services import ImageService, AvatarGenerator
 
+
 class AvatarService:
     def __init__(
         self,

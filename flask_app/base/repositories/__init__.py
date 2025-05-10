@@ -1,3 +1,3 @@
-from .base_repo import BaseRepository # noqa
+from .base_repo import BaseRepository  # noqa
 
-__all__ = ['BaseRepository']
+__all__ = ["BaseRepository"]

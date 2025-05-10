@@ -1,4 +1,3 @@
-
 from flask import g, jsonify, render_template, request
 
 from .currency.dtos import CurrencyDTO
@@ -64,7 +63,6 @@ class DataReciver:
 
 
 import time
-
 
 
 def init_game(app, data_reciver, prayer_service, inventory_service):

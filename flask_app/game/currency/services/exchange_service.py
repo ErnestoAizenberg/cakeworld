@@ -1,6 +1,8 @@
 import logging
 from ..repositories import CurrencyRepository
+
 logger = logging.getLogger(__name__)
+
 
 class ExchangeService:
     def __init__(self, currency_repository: CurrencyRepository):

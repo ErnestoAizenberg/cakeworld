@@ -2,7 +2,6 @@
 from flask import jsonify, request
 
 
-
 class MessageReactionController:
     def __init__(self, reaction_service: "ReactionService"):
         self.reaction_service = reaction_service

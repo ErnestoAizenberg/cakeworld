@@ -8,7 +8,7 @@ from flask_app.user.models import User
 @listens_for(User, "after_insert")
 def create_currency(mapper, connection, target):
     raise NotImplementedError("Need to use servuces")
-    #new_currency = Currency(user_id=target.id)
+    # new_currency = Currency(user_id=target.id)
     ## db.session.add(new_currency)
     ## db.session.commit()
-    #return new_currency
+    # return new_currency

@@ -23,12 +23,18 @@ class UserService:
             raise UserNotFoundError(f"User with the id: {user_id} is not found")
             return None
 
-    def create_user(self, username: str, email: str, password: str, 
-                    ) -> "UserDTO":
+    def create_user(
+        self,
+        username: str,
+        email: str,
+        password: str,
+    ) -> "UserDTO":
         """Создать нового пользователя."""
-        raise NotImplementedError("This method is not reliable, consider using auth service")
-        #user_dto = UserDTO(username=username, email, password)
-        #return self.save_user(user_dto)
+        raise NotImplementedError(
+            "This method is not reliable, consider using auth service"
+        )
+        # user_dto = UserDTO(username=username, email, password)
+        # return self.save_user(user_dto)
 
     def save_user(self, user_dto: UserDTO) -> UserDTO:
         """Сохранить пользователя"""
