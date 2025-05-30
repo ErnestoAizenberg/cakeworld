@@ -9,7 +9,8 @@ from flask import current_app
 
 from flask_app.user.repositories import UserRepository
 from flask_app.user.dtos import UserDTO
-from flask_app.base.services import ImageService, AvatarGenerator
+from flask_app.user.profile.avatar.generators import AvatarGenerator
+from flask_app.base.services import ImageService
 
 
 class AvatarService:
