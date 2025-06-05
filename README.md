@@ -31,6 +31,8 @@ A big WEB forum with clean and scalable architecture.
 - **Auto-Generating Avatar System**: Automatically generate unique avatars for users.
 - **Ban System**: Manage user access with a robust ban system.
 
+Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
+
 ## Architecture Overview
 This application operates with:
 - **Database Models**
@@ -77,5 +79,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ![pytest](https://img.shields.io/badge/pytest-8.3.5-blue)
 ![pillow](https://img.shields.io/badge/pillow-latest-blue)
 ![pytz](https://img.shields.io/badge/pytz-latest-blue)
-
-Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
