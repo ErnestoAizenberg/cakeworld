@@ -20,9 +20,6 @@ A big WEB forum with clean and scalable architecture.
 
 - **Site Customization**:
   User-friendly options for easily customizing the visual appearance of the website, allowing for a personalized experience.
-
-
-Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
 - **Authentication**: Built-in authentication and OAuth support.
 - **Real-Time Chats**: Engage in direct and group chats with your friends.
 - **Prayer System**: Includes features like quests, inventory, store, and currency management.
@@ -57,6 +54,9 @@ There are numerous bugs to be fixed and even more tests to be written; any contr
 ## Get Started 
 To get started with the project, clone the repository and follow the installation steps provided in the [INSTALL.md](INSTALL.md) file.
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ### All tools
 ![Flask](https://img.shields.io/badge/Flask-2.2.5-ff9e00) ![Flask-SQLAlchemy](https://img.shields.io/badge/Flask--SQLAlchemy-3.1.1-00cc88) ![redis](https://img.shields.io/badge/redis-latest-cc0000)
 ![Flask-Login](https://img.shields.io/badge/Flask--Login-0.6.3-blue)
@@ -77,3 +77,5 @@ To get started with the project, clone the repository and follow the installatio
 ![pytest](https://img.shields.io/badge/pytest-8.3.5-blue)
 ![pillow](https://img.shields.io/badge/pillow-latest-blue)
 ![pytz](https://img.shields.io/badge/pytz-latest-blue)
+
+Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
