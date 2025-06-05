@@ -8,7 +8,7 @@ from instance.manager import (
     create_topics,
 )
 
-app = create_app("instance.configs.development.DevelopmentConfig")
+app = create_app("configs.development.DevelopmentConfig")
 
 
 def initialize_database():

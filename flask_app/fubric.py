@@ -20,7 +20,7 @@ class AppFactory:
         }
 
     def create_app(
-        self, config_class: str = "instance.configs.development.DevelopmentConfig"
+        self, config_class: str = "configs.development.DevelopmentConfig"
     ) -> Flask:
         self.app = Flask(__name__, template_folder="templates", static_folder="static")
 

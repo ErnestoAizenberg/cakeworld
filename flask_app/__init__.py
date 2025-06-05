@@ -6,7 +6,7 @@ __all__ = ["app", "create_app"]
 
 
 def create_app(
-    config_class: str = "instance.configs.development.DevelopmentConfig",
+    config_class: str = "configs.development.DevelopmentConfig",
 ) -> Flask:
     """Factory function to create and configure the application"""
     factory = AppFactory()
