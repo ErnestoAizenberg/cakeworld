@@ -2,9 +2,8 @@
 
 # :cake: CakeWorld 
 
-A big web application with clean and scalable architecture.
+A big WEB forum with clean and scalable architecture.
 
-## Features
 ## Key Features
 
 - **Authentication**: 
