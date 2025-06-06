@@ -2,7 +2,6 @@
 import logging
 from functools import wraps
 
-
 from flask_app.user.dtos import UserDTO
 
 from .exceptions import AuthException, ValidationError

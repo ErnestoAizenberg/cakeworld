@@ -1,12 +1,4 @@
-from flask import (
-    flash,
-    g,
-    redirect,
-    render_template,
-    request,
-    session,
-    url_for,
-)
+from flask import flash, g, redirect, render_template, request, session, url_for
 
 
 def configure_post_routes(app, post_controller, PostForm, ReplyForm):

@@ -7,10 +7,10 @@ from typing import Optional, Tuple
 import redis
 from flask import current_app
 
-from flask_app.user.repositories import UserRepository
+from flask_app.base.services import ImageService
 from flask_app.user.dtos import UserDTO
 from flask_app.user.profile.avatar.generators import AvatarGenerator
-from flask_app.base.services import ImageService
+from flask_app.user.repositories import UserRepository
 
 
 class AvatarService:

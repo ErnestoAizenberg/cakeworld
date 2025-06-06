@@ -1,8 +1,7 @@
 from typing import Optional
 
-
-from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
 from flask_app.user.dtos import UserDTO
+from flask_app.user.exceptions import UsernameAlreadyExistsError, UserNotFoundError
 
 
 class ProfileService:

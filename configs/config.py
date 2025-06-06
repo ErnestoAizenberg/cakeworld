@@ -1,5 +1,6 @@
-import os
 import argparse
+import os
+
 from dotenv import load_dotenv
 
 # Load environment variables from the specified .env file
@@ -16,8 +17,14 @@ def parse_arguments():
     parser.add_argument("--redis_db", type=int, help="Redis database number.")
     parser.add_argument("--host", type=str, help="Server host.")
     parser.add_argument("--port", type=int, help="Server port.")
-    parser.add_argument("--mail_username", type=str, help="Mail username, which will send emails to users (my_email@example.com).")
-    parser.add_argument("--mail_password", type=str, help="Mail password or app-specific password.")
+    parser.add_argument(
+        "--mail_username",
+        type=str,
+        help="Mail username, which will send emails to users (my_email@example.com).",
+    )
+    parser.add_argument(
+        "--mail_password", type=str, help="Mail password or app-specific password."
+    )
 
     return parser.parse_args()
 
@@ -32,24 +39,28 @@ class Config:
     REDIS_HOST = args.redis_host or os.getenv("REDIS_HOST", "localhost")
     REDIS_PORT = args.redis_port or int(os.getenv("REDIS_PORT", 6379))
     REDIS_DB = args.redis_db or int(os.getenv("REDIS_DB", 0))
-    
+
     # Flask secret key
-    SECRET_KEY = args.secret_key or os.getenv("SECRET_KEY", "ktdkdgluurugifjGkmkyfvfhegegfbkegkenec")
-    
+    SECRET_KEY = args.secret_key or os.getenv(
+        "SECRET_KEY", "ktdkdgluurugifjGkmkyfvfhegegfbkegkenec"
+    )
+
     # Upload folder
     UPLOAD_FOLDER = "static/uploads"
-    
+
     # Database URI
     SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI", "sqlite:///forum.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+
     # Email/SMS configuration
     MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
     MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
     MAIL_USE_TLS = os.getenv("MAIL_USE_TLS", "True").lower() in ("true", "1", "yes")
-    MAIL_USERNAME = args.mail_username or os.getenv("MAIL_USERNAME", "sereernest@gmail.com")
+    MAIL_USERNAME = args.mail_username or os.getenv(
+        "MAIL_USERNAME", "sereernest@gmail.com"
+    )
     MAIL_PASSWORD = args.mail_password or os.getenv("MAIL_PASSWORD")
-    
+
     # OAuth2 providers
     OAUTH2_PROVIDERS = {
         "google": {
@@ -64,5 +75,3 @@ class Config:
             "scopes": ["https://www.googleapis.com/auth/userinfo.email"],
         },
     }
-
-

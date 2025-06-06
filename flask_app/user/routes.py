@@ -1,8 +1,5 @@
 # flask_app/routes/user.py
-from flask import (
-    jsonify,
-    render_template,
-)
+from flask import jsonify, render_template
 
 
 def configure_user_routes(app, controller):

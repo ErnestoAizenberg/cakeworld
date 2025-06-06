@@ -21,7 +21,7 @@ class AppFactory:
     def create_app(
         self,
         config_class: str = "configs.development.DevelopmentConfig",
-        #mail_config: Dict,
+        # mail_config: Dict,
     ) -> Flask:
         self.app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -286,9 +286,7 @@ class AppFactory:
 
     def _register_routes(self):
         """Register all application routes"""
-        from .base.routes import (
-            setup_request_hooks,
-        )
+        from .base.routes import setup_request_hooks
         from .chat.direct.routes import DirectChatRoutes
         from .chat.message.reaction.routes import configure_reaction_routes
         from .chat.public.routes import configure_chat_routes

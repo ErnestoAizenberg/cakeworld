@@ -1,8 +1,8 @@
 from typing import Optional
 
-from werkzeug.security import check_password_hash, generate_password_hash
-from itsdangerous import URLSafeSerializer as Serializer
 from flask import current_app
+from itsdangerous import URLSafeSerializer as Serializer
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class PasswordService:

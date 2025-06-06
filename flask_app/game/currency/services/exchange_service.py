@@ -1,4 +1,5 @@
 import logging
+
 from ..repositories import CurrencyRepository
 
 logger = logging.getLogger(__name__)

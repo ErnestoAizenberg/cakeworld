@@ -5,10 +5,10 @@ from typing import List, Optional
 
 import redis
 
+from flask_app.chat.exceptions import *
 from flask_app.chat.message.dtos import MessageDTO
 from flask_app.chat.public.dtos import ChatDTO
 from flask_app.user.chat_user.dtos import ChatUserDTO
-from flask_app.chat.exceptions import *
 
 
 class CacheKeys:

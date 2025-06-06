@@ -1,7 +1,6 @@
 import logging
 from typing import Optional, Tuple
 
-
 from flask_app.user.exceptions import UserNotFoundError
 
 from ..dtos import UserDTO

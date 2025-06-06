@@ -1,13 +1,6 @@
 import logging
 
-from flask import (
-    abort,
-    g,
-    jsonify,
-    render_template,
-    request,
-    session,
-)
+from flask import abort, g, jsonify, render_template, request, session
 from flask_socketio import emit, join_room, leave_room
 
 

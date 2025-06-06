@@ -1,9 +1,4 @@
-from flask import (
-    flash,
-    g,
-    redirect,
-    render_template,
-)
+from flask import flash, g, redirect, render_template
 
 from .forms import ServerForm
 from .models import Server

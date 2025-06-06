@@ -1,6 +1,5 @@
 from flask import jsonify, request
 
-
 from .services import PrayerService
 
 

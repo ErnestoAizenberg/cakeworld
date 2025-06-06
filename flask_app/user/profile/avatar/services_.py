@@ -6,10 +6,11 @@ from typing import Optional
 import redis
 from flask import current_app
 
-from .utils import generate_path_by_uuid
+from flask_app.base.services import AvatarGenerator, ImageService
 from flask_app.user.dtos import UserDTO
 from flask_app.user.repositories import UserRepository
-from flask_app.base.services import ImageService, AvatarGenerator
+
+from .utils import generate_path_by_uuid
 
 
 class AvatarService:

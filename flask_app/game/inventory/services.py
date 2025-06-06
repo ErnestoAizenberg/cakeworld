@@ -1,7 +1,6 @@
 import logging
 from typing import List, Optional
 
-
 from flask_app.game.item.dtos import StoreItemDTO
 
 from .dtos import InventoryItemDTO

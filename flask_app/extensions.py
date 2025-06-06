@@ -2,7 +2,6 @@ from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
-
 # Инициализация расширений без приложения
 db = SQLAlchemy()
 socketio = SocketIO()
