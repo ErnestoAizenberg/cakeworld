@@ -63,7 +63,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ![Flask](https://img.shields.io/badge/Flask-2.2.5-ff9e00) ![Flask-SQLAlchemy](https://img.shields.io/badge/Flask--SQLAlchemy-3.1.1-00cc88) ![redis](https://img.shields.io/badge/redis-latest-cc0000)
 ![Flask-Login](https://img.shields.io/badge/Flask--Login-0.6.3-blue)
 ![Flask-WTF](https://img.shields.io/badge/Flask--WTF-1.2.2-blue)
-![Flask-Mail](https://img.shields.io/badge/Flask--Mail-0.10.0-blue)
 ![Flask-Migrate](https://img.shields.io/badge/Flask--Migrate-4.1.0-blue)
 ![Werkzeug](https://img.shields.io/badge/Werkzeug-2.2.2-blue)
 ![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.1-blue)
