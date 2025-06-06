@@ -1,5 +1,5 @@
-# flask_app/fabric.py
 import os
+from typing import Dict
 
 from flask import Flask
 from redis import Redis
@@ -9,7 +9,6 @@ class AppFactory:
     def __init__(self):
         self.app = None
         self.db = None
-        self.mail = None
         self.socketio = None
         self.csrf = None
         self._components = {
@@ -20,7 +19,9 @@ class AppFactory:
         }
 
     def create_app(
-        self, config_class: str = "configs.development.DevelopmentConfig"
+        self,
+        config_class: str = "configs.development.DevelopmentConfig",
+        #mail_config: Dict,
     ) -> Flask:
         self.app = Flask(__name__, template_folder="templates", static_folder="static")
 
@@ -47,15 +48,13 @@ class AppFactory:
 
     def _init_extensions(self):
         """Initialize Flask extensions"""
-        from .extensions import csrf, db, mail, socketio
+        from .extensions import csrf, db, socketio
 
         self.db = db
-        self.mail = mail
         self.socketio = socketio
         self.csrf = csrf
 
         db.init_app(self.app)
-        mail.init_app(self.app)
         socketio.init_app(self.app)
         if csrf:
             csrf.init_app(self.app)
@@ -171,7 +170,14 @@ class AppFactory:
             redis_client=self.redis_client,
         )
         user_service = UserService(repos["user"])
-        email_service = EmailService(self.mail)
+        email_service = EmailService(
+            smtp_server=self.app.config.get("MAIL_SERVER"),
+            smtp_port=self.app.config.get("MAIL_PORT"),
+            smtp_username=self.app.config.get("MAIL_USERNAME"),
+            smtp_password=self.app.config.get("MAIL_PASSWORD"),
+            sender=self.app.config.get("MAIL_USERNAME"),
+            use_tls=self.app.config.get("MAIL_USE_TLS"),
+        )
         auth_service = AuthService(repos["user"], email_service)
         oauth_service = OAuthService(repos["user"], auth_service)
         notification_service = NotificationService(repos["notification"])

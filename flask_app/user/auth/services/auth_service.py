@@ -4,6 +4,7 @@ import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
+from flask import url_for
 from werkzeug.security import generate_password_hash
 
 from flask_app.user.dtos import UserDTO
@@ -49,7 +50,20 @@ class AuthService:
         )
 
         created_user = self.user_repository.save(user_dto)
-        self.email_service.send_verification_email(created_user)
+
+        assert created_user, "User repo returned no user"
+        if True:
+            verification_link: str = url_for(
+                "auth.verify_email",
+                token=created_user.verification_token,
+                _external=True,
+            )
+            self.email_service.send_verification_email(
+                verification_link=verification_link,
+                username=created_user.username,
+                email=created_user.email,
+            )
+
         return created_user
 
     def _validate_signup(self, username: str, email: str, password: str) -> None:
@@ -136,7 +150,16 @@ class AuthService:
         user_dto.last_verification_request = datetime.utcnow()
 
         updated_user = self.user_repository.update(user_dto)
-        self.email_service.send_verification_email(updated_user)
+        verification_link: str = url_for(
+            "auth.verify_email",
+            token=updated_user.verification_token,
+            _external=True,
+        )
+        self.email_service.send_verification_email(
+            verification_link=verification_link,
+            username=updated_user.username,
+            email=updated_user.email,
+        )
         return updated_user
 
     def request_password_reset(self, email: str) -> Optional[UserDTO]:
@@ -156,7 +179,18 @@ class AuthService:
         user_dto.last_password_reset_request = datetime.utcnow()
 
         updated_user = self.user_repository.update(user_dto)
-        self.email_service.send_password_reset_email(updated_user)
+        assert updated_user, "User repository returned no updated user"
+
+        reset_link: str = url_for(
+            "auth.reset_password",
+            token=updated_user.verification_token,
+            _external=True,
+        )
+        self.email_service.send_password_reset_email(
+            reset_link=reset_link,
+            username=updated_user.username,
+            email=updated_user.email,
+        )
         return updated_user
 
     def confirm_password_reset(self, token: str, new_password: str) -> UserDTO:
