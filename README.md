@@ -19,7 +19,7 @@
 
   <br>
   
-  <h3>✨ Chaek it Out!</h3>
+  <h3>✨ Check it Out!</h3>
   <a href="https://cakeworld.pythonanywhere.com/">
     <img src="https://img.shields.io/badge/||_‎_‎_‎_‎_OPEN_CAKEWORLD_‎_‎_‎_‎||-0969DA?style=for-the-badge&logoColor=white" alt="Open CakeWorld">
   </a>
@@ -120,7 +120,7 @@ Explore features in our <a href="https://github.com/your-repo/issues">issues</a>
 ## 🚀 Get Started
 
 ```bash
-git clone https://github.com/your-repo/cakeworld.git
+git clone https://github.com/ErnestoAizenberg/cakeworld.git
 ```
 Follow <a href="INSTALL.md">INSTALL.md</a> for setup instructions.
 
