@@ -2,7 +2,7 @@
 
 # :cake: CakeWorld 
 
-A big WEB forum with clean and scalable architecture.
+A big open-source web forum with clean and scalable architecture. Vist https://cakeworld.pythonanywhere.com/
 
 ## Key Features
 
