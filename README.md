@@ -1,90 +1,162 @@
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B)](https://www.python.org/) [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=101010&color=E34F26)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white&labelColor=101010)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-
-# :cake: CakeWorld 
-
-A big open-source web forum with clean and scalable architecture.
-
-### Chaek it Out\!
-Click the button below to open the Cakeworld web firum on pythonanywhere.com:
-
 <div align="center">
+  <h1 align="center">🍰 CakeWorld</h1>
+  <p align="center">A big open-source web forum with clean and scalable architecture.</p>
+
+  <div>
+    <a href="https://www.python.org/">
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B" alt="Python">
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
+      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=101010&color=E34F26" alt="HTML5">
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
+      <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white&labelColor=101010" alt="CSS3">
+    </a>
+  </div>
+
+  <br>
+  
+  <h3>✨ Chaek it Out!</h3>
   <a href="https://cakeworld.pythonanywhere.com/">
-    <img src="https://img.shields.io/badge/||_‎ _‎ _‎ _ _ _‎ _ _ _‎‎ _OPEN_CAKEWORLD_‎ _‎ _‎ _‎‎ _  _ _‎‎ _||-0969DA?style=for-the-badge">
+    <img src="https://img.shields.io/badge/||_‎_‎_‎_‎_OPEN_CAKEWORLD_‎_‎_‎_‎||-0969DA?style=for-the-badge&logoColor=white" alt="Open CakeWorld">
   </a>
 </div>
 
+<br>
 
-## Key Features
+## 🌟 Key Features
 
-- **Authentication**: 
-  Built-in authentication system with robust OAuth support to ensure secure user access.
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <ul>
+          <li><b>Authentication</b>: Built-in auth with OAuth support</li>
+          <li><b>Real-Time Chats</b>: Direct & group messaging</li>
+          <li><b>Prayer System</b>: Quests, inventory, store & currency</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><b>Forum</b>: Categorized topics & threaded posts</li>
+          <li><b>Customization</b>: Personalize site appearance</li>
+          <li><b>Admin Dashboards</b>: Comprehensive management</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
 
-- **Real-Time Chats**: 
-  Facilitate direct messaging and group conversations, enhancing user engagement within the platform.
+<div>
+  <ul>
+    <li><b>Static Plots</b>: Data visualization for insights</li>
+    <li><b>Notifications</b>: Keep users updated</li>
+    <li><b>Auto-Generating Avatars</b>: Unique user icons</li>
+    <li><b>Ban System</b>: Robust access control</li>
+  </ul>
+</div>
 
-- **Prayer System**: 
-  Comprehensive features including quest management, inventory tracking, a virtual store, and in-app currency management for a complete user experience.
+Explore features in our <a href="https://github.com/your-repo/issues">issues</a>, contribute via <a href="https://github.com/your-repo/pulls">PRs</a>, and discuss in <a href="https://github.com/your-repo/discussions">discussions</a>!
 
-- **Forum**:
-  Structured community forum featuring categorized topics and threaded posts to encourage rich discussions among users.
+<br>
 
-- **Site Customization**:
-  User-friendly options for easily customizing the visual appearance of the website, allowing for a personalized experience.
-- **Authentication**: Built-in authentication and OAuth support.
-- **Real-Time Chats**: Engage in direct and group chats with your friends.
-- **Prayer System**: Includes features like quests, inventory, store, and currency management.
-- **Forum**: Structured with categories, topics, and posts for community discussions.
-- **Site Customization**: Edit the look of the website easily.
-- **Admin Dashboards**: Comprehensive dashboards to manage the application effectively.
-- **Static Plots**: Visualize data with site static plots for user insights.
-- **Notifications**: Keep users updated with timely notifications.
-- **Auto-Generating Avatar System**: Automatically generate unique avatars for users.
-- **Ban System**: Manage user access with a robust ban system.
+## 🏗 Architecture Overview
 
-Feel free to explore each feature further in our [issues](https://github.com/your-repo/issues) section, contribute through pull requests, and discuss improvements in the [discussions](https://github.com/your-repo/discussions)!
+<div align="center">
+  <table>
+    <tr>
+      <td>• Database Models</td>
+      <td>• Repositories</td>
+    </tr>
+    <tr>
+      <td>• DTO Objects</td>
+      <td>• Services</td>
+    </tr>
+    <tr>
+      <td>• Generators</td>
+      <td>• Controllers</td>
+    </tr>
+    <tr>
+      <td>• API Endpoints</td>
+      <td>• Templates</td>
+    </tr>
+    <tr>
+      <td>• Stylesheets</td>
+      <td>• Scripts</td>
+    </tr>
+  </table>
+</div>
 
-## Architecture Overview
-This application operates with:
-- **Database Models**
-- **Repositories**
-- **DTO Objects**
-- **Services**
-- **Generators**
-- **Controllers**
-- **API Endpoints**
-- **Templates**
-- **Stylesheets**
-- **Scripts**
+<br>
 
-## Call for Contributions
-There are numerous bugs to be fixed and even more tests to be written; any contribution would be greatly appreciated! If you want to contribute, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
+## 🤝 Call for Contributions
 
-## Screenshots
-![Prayer System](docs/screenshots/screen%20(35).jpg)
-![Forum/Topic Post](docs/screenshots/screen%20(32).jpg)
+<p>Many bugs to fix and tests to write - all contributions welcome! Check our <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines.</p>
 
-## Get Started 
-To get started with the project, clone the repository and follow the installation steps provided in the [INSTALL.md](INSTALL.md) file.
+<br>
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📸 Screenshots
 
-### All tools
-![Flask](https://img.shields.io/badge/Flask-2.2.5-ff9e00) ![Flask-SQLAlchemy](https://img.shields.io/badge/Flask--SQLAlchemy-3.1.1-00cc88) ![redis](https://img.shields.io/badge/redis-latest-cc0000)
-![Flask-Login](https://img.shields.io/badge/Flask--Login-0.6.3-blue)
-![Flask-WTF](https://img.shields.io/badge/Flask--WTF-1.2.2-blue)
-![Flask-Migrate](https://img.shields.io/badge/Flask--Migrate-4.1.0-blue)
-![Werkzeug](https://img.shields.io/badge/Werkzeug-2.2.2-blue)
-![python-dotenv](https://img.shields.io/badge/python--dotenv-1.0.1-blue)
-![urllib3](https://img.shields.io/badge/urllib3-2.3.0-blue)
-![requests](https://img.shields.io/badge/requests-2.32.3-blue)
-![jinja2](https://img.shields.io/badge/jinja2-3.1.5-blue)
-![Mako](https://img.shields.io/badge/Mako-1.3.9-blue)
-![alembic](https://img.shields.io/badge/alembic-1.14.1-blue)
-![bs4](https://img.shields.io/badge/bs4-latest-blue)
-![bleach](https://img.shields.io/badge/bleach-latest-blue)
-![redis](https://img.shields.io/badge/redis-latest-blue)
-![flask_socketio](https://img.shields.io/badge/flask_socketio-latest-blue)
-![pytest](https://img.shields.io/badge/pytest-8.3.5-blue)
-![pillow](https://img.shields.io/badge/pillow-latest-blue)
-![pytz](https://img.shields.io/badge/pytz-latest-blue)
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/screen%20(35).jpg" alt="Prayer System" width="300">
+        <p><i>Prayer System</i></p>
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/screen%20(32).jpg" alt="Forum" width="300">
+        <p><i>Forum/Topic Post</i></p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+## 🚀 Get Started
+
+```bash
+git clone https://github.com/your-repo/cakeworld.git
+```
+Follow <a href="INSTALL.md">INSTALL.md</a> for setup instructions.
+
+<br>
+
+## 📜 License
+MIT - See <a href="LICENSE">LICENSE</a> for details.
+
+<br>
+
+## 🛠️ All Tools
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Flask-2.2.5-ff9e00" alt="Flask">
+  <img src="https://img.shields.io/badge/Flask--SQLAlchemy-3.1.1-00cc88" alt="Flask-SQLAlchemy">
+  <img src="https://img.shields.io/badge/redis-latest-cc0000" alt="redis">
+  <br>
+  <img src="https://img.shields.io/badge/Flask--Login-0.6.3-blue" alt="Flask-Login">
+  <img src="https://img.shields.io/badge/Flask--WTF-1.2.2-blue" alt="Flask-WTF">
+  <img src="https://img.shields.io/badge/Flask--Migrate-4.1.0-blue" alt="Flask-Migrate">
+  <br>
+  <img src="https://img.shields.io/badge/Werkzeug-2.2.2-blue" alt="Werkzeug">
+  <img src="https://img.shields.io/badge/python--dotenv-1.0.1-blue" alt="python-dotenv">
+  <img src="https://img.shields.io/badge/urllib3-2.3.0-blue" alt="urllib3">
+  <br>
+  <img src="https://img.shields.io/badge/requests-2.32.3-blue" alt="requests">
+  <img src="https://img.shields.io/badge/jinja2-3.1.5-blue" alt="jinja2">
+  <img src="https://img.shields.io/badge/Mako-1.3.9-blue" alt="Mako">
+  <br>
+  <img src="https://img.shields.io/badge/alembic-1.14.1-blue" alt="alembic">
+  <img src="https://img.shields.io/badge/bs4-latest-blue" alt="bs4">
+  <img src="https://img.shields.io/badge/bleach-latest-blue" alt="bleach">
+  <br>
+  <img src="https://img.shields.io/badge/flask_socketio-latest-blue" alt="flask_socketio">
+  <img src="https://img.shields.io/badge/pytest-8.3.5-blue" alt="pytest">
+  <img src="https://img.shields.io/badge/pillow-latest-blue" alt="pillow">
+  <br>
+  <img src="https://img.shields.io/badge/pytz-latest-blue" alt="pytz">
+</div>
