@@ -8,7 +8,6 @@ csrf = CSRFProtect()
 
 
 def init_extensions(app):
-    """Ленивая инициализация расширений"""
     db.init_app(app)
     csrf.init_app(app)
     socketio.init_app(
