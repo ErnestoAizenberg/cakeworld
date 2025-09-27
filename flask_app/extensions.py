@@ -1,8 +1,7 @@
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
-
-# Aplles initialisation 
+ 
 db = SQLAlchemy()
 socketio = SocketIO()
 csrf = CSRFProtect()
