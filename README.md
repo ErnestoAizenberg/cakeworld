@@ -128,35 +128,3 @@ Follow <a href="INSTALL.md">INSTALL.md</a> for setup instructions.
 
 ## 📜 License
 MIT - See <a href="LICENSE">LICENSE</a> for details.
-
-<br>
-
-## 🛠️ All Tools
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Flask-2.2.5-ff9e00" alt="Flask">
-  <img src="https://img.shields.io/badge/Flask--SQLAlchemy-3.1.1-00cc88" alt="Flask-SQLAlchemy">
-  <img src="https://img.shields.io/badge/redis-latest-cc0000" alt="redis">
-  <br>
-  <img src="https://img.shields.io/badge/Flask--Login-0.6.3-blue" alt="Flask-Login">
-  <img src="https://img.shields.io/badge/Flask--WTF-1.2.2-blue" alt="Flask-WTF">
-  <img src="https://img.shields.io/badge/Flask--Migrate-4.1.0-blue" alt="Flask-Migrate">
-  <br>
-  <img src="https://img.shields.io/badge/Werkzeug-2.2.2-blue" alt="Werkzeug">
-  <img src="https://img.shields.io/badge/python--dotenv-1.0.1-blue" alt="python-dotenv">
-  <img src="https://img.shields.io/badge/urllib3-2.3.0-blue" alt="urllib3">
-  <br>
-  <img src="https://img.shields.io/badge/requests-2.32.3-blue" alt="requests">
-  <img src="https://img.shields.io/badge/jinja2-3.1.5-blue" alt="jinja2">
-  <img src="https://img.shields.io/badge/Mako-1.3.9-blue" alt="Mako">
-  <br>
-  <img src="https://img.shields.io/badge/alembic-1.14.1-blue" alt="alembic">
-  <img src="https://img.shields.io/badge/bs4-latest-blue" alt="bs4">
-  <img src="https://img.shields.io/badge/bleach-latest-blue" alt="bleach">
-  <br>
-  <img src="https://img.shields.io/badge/flask_socketio-latest-blue" alt="flask_socketio">
-  <img src="https://img.shields.io/badge/pytest-8.3.5-blue" alt="pytest">
-  <img src="https://img.shields.io/badge/pillow-latest-blue" alt="pillow">
-  <br>
-  <img src="https://img.shields.io/badge/pytz-latest-blue" alt="pytz">
-</div>
