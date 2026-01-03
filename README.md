@@ -59,7 +59,7 @@
   </ul>
 </div>
 
-Explore features in our <a href="https://github.com/your-repo/issues">issues</a>, contribute via <a href="https://github.com/your-repo/pulls">PRs</a>, and discuss in <a href="https://github.com/your-repo/discussions">discussions</a>!
+Explore features in our <a href="https://github.com/ErnestoAizenberg/cakeworld/issues">issues</a>, contribute via <a href="https://github.com/your-repo/pulls">PRs</a>, and discuss in <a href="https://github.com/your-repo/discussions">discussions</a>!
 
 <br>
 
