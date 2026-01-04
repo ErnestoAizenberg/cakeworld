@@ -43,33 +43,32 @@
 <br>
 
 <div align="center">
-## 🏗 Architecture Overview
+  ## 🏗 Architecture Overview
 
-<div align="center">
-  <table>
-    <tr>
-      <td>• Database Models</td>
-      <td>• Repositories</td>
-    </tr>
-    <tr>
-      <td>• DTO Objects</td>
-      <td>• Services</td>
-    </tr>
-    <tr>
-      <td>• Generators</td>
-      <td>• Controllers</td>
-    </tr>
-    <tr>
-      <td>• API Endpoints</td>
-      <td>• Templates</td>
-    </tr>
-    <tr>
-      <td>• Stylesheets</td>
-      <td>• Scripts</td>
-    </tr>
-  </table>
-</div>
-
+  <div align="center">
+    <table>
+      <tr>
+        <td>• Database Models</td>
+        <td>• Repositories</td>
+      </tr>
+      <tr>
+        <td>• DTO Objects</td>
+        <td>• Services</td>
+      </tr>
+      <tr>
+        <td>• Generators</td>
+        <td>• Controllers</td>
+      </tr>
+      <tr>
+        <td>• API Endpoints</td>
+        <td>• Templates</td>
+      </tr>
+      <tr>
+        <td>• Stylesheets</td>
+        <td>• Scripts</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <br>
