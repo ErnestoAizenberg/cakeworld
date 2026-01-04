@@ -7,14 +7,12 @@
   ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
   
   **A modern open-source forum platform built with clean architecture**
-  
-  ---
-  
-  [![🌐 Visit Live Demo](https://img.shields.io/badge/🌐_Visit_Live_Demo-0969DA?style=for-the-badge&logo=link&logoColor=white)](https://cakeworld.pythonanywhere.com/)
-  
+
 </div>
 
 <br>
+
+[![🌐 Visit Live Demo](https://img.shields.io/badge/🌐_Visit_Live_Demo-0969DA?style=for-the-badge&logo=link&logoColor=white)](https://cakeworld.pythonanywhere.com/)
 
 ## 🌟 Key Features
 
