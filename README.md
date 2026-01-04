@@ -29,37 +29,29 @@
 
 ## 🌟 Key Features
 
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <ul>
-          <li><b>Authentication</b>: Built-in auth with OAuth support</li>
-          <li><b>Real-Time Chats</b>: Direct & group messaging</li>
-          <li><b>Prayer System</b>: Quests, inventory, store & currency</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li><b>Forum</b>: Categorized topics & threaded posts</li>
-          <li><b>Customization</b>: Personalize site appearance</li>
-          <li><b>Admin Dashboards</b>: Comprehensive management</li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-</div>
+**Core Platform:**
+- **Authentication**: Built-in auth with OAuth support
+- **Real-Time Chats**: Direct & group messaging  
+- **Prayer System**: Quests, inventory, store & currency
+- **Forum**: Categorized topics & threaded posts
+- **Admin Dashboards**: Comprehensive management tools
 
-<div>
-  <ul>
-    <li><b>Static Plots</b>: Data visualization for insights</li>
-    <li><b>Notifications</b>: Keep users updated</li>
-    <li><b>Auto-Generating Avatars</b>: Unique user icons</li>
-    <li><b>Ban System</b>: Robust access control</li>
-  </ul>
-</div>
+**User Experience:**
+- **Customization**: Personalize site appearance and preferences
+- **Notifications**: Keep users updated with alerts and messages
+- **Auto-Generating Avatars**: Unique user icons for each member
+- **Static Plots**: Data visualization and insights dashboard
 
-Explore features in our <a href="https://github.com/ErnestoAizenberg/cakeworld/issues">issues</a>, contribute via <a href="https://github.com/ErnestoAizenberg/cakeworld/pulls">PRs</a>, and discuss in <a href="https://github.com/ErnestoAizenberg/cakeworld/discussions">discussions</a>!
+**Moderation & Security:**
+- **Ban System**: Robust access control and user management
+- **Permission Controls**: Granular access levels for different roles
+
+---
+
+### Get Involved
+- **Explore features** in our [issues](https://github.com/ErnestoAizenberg/cakeworld/issues)
+- **Contribute** via [pull requests](https://github.com/ErnestoAizenberg/cakeworld/pulls)  
+- **Discuss** ideas in our [discussions](https://github.com/ErnestoAizenberg/cakeworld/discussions)
 
 <br>
 
