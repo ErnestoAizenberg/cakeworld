@@ -43,8 +43,7 @@
 <br>
 
 <div align="center">
-  ## 🏗 Architecture Overview
-
+  <h2>🏗 Architecture Overview</h2>
   <div align="center">
     <table>
       <tr>
