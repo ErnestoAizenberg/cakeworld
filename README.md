@@ -1,28 +1,21 @@
 <div align="center">
-  <h1 align="center">🍰 CakeWorld</h1>
-  <p align="center">A big open-source web forum with clean and scalable architecture.</p>
-
-  <div>
-    <a href="https://www.python.org/">
-      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B" alt="Python">
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=101010&color=E34F26" alt="HTML5">
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-      <img src="https://img.shields.io/badge/JavaScript-black?style=for-the-badge&logo=javascript&logoColor=F7DF1E&labelColor=black&color=F7DF1E" alt="JavaScript">
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-      <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white&labelColor=101010" alt="CSS3">
-    </a>
-  </div>
-
-  <br>
   
-  <h3>✨ Check it Out!</h3>
-  <a href="https://cakeworld.pythonanywhere.com/">
-    <img src="https://img.shields.io/badge/||_‎_‎_‎_‎_OPEN_CAKEWORLD_‎_‎_‎_‎||-0969DA?style=for-the-badge&logoColor=white" alt="Open CakeWorld">
-  </a>
+  # 🍰 CakeWorld
+  
+  **A modern open-source forum platform built with clean architecture**
+  
+  ---
+  
+  ### 🛠️ Built With
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  
+  ---
+  
+  [![🌐 Visit Live Demo](https://img.shields.io/badge/🌐_Visit_Live_Demo-0969DA?style=for-the-badge&logo=link&logoColor=white)](https://cakeworld.pythonanywhere.com/)
+  
 </div>
 
 <br>
