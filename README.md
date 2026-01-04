@@ -42,6 +42,7 @@
 
 <br>
 
+<div align="center">
 ## 🏗 Architecture Overview
 
 <div align="center">
@@ -67,6 +68,8 @@
       <td>• Scripts</td>
     </tr>
   </table>
+</div>
+
 </div>
 
 <br>
