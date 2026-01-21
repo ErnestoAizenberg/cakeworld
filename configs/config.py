@@ -1,5 +1,6 @@
 import argparse
 import os
+from typing import Final
 
 from dotenv import load_dotenv
 
@@ -35,34 +36,34 @@ args = parse_arguments()
 
 class Config:
     # Redis configuration
-    REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
-    REDIS_HOST = args.redis_host or os.getenv("REDIS_HOST", "localhost")
-    REDIS_PORT = args.redis_port or int(os.getenv("REDIS_PORT", 6379))
-    REDIS_DB = args.redis_db or int(os.getenv("REDIS_DB", 0))
+    REDIS_URL: Final[str] = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    REDIS_HOST: Final[str] = args.redis_host or os.getenv("REDIS_HOST", "localhost")
+    REDIS_POR: Final[int] = args.redis_port or int(os.getenv("REDIS_PORT", 6379))
+    REDIS_DB: Final[int] = args.redis_db or int(os.getenv("REDIS_DB", 0))
 
     # Flask secret key
-    SECRET_KEY = args.secret_key or os.getenv(
+    SECRET_KEY: Final[str] = args.secret_key or os.getenv(
         "SECRET_KEY", "ktdkdgluurugifjGkmkyfvfhegegfbkegkenec"
     )
 
     # Upload folder
-    UPLOAD_FOLDER = "static/uploads"
+    UPLOAD_FOLDER: Final[str] = "static/uploads"
 
     # Database URI
-    SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI", "sqlite:///forum.db")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI: Final[str] = os.getenv("SQLALCHEMY_DATABASE_URI", "sqlite:///forum.db")
+    SQLALCHEMY_TRACK_MODIFICATIONS: Final[bool] = False
 
     # Email/SMS configuration
-    MAIL_SERVER = os.getenv("MAIL_SERVER", "smtp.gmail.com")
-    MAIL_PORT = int(os.getenv("MAIL_PORT", 587))
-    MAIL_USE_TLS = os.getenv("MAIL_USE_TLS", "True").lower() in ("true", "1", "yes")
-    MAIL_USERNAME = args.mail_username or os.getenv(
+    MAIL_SERVER: Final[str] = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+    MAIL_PORT: Final[int] = int(os.getenv("MAIL_PORT", 587))
+    MAIL_USE_TLS: Final[bool] = os.getenv("MAIL_USE_TLS", "True").lower() in ("true", "1", "yes")
+    MAIL_USERNAME: Final[str] = args.mail_username or os.getenv(
         "MAIL_USERNAME", "sereernest@gmail.com"
     )
-    MAIL_PASSWORD = args.mail_password or os.getenv("MAIL_PASSWORD")
+    MAIL_PASSWORD: Final[str] = args.mail_password or os.getenv("MAIL_PASSWORD")
 
     # OAuth2 providers
-    OAUTH2_PROVIDERS = {
+    OAUTH2_PROVIDERS: Final[Dict[str, dict]] = {
         "google": {
             "client_id": os.getenv("CLIENT_ID"),
             "client_secret": os.getenv("CLIENT_SECRET"),
