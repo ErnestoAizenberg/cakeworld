@@ -1,6 +1,6 @@
 import argparse
 import os
-from typing import Final
+from typing import Final, Dict
 
 from dotenv import load_dotenv
 
