@@ -1,5 +1,7 @@
-from flask_app import create_app
+from flask_app import Flask, create_app
 from flask_app.extensions import db
+from flask_sqlalchemy import SQLAlchemy
+
 from instance.manager import (
     create_banners,
     create_categories,
@@ -8,10 +10,8 @@ from instance.manager import (
     create_topics,
 )
 
-app = create_app("configs.development.DevelopmentConfig")
 
-
-def initialize_database():
+def initialize_database(db: SQLAlchemy, app: Flask):
     with app.app_context():
         db.create_all()
         create_categories()
@@ -22,5 +22,6 @@ def initialize_database():
 
 
 if __name__ == "__main__":
-    initialize_database()
+    app: Flask = create_app("configs.development.DevelopmentConfig")
+    initialize_database(db, app)
     app.run(debug=app.config["DEBUG"], port=app.config["PORT"], host=app.config["HOST"])
