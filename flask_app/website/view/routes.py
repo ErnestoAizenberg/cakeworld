@@ -11,16 +11,10 @@ def configure_pages(app: Flask) -> None:
 
     @app.route("/chats")
     def chats_dashboard():
-        # get chats
         return render_template("chats.html")
 
     @main_bp.route("/b")
     def base():
         return render_template("base.html")
-
-    @main_bp.route("/")
-    @main_bp.route("/index")
-    def index():
-        return render_template("index.html")
 
     app.register_blueprint(main_bp)

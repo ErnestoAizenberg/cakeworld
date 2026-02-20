@@ -19,7 +19,7 @@ class AvatarService:
         user_repo: UserRepository,
         image_service: ImageService,
         avatar_generator: AvatarGenerator,
-        redis_client: redis.Redis,
+        redis_client: Optional[redis.Redis],
         files_location: str = "static/images/avatars",
         file_extension: str = ".png",
         path_division: int = 4,
@@ -31,7 +31,7 @@ class AvatarService:
             user_repo: Repository for user data operations
             image_service: Service for image processing
             avatar_generator: Service for generating default avatars
-            redis_client: Redis client for caching
+            redis_client: Optional Redis client for caching
             files_location: Base directory for avatar storage (relative to app root)
             file_extension: File extension for avatar images
             path_division: Number of characters to use for filename in UUID splitting

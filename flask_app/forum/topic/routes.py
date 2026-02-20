@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, g, redirect, render_template, url_for
+from flask import Flask, Blueprint, flash, g, redirect, render_template, url_for
 
 from flask_app.forum.post.forms import PostForm
 
@@ -6,7 +6,10 @@ from .controllers import TopicController
 from .forms import TopicForm
 
 
-def configure_topic_routes(app, topic_controller: TopicController):
+def configure_topic_routes(
+    app: Flask,
+    topic_controller: TopicController,
+):
     topic_bp = Blueprint("forum_topic", __name__, url_prefix="/topics")
 
     @topic_bp.route("/<string:url_name>")

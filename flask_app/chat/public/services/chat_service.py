@@ -31,13 +31,24 @@ class CacheTTL:
 
 class ChatService:
     def __init__(
-        self, chat_repo, chat_user_repo, message_repo, redis_client: redis.Redis
+        self,
+        chat_repo,
+        chat_user_repo,
+        message_repo,
+        redis_client: Optional[redis.Redis],
+        redis_enabled: bool = False
     ):
         self.chat_repo = chat_repo
         self.chat_user_repo = chat_user_repo
         self.message_repo = message_repo
-        self.redis = redis_client
+        self.redis: Optional[redis.Redis] = redis_client
+        self.redis_enabled: bool = redis_enabled
         self.logger = logging.getLogger(__name__)
+
+        if self.redis_enabled and not self.redis:
+            self.logger.warning("Redis enabled but redis client unavailable, disabling redis...")
+            self.redis_enabled = False
+            
 
     # --------------------------
     # Core Caching Infrastructure
@@ -45,6 +56,9 @@ class ChatService:
 
     def _cache_get(self, key: str) -> Optional[dict]:
         """Get JSON data from Redis with proper error handling."""
+        if not self.redis_enabled:
+            return None
+        
         try:
             if data := self.redis.get(key):
                 return json.loads(data)
@@ -54,6 +68,9 @@ class ChatService:
 
     def _cache_set(self, key: str, data: dict, ttl: int) -> bool:
         """Set JSON data in Redis with proper error handling."""
+        if not self.redis_enabled:
+            return False
+        
         try:
             self.redis.setex(key, ttl, json.dumps(data))
             return True
@@ -63,6 +80,9 @@ class ChatService:
 
     def _cache_delete(self, *keys: str) -> None:
         """Delete cache keys with error handling."""
+        if not self.redis_enabled:
+            return
+        
         try:
             self.redis.delete(*keys)
         except redis.RedisError as e:
@@ -70,6 +90,9 @@ class ChatService:
 
     def _invalidate_chat_cache(self, chat_id: int, url_name: str) -> None:
         """Invalidate all cache entries related to a chat."""
+        if not self.redis_enabled:
+            return
+        
         keys = [
             CacheKeys.CHAT_BY_ID.format(chat_id),
             CacheKeys.CHAT_BY_URL.format(url_name),

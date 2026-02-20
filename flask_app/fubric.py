@@ -1,22 +1,28 @@
 import os
-from typing import Dict
+import logging
+from typing import Optional
 
 from flask import Flask
 from redis import Redis
+from flask_socketio import SocketIO
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
 
 
 class AppFactory:
     def __init__(self):
-        self.app = None
-        self.db = None
-        self.socketio = None
-        self.csrf = None
+        self.app: Optional[Flask] = None
+        self.db: Optional[SQLAlchemy] = None
+        self.redis_client: Optional[Redis] = None
+        self.socketio: Optional[SocketIO] = None
+        self.csrf: Optional[CSRFProtect] = None
         self._components = {
             "forms": {},
             "repositories": {},
             "services": {},
             "controllers": {},
         }
+        self.logger = logging.getLogger(__name__)
 
     def create_app(
         self,
@@ -31,12 +37,14 @@ class AppFactory:
             self.app.config.from_object("config.ProductionConfig")
         else:
             self.app.config.from_object("config.DevelopmentConfig")
-
-        self.redis_client = (
-            Redis.from_url(self.app.config["REDIS_URL"])
-            if self.app.config.get("REDIS_URL")
-            else None
-        )
+        
+        use_redis = False
+        if use_redis:
+            self.redis_client = (
+                Redis.from_url(self.app.config["REDIS_URL"])
+                if self.app.config.get("REDIS_URL")
+                else None
+            )
 
         self._init_templates()
         self._init_extensions()
@@ -53,14 +61,19 @@ class AppFactory:
         self.db = db
         self.socketio = socketio
         self.csrf = csrf
-
-        db.init_app(self.app)
-        socketio.init_app(self.app)
+        
+        if self.app:
+            db.init_app(self.app)
+            socketio.init_app(self.app)
+        else:
+            raise ValueError("Application is None")
+        
         if csrf:
             csrf.init_app(self.app)
 
     def _init_templates(self):
         template_dir = os.path.join(os.path.dirname(__file__), "templates")
+        self.logger.debug(f"template_dir: {template_dir}")
 
         paths = [
             "flask_app/user/templates",
@@ -80,10 +93,20 @@ class AppFactory:
             "flask_app/website/templates",
             "flask_app/website/editing/templates",
             "flask_app/website/statistics/templates",
+            "flask_app/forum/topic/templates",
+            "flask_app/forum/post/templates",
+            "flask_app/user/auth/templates",
+            "flask_app/user/profile/templates",
         ]
 
         for path in paths:
-            self.app.jinja_loader.searchpath.append(path)
+            if self.app:
+                if self.app.jinja_loader:
+                    self.app.jinja_loader.searchpath.append(path)
+                else:
+                    raise RuntimeError("Jinja Loader is not set")
+            else:
+                raise RuntimeError("Application instance is not set")
 
         print("[DEBUG] templates are registered")
 
@@ -93,7 +116,6 @@ class AppFactory:
         self._init_repositories()
         self._init_services()
         self._init_controllers()
-        self._init_topic()
         self._confugure_game()
 
     def _init_forms(self):
@@ -126,6 +148,9 @@ class AppFactory:
         from .user.notification.repositories import NotificationRepository
         from .user.repositories import UserRepository
 
+        if not self.db:
+            raise RuntimeError("DB is not set")
+        
         self._components["repositories"] = {
             "user": UserRepository(self.db.session),
             "topic": TopicRepository(self.db.session),
@@ -147,6 +172,7 @@ class AppFactory:
         from .chat.message.services import MessageService
         from .chat.public.services import ChatAvatarService, ChatService
         from .forum.category.services import CategoryService
+        from .forum.topic.services import TopicService
         from .forum.post.services import PostService
         from .user.auth.oauth.services import OAuthService
         from .user.auth.services import AuthService, EmailService
@@ -170,13 +196,19 @@ class AppFactory:
             redis_client=self.redis_client,
         )
         user_service = UserService(repos["user"])
+        if not self.app:
+            raise RuntimeError("Application instance is not set")
+
+        if not self.app.config:
+            raise RuntimeError("Config instance is not set")
+
         email_service = EmailService(
-            smtp_server=self.app.config.get("MAIL_SERVER"),
-            smtp_port=self.app.config.get("MAIL_PORT"),
-            smtp_username=self.app.config.get("MAIL_USERNAME"),
-            smtp_password=self.app.config.get("MAIL_PASSWORD"),
-            sender=self.app.config.get("MAIL_USERNAME"),
-            use_tls=self.app.config.get("MAIL_USE_TLS"),
+            smtp_server=self.app.config.get("MAIL_SERVER", ""),
+            smtp_port=self.app.config.get("MAIL_PORT", ""),
+            smtp_username=self.app.config.get("MAIL_USERNAME", ""),
+            smtp_password=self.app.config.get("MAIL_PASSWORD", ""),
+            sender=self.app.config.get("MAIL_USERNAME", ""),
+            use_tls=self.app.config.get("MAIL_USE_TLS", ""),
         )
         auth_service = AuthService(repos["user"], email_service)
         oauth_service = OAuthService(repos["user"], auth_service)
@@ -186,6 +218,10 @@ class AppFactory:
         category_service = CategoryService(
             repos["category"],
             repos["topic"],
+        )
+        topic_service = TopicService(
+            topic_repository=repos["topic"],
+            redis_client=self.redis_client
         )
 
         chat_avatar_service = ChatAvatarService(
@@ -215,6 +251,7 @@ class AppFactory:
             "oauth": oauth_service,
             "user": user_service,
             "category": category_service,
+            "topic": topic_service,
             "post": post_service,
             "notification": notification_service,
             "message_reaction": message_reaction_service,
@@ -229,6 +266,7 @@ class AppFactory:
         from .chat.message.reaction.controllers import MessageReactionController
         from .chat.public.controllers import ChatController
         from .forum.category.controllers import CategoryController
+        from .forum.topic.controllers import TopicController
         from .forum.post.controllers import PostController
         from .user.auth.controllers import AuthController
         from .user.ban.controllers import BanController
@@ -251,6 +289,7 @@ class AppFactory:
             services["category"],
             forms["category"],
         )
+        topic_controller = TopicController(services["topic"])
         chat = ChatController(
             services["user"],
             services["chat"],
@@ -272,6 +311,7 @@ class AppFactory:
         user = UserController(services["user"])
 
         self._components["controllers"] = {
+            "topic": topic_controller,
             "category": category_controller,
             "auth": auth,
             "user": user,
@@ -285,6 +325,9 @@ class AppFactory:
         }
 
     def _register_routes(self):
+        if not self.app:
+            raise RuntimeError("Can not regiter routes as application instance is not set")
+        
         """Register all application routes"""
         from .base.routes import setup_request_hooks
         from .chat.direct.routes import DirectChatRoutes
@@ -301,6 +344,7 @@ class AppFactory:
         from .website.editing.routes import configure_editsite_routes
         from .website.statistics.routes import configure_site_statistics
         from .website.view.routes import configure_pages
+        from .forum.topic.routes import configure_topic_routes
 
         controllers = self._components["controllers"]
         services = self._components["services"]
@@ -310,7 +354,7 @@ class AppFactory:
         setup_request_hooks(self.app, services["user"], services["profile"])
         # configure_cache_routes(self.app)
         # configure_exception_routes(self.app)
-        configure_pages(self.app, services["user"])
+        configure_pages(self.app)
 
         # Auth routes
         init_auth_routes(self.app, controllers["auth"])
@@ -326,14 +370,23 @@ class AppFactory:
 
         # Forum routes
         configure_post_routes(
-            self.app, controllers["post"], forms["post"], forms["reply"]
+            app=self.app,
+            post_controller=controllers["post"],
+            PostForm=forms["post"],
+            ReplyForm=forms["reply"]
         )
         configure_topic_category_routes(
-            self.app, controllers["category"], forms["category"]
-        )
+            app=self.app,
+            category_controller=controllers["category"],
+            CategoryForm=forms["category"],
+        ) 
+        configure_topic_routes(self.app, controllers["topic"])
         configure_reaction_routes(self.app, controllers["message_reaction"])
 
         # Chat routes
+        if not self.socketio:
+            raise RuntimeError("Can not register chat routes as socketio instance is not set")
+        
         configure_chat_routes(
             self.app,
             self.socketio,
@@ -347,7 +400,7 @@ class AppFactory:
         configure_site_statistics(self.app, controllers["site_stats"])
         configure_notification_routes(self.app, controllers["notification"])
         configure_editsite_routes(self.app, forms["server"])
-        direct_chat_routes = DirectChatRoutes(
+        DirectChatRoutes(
             app=self.app,
             socketio=self.socketio,
             user_service=services["user"],
@@ -355,6 +408,9 @@ class AppFactory:
         )
 
     def _confugure_game(self):
+        if not self.db:
+            raise RuntimeError("Can not configure game, db is not set")
+        
         from .game.banner.repositories import BannerRepository
         from .game.banner.services import BannerService
         from .game.currency.repositories import CurrencyRepository
@@ -377,7 +433,7 @@ class AppFactory:
         banner_service = BannerService(banner_repository)
         currency_service = CurrencyService(currency_repository)
         prayer_service = PrayerService(
-            prayer_repository=UserPrayRepository(self.db.session),
+            prayer_repository=user_pray_repository,
             item_service=store_item_service,
             currency_repository=currency_repository,
         )
@@ -415,45 +471,6 @@ class AppFactory:
             services["message"],
             services["chat_avatar"],
         )
-
-    def _init_auth(self):
-        self.app.jinja_loader.searchpath.append("flask_app/user/auth/templates")
-        from flask_app.user.auth.controllers import AuthController
-        from flask_app.user.auth.services import AuthService, EmailService
-        from flask_app.user.repositories import UserRepository
-
-        user_repo = UserRepository(app.db)
-        email_service = EmailService(app.mail)
-        auth_service = AuthService(user_repo, email_service)
-        auth_controller = AuthController(auth_service)
-
-        init_auth_routes(self.app, auth_controller)
-
-    def _init_topic(self):
-        self.app.jinja_loader.searchpath.append("flask_app/forum/topic/templates")
-
-        self.app.jinja_loader.searchpath.append("flask_app/forum/post/templates")
-
-        self.app.jinja_loader.searchpath.append("flask_app/user/auth/templates")
-        self.app.jinja_loader.searchpath.append("flask_app/user/profile/templates")
-        from .forum.category.controllers import CategoryController
-        from .forum.category.forms import CategoryForm
-        from .forum.category.repositories import CategoryRepository
-        from .forum.category.services import CategoryService
-        from .forum.topic.controllers import TopicController
-        from .forum.topic.repositories import TopicRepository
-        from .forum.topic.routes import configure_topic_routes
-        from .forum.topic.services import TopicService
-
-        category_form = CategoryForm
-        category_repository = CategoryRepository(self.db.session)
-        topic_repository = TopicRepository(self.db.session)
-        category_service = CategoryService(category_repository, topic_repository)
-        topic_service = TopicService(topic_repository, self.redis_client)
-        category_controller = CategoryController(category_service, category_form)
-        topic_controller = TopicController(topic_service)
-
-        configure_topic_routes(self.app, topic_controller)
 
 
 def create_app(config_class: str = "instance.config.Config") -> Flask:

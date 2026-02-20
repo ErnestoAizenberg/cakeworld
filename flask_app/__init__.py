@@ -9,9 +9,9 @@ def create_app(
     config_class: str = "configs.development.DevelopmentConfig",
 ) -> Flask:
     """Factory function to create and configure the application"""
-    factory = AppFactory()
+    factory: AppFactory = AppFactory()
     return factory.create_app(config_class)
 
 
 if __name__ == "__main__":
-    app = create_app()
+    app: Flask = create_app()

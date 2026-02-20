@@ -1,7 +1,9 @@
 import logging
 from datetime import datetime, timedelta
+from typing import List
 
 from flask import (
+    Flask,
     Blueprint,
     flash,
     jsonify,
@@ -11,14 +13,23 @@ from flask import (
     session,
     url_for,
 )
+from flask_socketio import SocketIO
 from werkzeug.exceptions import BadRequest
+
+from flask_app.chat.public.controllers import ChatController
+from flask_app.chat.public.forms import ChatForm
+from flask_app.chat.public.services import ChatService
 
 # Set up logging
 logger = logging.getLogger(__name__)
 
 
 def configure_chat_routes(
-    app, socketio, chat_form, chat_controller, chat_service
+    app: Flask,
+    socketio: SocketIO,
+    chat_form: ChatForm,
+    chat_controller: ChatController,
+    chat_service: ChatService,
 ) -> None:
     """
     Configure all chat-related routes for the Flask application.
@@ -33,10 +44,10 @@ def configure_chat_routes(
     chat_bp = Blueprint("chat", __name__, url_prefix="/chat")
 
     @chat_bp.route("/")
-    def chat_list() -> str:
+    def chat_list():
         """Display a list of all available chats."""
         try:
-            chat_list = chat_controller.get_all_chats()
+            chat_list: List = chat_controller.get_all_chats()
             return render_template(
                 "/chat/chat_list.html",
                 chat_list=chat_list,
@@ -47,7 +58,7 @@ def configure_chat_routes(
             return redirect(url_for("main.index"))
 
     @chat_bp.route("/create", methods=["GET", "POST"])
-    def create_chat() -> str:
+    def create_chat():
         """
         Handle chat creation with form validation.
 

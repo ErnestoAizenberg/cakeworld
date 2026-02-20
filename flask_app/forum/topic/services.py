@@ -19,7 +19,9 @@ logger = logging.getLogger(__name__)
 
 class TopicService:
     def __init__(
-        self, topic_repository: TopicRepository, redis_client: redis.Redis = None
+        self,
+        topic_repository: TopicRepository,
+        redis_client: Optional[redis.Redis] = None
     ):
         self.repository = topic_repository
         self.redis = redis_client

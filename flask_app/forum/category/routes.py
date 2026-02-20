@@ -1,7 +1,14 @@
-from flask import flash, g, redirect, render_template, url_for
+from typing import Type
 
+from flask import Flask, flash, g, redirect, render_template, url_for
+from .controllers import CategoryController
+from .forms import CategoryForm
 
-def configure_topic_category_routes(app, category_controller, CategoryForm):
+def configure_topic_category_routes(
+    app: Flask,
+    category_controller: CategoryController,
+    CategoryForm: Type[CategoryForm],
+):
     @app.route("/create_category", methods=["GET", "POST"])
     def create_category():
         form = CategoryForm()

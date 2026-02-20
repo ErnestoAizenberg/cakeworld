@@ -11,13 +11,13 @@ from flask import (
 )
 
 from .controllers import PostController
-
+from .forms import PostForm, ReplyForm
 
 def configure_post_routes(
     app: Flask,
     post_controller: PostController,
-    PostForm: "FlaskForm",
-    ReplyForm: "FlaskForm",
+    PostForm: PostForm,
+    ReplyForm: ReplyForm,
 ):
     @app.route("/view_post/<int:post_id>")
     def view_post(post_id: int):
