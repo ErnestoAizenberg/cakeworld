@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Flask, Blueprint, render_template
 
 main_bp = Blueprint("main", __name__)
 
 
-def configure_pages(app, user_service):
+def configure_pages(app: Flask) -> None:
     @app.route("/")
     @app.route("/index")
     def index_dash():
