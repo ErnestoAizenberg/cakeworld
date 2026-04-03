@@ -81,7 +81,7 @@ Copy-Item .env.example .env
 pip install -r requirements.txt
 
 # Run the application
-python run.py
+python flask_app/run.py
 ```
 
 ## 🐳 Docker
