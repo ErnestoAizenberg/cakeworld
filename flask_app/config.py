@@ -57,7 +57,7 @@ class Config:
     MAIL_USERNAME: Final[str] = args.mail_username or os.getenv(
         "MAIL_USERNAME", "sereernest@gmail.com"
     )
-    MAIL_PASSWORD: Final[str] = args.mail_password or os.getenv("MAIL_PASSWORD")
+    MAIL_PASSWORD: Final[str] = args.mail_password or os.getenv("MAIL_PASSWORD", "")
 
     # OAuth2 providers
     OAUTH2_PROVIDERS: Final[Dict[str, dict]] = {
