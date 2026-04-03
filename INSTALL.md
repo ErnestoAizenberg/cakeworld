@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 
 # Setup
-1. Copy `.env.example` to `.env` in the instance folder:
+1. Copy `.env.example` to `.env` in root folder:
    ```bash
-   cp configs/.env.example instance/.env
+   cp configs/.env.example .env
    ```

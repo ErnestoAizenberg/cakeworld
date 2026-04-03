@@ -4,9 +4,6 @@ from typing import Final, Dict
 
 from dotenv import load_dotenv
 
-# Load environment variables from the specified .env file
-load_dotenv("instance/env/.env")
-
 
 def parse_arguments():
     """Parse command-line arguments for configuration overrides."""
@@ -30,7 +27,7 @@ def parse_arguments():
     return parser.parse_args()
 
 
-# Parse command-line arguments
+load_dotenv()
 args = parse_arguments()
 
 
@@ -76,3 +73,14 @@ class Config:
             "scopes": ["https://www.googleapis.com/auth/userinfo.email"],
         },
     }
+
+
+class DevelopmentConfig(Config):
+    PORT: Final[int] = 5000
+    HOST: Final[str] = "127.0.0.1"
+    DEBUG: Final[bool] = True
+
+
+class TestConfig(Config):
+    PORT: Final[int] = 5000
+    HOST: Final[str] = "127.0.0.1"
