@@ -1,6 +1,8 @@
-from flask_app import Flask, create_app
-from flask_app.extensions import db
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+from flask_app import create_app
+from flask_app.extensions import db
 
 from manager import (
     create_banners,
