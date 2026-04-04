@@ -14,7 +14,7 @@ cp .env.example .env
 pip install -r requirements.txt
 
 # Run the application
-python run.py
+python -m flask_app.run
 ```
 
 ---
@@ -39,7 +39,7 @@ cp .env.example .env
 pip install -r requirements.txt
 
 # Run the application
-python run.py
+python -m flask_app.run
 ```
 
 ## 🪟 Windows (Command Prompt)
@@ -60,7 +60,7 @@ copy .env.example .env
 pip install -r requirements.txt
 
 :: Run the application
-python run.py
+python -m flask_app.run
 ```
 
 ## 🪟 Windows (PowerShell)
@@ -81,7 +81,7 @@ Copy-Item .env.example .env
 pip install -r requirements.txt
 
 # Run the application
-python flask_app/run.py
+python -m flask_app.run
 ```
 
 ## 🐳 Docker
@@ -182,7 +182,7 @@ pip install -r requirements.txt
 ## 5️⃣ Run the application
 
 ```bash
-python run.py
+python -m flask_app.run
 ```
 
 The application should now be running at `http://localhost:5000` (or the port specified in your `.env` file).
@@ -225,7 +225,7 @@ To update to the latest version:
 ```bash
 git pull origin main
 pip install -r requirements.txt --upgrade
-python run.py
+python -m flask_app.run
 ```
 
 ---
